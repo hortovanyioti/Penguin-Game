@@ -30,7 +30,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "look",
@@ -133,9 +133,20 @@
                 },
                 {
                     "name": "",
-                    "id": "71c54b25-e2de-42ed-833d-a25123fc0863",
-                    "path": "<Mouse>/{PrimaryTrigger}",
+                    "id": "b4d49c41-f361-4c73-afc7-6c1c3b20e092",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1811714-bbcf-4396-85c2-5f48cef02689",
+                    "path": "<Mouse>/{PrimaryAction}",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "KBM",
                     "action": "fire",
@@ -144,11 +155,22 @@
                 },
                 {
                     "name": "",
-                    "id": "e1811714-bbcf-4396-85c2-5f48cef02689",
-                    "path": "*/{PrimaryTrigger}",
+                    "id": "3349b1ce-8285-4b27-a758-088a285e5cb9",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a449c6b-9efa-4dd5-92d9-afb8c7dff7cf",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -169,8 +191,19 @@
                     "id": "4627babe-0166-4289-b031-c7c1c61e9ab9",
                     "path": "*/{Secondary2DMotion}",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=3,y=3)",
                     "groups": "Controller",
+                    "action": "look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2fb98620-1a2b-4131-9abf-475324a01e15",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -205,6 +238,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "Mobile",
+            "bindingGroup": "Mobile",
+            "devices": []
         }
     ]
 }
