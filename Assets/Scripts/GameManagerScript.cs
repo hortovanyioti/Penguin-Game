@@ -8,7 +8,8 @@ public class GameManagerScript : MonoBehaviour
 	private GUIStyle myStyle = new GUIStyle();
 	void Start()
 	{
-		myStyle.fontSize = 50;
+        Cursor.lockState = CursorLockMode.Locked;
+        myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;
 	}
 	void Update()
