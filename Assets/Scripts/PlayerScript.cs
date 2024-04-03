@@ -1,8 +1,5 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerScript : MonoBehaviour
@@ -10,45 +7,36 @@ public class PlayerScript : MonoBehaviour
 	[field: SerializeField] public float moveSpeed { get; private set; }
 	[field: SerializeField] public float rotateSpeed { get; private set; }
 	[field: SerializeField] public float jumpForce { get; private set; }
-	[field: SerializeField] public float bulletSize { get; private set; }
-	[field: SerializeField] public float bulletForce { get; private set; }
-	[field: SerializeField] public float fireRate { get; private set; } //RPM
 
-	[SerializeField] GameObject projectile;
-
-	private bool isGrounded { get; set; }
+	[SerializeField] AudioSource jumpSound;
 
 	private Vector2 m_Rotation;
 	private Vector2 m_Look;
 	private Vector2 m_Move;
 
-	private float timeSinceFire;
-	private bool isPrimaryFire;
+	private WeaponScript weapon;
 
+	public bool isGrounded { get; private set;}
+    public Statistics stats { get; private set; } = new Statistics();
+    
 	public void OnMove(InputAction.CallbackContext context)
 	{
 		m_Move = context.ReadValue<Vector2>();
-		Debug.Log("Move: " + m_Move);
+		//Debug.Log("Move: " + m_Move);
 	}
 	public void OnJump(InputAction.CallbackContext context)
 	{
 		Jump();
-		Debug.Log("Jump");
+		//Debug.Log("Jump");
 	}
 	public void OnLook(InputAction.CallbackContext context)
 	{
 		m_Look = context.ReadValue<Vector2>();
-		Debug.Log("Look: " + m_Look);
+		//Debug.Log("Look: " + m_Look);
 	}
-	public void OnFire(InputAction.CallbackContext context)	//If the button is pressed, set isPrimaryFire to true, if it is released, set it to false
+	public void OnFire(InputAction.CallbackContext context) //If the button is pressed, set isPrimaryFire to true, if it is released, set it to false
 	{
-		if (context.started)
-			isPrimaryFire = true;
-
-		else if (context.canceled)
-			isPrimaryFire = false;
-
-		Debug.Log("Fire");
+		weapon.OnFire(context);
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -66,16 +54,14 @@ public class PlayerScript : MonoBehaviour
 			isGrounded = false;
 		}
 	}
-
-	public void Update()
+	void Start()
+	{
+		weapon = GetComponentInChildren<WeaponScript>();
+	}
+	void Update()
 	{
 		Look(m_Look);
 		Move(m_Move);
-		timeSinceFire += Time.deltaTime;
-		if (isPrimaryFire)
-		{
-			Fire();
-		}
 	}
 
 	private void Move(Vector2 direction)
@@ -92,8 +78,9 @@ public class PlayerScript : MonoBehaviour
 		if (!isGrounded)    // Only jump if grounded
 			return;
 
-		Vector3 jump = new Vector3(0.0f, 1.0f, 0.0f);
+		Vector3 jump = new Vector3(0f, 1f, 0f);
 		this.GetComponent<Rigidbody>().AddForce(jump * jumpForce, ForceMode.Impulse);
+		jumpSound.Play(0);
 	}
 	private void Look(Vector2 rotate)
 	{
@@ -102,24 +89,11 @@ public class PlayerScript : MonoBehaviour
 
 		var scaledRotateSpeed = rotateSpeed * Time.deltaTime;
 		m_Rotation.y += rotate.x * scaledRotateSpeed;
-		m_Rotation.x = Mathf.Clamp(m_Rotation.x - rotate.y * scaledRotateSpeed, -89, 89);
+		m_Rotation.x = Mathf.Clamp(m_Rotation.x - rotate.y * scaledRotateSpeed, -89f, 89f);
 		this.transform.localEulerAngles = m_Rotation;
 	}
-
-	private void Fire()
+	public void TargetHit(float reactionTime)
 	{
-		if (timeSinceFire < 1 / (fireRate / 60))
-			return;
-
-		var transform = this.transform;
-		var newProjectile = Instantiate(projectile);
-		newProjectile.transform.position = transform.position + transform.forward * 0.6f;
-		newProjectile.transform.rotation = transform.rotation;
-		newProjectile.transform.Rotate(90f, 0f, 0f);
-
-		newProjectile.transform.localScale *= bulletSize;
-		newProjectile.GetComponent<Rigidbody>().mass = Mathf.Pow(bulletSize, 3);
-		newProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce, ForceMode.Impulse);
-		timeSinceFire = 0;
+		stats.TargetHit(reactionTime);
 	}
 }
