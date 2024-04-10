@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
 	private Vector2 m_Move;
 
 	private WeaponScript weapon;
+	private PlayerInput input;
 
 	public bool isGrounded { get; private set;}
     public Statistics stats { get; private set; } = new Statistics();
@@ -56,6 +57,7 @@ public class PlayerScript : MonoBehaviour
 	}
 	void Start()
 	{
+		input = GetComponent<PlayerInput>();
 		weapon = GetComponentInChildren<WeaponScript>();
 	}
 	void Update()
@@ -84,6 +86,7 @@ public class PlayerScript : MonoBehaviour
 	}
 	private void Look(Vector2 rotate)
 	{
+		//TODO: Implement sensitivity
 		if (rotate.sqrMagnitude < 0.01)
 			return;
 

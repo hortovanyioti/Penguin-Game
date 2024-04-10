@@ -12,7 +12,7 @@ public class BulletScript : MonoBehaviour
 		{
 			Debug.Log("UPDATING SCORE");
 			var reactionTime = collision.gameObject.GetComponent<TargetScript>().lifeTime;
-			this.transform.parent.parent.GetComponent<PlayerScript>().TargetHit(reactionTime);
+			this.transform.parent.GetComponent<PlayerScript>().TargetHit(reactionTime);
 			Destroy(gameObject);
 		}
 	}

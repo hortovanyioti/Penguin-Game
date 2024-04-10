@@ -189,7 +189,7 @@
                     "id": "99195dfe-3723-4b7b-867a-b9296f86343a",
                     "path": "<Pointer>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.65,y=0.65)",
                     "groups": "KBM",
                     "action": "look",
                     "isComposite": false,

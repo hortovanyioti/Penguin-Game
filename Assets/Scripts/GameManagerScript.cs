@@ -76,6 +76,9 @@ public class GameManagerScript : MonoBehaviour
 
 	public void OnGUI()
 	{
+		if (Time.timeScale == 0)
+			return;
+
 		GUI.Label(new Rect(100, 100, 400, 300), uptime.ToString("0.0"), myStyle);
 		float timeLeft = prepareTime + gameTime - uptime;
 

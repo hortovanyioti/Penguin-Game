@@ -8,7 +8,6 @@ public class UIButton : MonoBehaviour
 
 	[SerializeField] string sceneToLoad;
 	[SerializeField] GameObject pauseMenu;
-	[SerializeField] GameObject optionsMenu;
 
 	void Awake()
 	{
@@ -36,10 +35,7 @@ public class UIButton : MonoBehaviour
 	{
 		SceneManager.LoadSceneAsync(0);
 	}
-	public void OptionsButton() // Load the options menu
-	{
-		instance.optionsMenu.SetActive(true);
-	}
+
 	public void PauseMenu() // Load the pause menu
 	{
 		if (Time.timeScale == 1)
