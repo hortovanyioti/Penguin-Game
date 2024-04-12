@@ -243,9 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b4f261e3f12af4a93dd4aad9a0f479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <moveSpeed>k__BackingField: 10
-  <rotateSpeed>k__BackingField: 30
-  <jumpForce>k__BackingField: 2.5
+  moveSpeed: 10
+  lookSensitivity: 30
+  jumpForce: 2
   jumpSound: {fileID: 8877224586106646130}
 --- !u!114 &7459340309016518910
 MonoBehaviour:

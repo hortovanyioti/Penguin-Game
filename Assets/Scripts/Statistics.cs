@@ -1,26 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Statistics
 {
-	public float score { get; private set; } = 0f;
-	public int targetsHit { get; private set; } = 0;
-	public float overallReactionTime { get; private set; } = 0f;
-	public float accuracy { get; private set; } = 0f;//TODO: Implement this
+    private float score;
+    private int shotsFired;
+    private int targetsHit;
+    private float overallReactionTime;
+    private float avgReactionTime;
+    private float accuracy;
+    public float Score { get { return score; } private set { score = value; } }
+    public int ShotsFired { get { return shotsFired; } set { shotsFired = value; } }
+    public int TargetsHit { get { return targetsHit; } private set { targetsHit = value; } }
+    public float OverallReactionTime { get { return overallReactionTime; } private set { overallReactionTime = value; } }
+    public float AvgReactionTime { get { return avgReactionTime; } private set { avgReactionTime = value > 0.999f ? 0.999f : value; } }
+    public float Accuracy { get { return accuracy; } private set { accuracy = value; } }
 
-	public void TargetHit(float reactionTime)
-	{
-		if (reactionTime <= 0)
-			return;
-		Debug.Log(reactionTime);
-		if (reactionTime < 1f)
-		{
-			score += (1f - reactionTime);
-		}
-		targetsHit++;
-		overallReactionTime += reactionTime;
-	}
+    public void TargetHit(float reactionTime)
+    {
+        if (reactionTime <= 0)
+            return;
+
+        if (reactionTime < 1f)
+        {
+            Score += (1f - reactionTime);
+        }
+        TargetsHit++;
+        OverallReactionTime += reactionTime;
+    }
+    public void Calculate()
+    {
+        if (TargetsHit != 0)
+            AvgReactionTime = OverallReactionTime / TargetsHit;
+
+        if (ShotsFired > 0)
+            Accuracy = 100f * TargetsHit / ShotsFired;
+    }
 }

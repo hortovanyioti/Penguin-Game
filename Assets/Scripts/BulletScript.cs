@@ -10,7 +10,6 @@ public class BulletScript : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Target")
 		{
-			Debug.Log("UPDATING SCORE");
 			var reactionTime = collision.gameObject.GetComponent<TargetScript>().lifeTime;
 			this.transform.parent.GetComponent<PlayerScript>().TargetHit(reactionTime);
 			Destroy(gameObject);
