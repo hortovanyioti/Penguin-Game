@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIButton : MonoBehaviour
@@ -45,8 +46,26 @@ public class UIButton : MonoBehaviour
 		}
 		else
 		{
+			SaveManager.instance.Save();
 			instance.pauseMenu.SetActive(false);
 			Time.timeScale = 1;
+		}
+	}
+	public void PauseMenu(InputAction.CallbackContext context) // Load the pause menu
+	{
+		if (context.started)
+		{
+			if (Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+				instance.pauseMenu.SetActive(true);
+			}
+			else
+			{
+				SaveManager.instance.Save();
+				instance.pauseMenu.SetActive(false);
+				Time.timeScale = 1;
+			}
 		}
 	}
 }

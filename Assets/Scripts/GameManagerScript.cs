@@ -30,9 +30,11 @@ public class GameManagerScript : MonoBehaviour
     //private float timeSinceTargetSpawn;
     private float uptime = 0;
     private float prepareTime = 3;
-    private GUIStyle myStyle = new GUIStyle();
+	private float timeLeft;
+
+	private GUIStyle myStyle = new GUIStyle();
     private bool isGameOver = false;
-    public bool IsGameOver { get {  return isGameOver; } set { isGameOver = value; } }
+    public bool IsGameOver { get; set; }
 
     private void Awake()
     {
@@ -95,7 +97,7 @@ public class GameManagerScript : MonoBehaviour
             return;
 
         GUI.Label(new Rect(100, 100, 400, 300), (1/Time.unscaledDeltaTime).ToString("0"), myStyle);
-        float timeLeft = prepareTime + GameTime - uptime;
+        timeLeft = prepareTime + GameTime - uptime;
 
         if (prepareTime > uptime)
         {
@@ -155,6 +157,5 @@ public class GameManagerScript : MonoBehaviour
         newTarget.transform.parent = targetPool.transform;
         newTarget.transform.position = new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax), UnityEngine.Random.Range(zMin, zMax));
         newTarget.transform.LookAt(new Vector3(0f, newTarget.transform.position.y, 0f));
-        //newTarget.transform.Rotate(90f, 0f, 0f);
     }
 }

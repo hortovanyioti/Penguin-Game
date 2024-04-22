@@ -675,34 +675,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8912743152365062009}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIButton, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6385105714314583880, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6537227383066264552, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
       propertyPath: m_Name
       value: pUIButton
@@ -725,17 +697,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6367403537776413055, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
   m_PrefabInstance: {fileID: 5033508372999126481}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8912743152365062009 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4497672841769188008, guid: d15749f010dbe5c40be1dcbf9cbce84c, type: 3}
-  m_PrefabInstance: {fileID: 5033508372999126481}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153933df4d682ac48ae8ea57fe03f4fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5176186384432444828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -863,10 +824,6 @@ PrefabInstance:
     - target: {fileID: 5924363466801018242, guid: d07e25e912bc01340b348e63d6a3acc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433486903871913030, guid: d07e25e912bc01340b348e63d6a3acc8, type: 3}
-      propertyPath: m_Value
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

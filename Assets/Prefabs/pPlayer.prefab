@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8847450681720550673}
   - component: {fileID: 2022831592172622828}
   - component: {fileID: 7459340309016518910}
+  - component: {fileID: 6552206853123738929}
   - component: {fileID: 8877224586106646130}
   m_Layer: 0
   m_Name: pPlayer
@@ -177,7 +178,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 6f921760-cc0b-40bb-8136-f4ac95f31c06
-    m_ActionName: General/Jump[/Keyboard/space]
+    m_ActionName: General/jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2022831592172622828}
@@ -193,7 +194,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 49c7bb45-a0e2-461a-8b5b-64da3aee3808
-    m_ActionName: General/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionName: General/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2022831592172622828}
@@ -209,7 +210,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 76cdc5e9-3485-442e-b21c-cba36a15e260
-    m_ActionName: General/Shoot
+    m_ActionName: General/fire
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2022831592172622828}
@@ -226,6 +227,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5249a8a7-c5e1-4e2a-ae42-69835ed69bed
     m_ActionName: General/look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7459340309016518910}
+        m_TargetAssemblyTypeName: UIButton, Assembly-CSharp
+        m_MethodName: PauseMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76f088dd-69b1-405b-bd9c-c669eff13a06
+    m_ActionName: General/pause[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: General
@@ -261,6 +278,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   pauseMenu: {fileID: 0}
+--- !u!114 &6552206853123738929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3303830453334527762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9a11cb8dcae7a45a96587aa7f3fe1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &8877224586106646130
 AudioSource:
   m_ObjectHideFlags: 0
