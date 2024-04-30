@@ -25,11 +25,11 @@ public class SaveManager : MonoBehaviour
 	}
 	void Start()
 	{
-		Load();
+		//Load();
 	}
 
 	public void Save()
-	{
+	{/*
 		saveables = FindObjectsByType<SaveableEntity>(FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
 		var state = LoadFile();
 		foreach (var saveable in saveables)
@@ -38,7 +38,7 @@ public class SaveManager : MonoBehaviour
 		}
 		SaveFile(state);
 		Debug.Log("Data saved");
-		saveables = null;
+		saveables = null;*/
 	}
 	public void Load()
 	{

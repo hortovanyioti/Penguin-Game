@@ -15,4 +15,9 @@ public class VolumeSlider : SliderScript
 	{
 		AudioListener.volume = m_Slider.value; //TODO: Multiplayer
 	}
+
+	public override void OnEndDrag(PointerEventData eventData)
+	{
+		
+	}
 }

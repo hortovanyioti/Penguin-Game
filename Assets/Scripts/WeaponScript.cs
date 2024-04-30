@@ -42,11 +42,11 @@ public class WeaponScript : MonoBehaviour
         if (Time.timeScale == 0 || timeSinceFire < 1 / (fireRate / 60))    //Restrict gun to fire rate
             return;
 
-        if (!GameManagerScript.instance.IsGameOver)
+		if (!GameManagerScript.instance.IsGameOver)
             GameManagerScript.instance.PlayerScripts[0].stats.ShotsFired++;
 
         var newProjectile = Instantiate(projectile);
-        newProjectile.transform.parent = this.transform.parent;
+        newProjectile.transform.parent = GameManagerScript.instance.BulletPool.transform;
 
         newProjectile.transform.position = this.transform.position +
             this.transform.forward * bulletOffsetForward +

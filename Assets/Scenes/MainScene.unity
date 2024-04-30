@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0497f93911f40e419b74c99069e638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 0
 --- !u!1 &339830860
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +623,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 97613569}
+  - {fileID: 2018871928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &906214247
@@ -636,11 +638,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1501fb42d6b5fba4e89489aefff84734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPool: {fileID: 97613568}
+  bulletPool: {fileID: 2018871927}
+  pauseMenu: {fileID: 1094069884}
   playerObjects:
   - {fileID: 1901379403}
   spawnTime: 0
-  gameTime: 20
-  targetPool: {fileID: 97613568}
+  gameTime: 5
+  isGameOver: 0
   target: {fileID: 4457741758647206075, guid: e2cb3032dc450bb45b10b752b7ae461c, type: 3}
   xMax: 10
   xMin: 3
@@ -1041,6 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c649042b7c27caf44a2cbb603eb9ee45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 0
 --- !u!1001 &1802863455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1242,6 +1248,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7334346964264673986, guid: 32f0f7c04ccb4884088aaa1647c19de3, type: 3}
   m_PrefabInstance: {fileID: 1802863455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2018871927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018871928}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018871928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018871927}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 906214246}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2083849031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1473,7 +1510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7151779146504172115, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_Value
-      value: 4.9
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7151779146504172115, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_Enabled

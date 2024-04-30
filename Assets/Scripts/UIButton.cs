@@ -46,7 +46,6 @@ public class UIButton : MonoBehaviour
 		}
 		else
 		{
-			SaveManager.instance.Save();
 			instance.pauseMenu.SetActive(false);
 			Time.timeScale = 1;
 		}
