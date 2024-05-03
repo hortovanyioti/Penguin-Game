@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5924363466801018242}
   - component: {fileID: 8433486903871913030}
-  - component: {fileID: 8304698073815991340}
   m_Layer: 10
   m_Name: pSlider
   m_TagString: Untagged
@@ -92,18 +91,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8304698073815991340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2760529091086334416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9a11cb8dcae7a45a96587aa7f3fe1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3111075463051240362
 GameObject:
   m_ObjectHideFlags: 0

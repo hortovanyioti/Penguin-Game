@@ -5,7 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class Statistics : ISaveable
+public class Statistics
 {
 	[SerializeField] private float score;
 	[SerializeField] private int shotsFired;
@@ -21,8 +21,8 @@ public class Statistics : ISaveable
 	public int ShotsFired { get { return shotsFired; } set { shotsFired = value; } }
 	public int TargetsHit { get { return targetsHit; } private set { targetsHit = value; } }
 	public float OverallReactionTime { get { return overallReactionTime; } private set { overallReactionTime = value; } }
-	public float AvgReactionTime { get { return avgReactionTime; } private set { avgReactionTime = value > 0.999f ? 0.999f : value; } }
-	public float MedianReactionTime { get { return medianReactionTime; } private set { medianReactionTime = value > 0.999f ? 0.999f : value; } }
+	public float AvgReactionTime { get { return avgReactionTime; } private set { avgReactionTime = value > 9.999f ? 9.999f : value; } }
+	public float MedianReactionTime { get { return medianReactionTime; } private set { medianReactionTime = value > 9.999f ? 9.999f : value; } }
 	public float Accuracy { get { return accuracy; } private set { accuracy = value; } }
 
 	public void TargetHit(float reactionTime)

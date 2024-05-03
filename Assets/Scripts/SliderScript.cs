@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public abstract class SliderScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, ISaveable
+public abstract class SliderScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 	protected Slider m_Slider;
 	[SerializeField] protected float value; //All the time shoud be the same as m_Slider.value (for saving purpose only)

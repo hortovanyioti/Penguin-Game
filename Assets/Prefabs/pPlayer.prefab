@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8847450681720550673}
   - component: {fileID: 2022831592172622828}
   - component: {fileID: 7459340309016518910}
-  - component: {fileID: 6552206853123738929}
   - component: {fileID: 8877224586106646130}
   m_Layer: 0
   m_Name: pPlayer
@@ -278,18 +277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   pauseMenu: {fileID: 0}
---- !u!114 &6552206853123738929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3303830453334527762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9a11cb8dcae7a45a96587aa7f3fe1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &8877224586106646130
 AudioSource:
   m_ObjectHideFlags: 0

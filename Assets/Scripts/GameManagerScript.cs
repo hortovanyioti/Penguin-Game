@@ -1,10 +1,11 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-	public static GameManagerScript instance;
+    public static GameManagerScript instance;
 
 	[SerializeField] private GameObject targetPool;
 	public GameObject TargetPool { get { return targetPool; } private set { targetPool = value; } }
@@ -34,7 +35,11 @@ public class GameManagerScript : MonoBehaviour
 	public float GameTime { get { return gameTime; } private set { gameTime = value; } }
 
 
-	[SerializeField] private bool isGameOver = false;
+    private Difficulty difficulty;
+    public Difficulty Difficulty { get { return difficulty; } private set { difficulty = value; } }
+
+
+    [SerializeField] private bool isGameOver = false;
 	public bool IsGameOver { get { return isGameOver; } private set { isGameOver = value; } }
 
 
@@ -57,7 +62,9 @@ public class GameManagerScript : MonoBehaviour
 	{
 		if (instance == null)
 		{
-			instance = this;
+			Difficulty = new FileDataHandler("gamesettings.cfg", "", false).LoadData<Difficulty>();
+			target.transform.localScale *= difficulty.TargetScale;
+            instance = this;
 		}
 		else
 		{
@@ -67,8 +74,11 @@ public class GameManagerScript : MonoBehaviour
 
 	void Start()
 	{
-		Time.timeScale = 1;
-		QualitySettings.vSyncCount = 0;//todo: vsync setting
+        if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
+            return;
+
+        Time.timeScale = 1;
+		//QualitySettings.vSyncCount = 0;//todo: vsync setting
 		Application.targetFrameRate = 1000;
 
 		PlayerScripts = new PlayerScript[PlayerObjects.Length];
@@ -77,17 +87,20 @@ public class GameManagerScript : MonoBehaviour
 			if (PlayerObjects[i] != null)
 				PlayerScripts[i] = PlayerObjects[i].GetComponent<PlayerScript>();
 		}
-		/*
-		SensitivitySlider s = pauseMenu.GetComponentInChildren<SensitivitySlider>(true);
-		Debug.Log("slider hello: "+s);
-		new FileDataHandler("config.cfg", "", false).LoadData<SensitivitySlider>(s);*/
 
-		myStyle.fontSize = 64;
+		myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;
 		myStyle.alignment = TextAnchor.UpperCenter;
+
+		/*TODO: TEMPORARY SOLUTION*/
+		pauseMenu.SetActive(true);
+		pauseMenu.SetActive(false);
 	}
 	void Update()
 	{
+		if (SceneManager.GetActiveScene().buildIndex==0)//Dont run in the menu scene
+			return;
+
 		if (Time.timeScale != 0)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
@@ -115,7 +128,10 @@ public class GameManagerScript : MonoBehaviour
 
 	public void OnGUI()
 	{
-		if (Time.timeScale == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
+            return;
+
+        if (Time.timeScale == 0)
 			return;
 
 		GUI.Label(new Rect(10, 10, 400, 300), (1 / Time.unscaledDeltaTime).ToString("0") + " FPS", myStyle);
@@ -178,7 +194,7 @@ public class GameManagerScript : MonoBehaviour
 	public void SpawnTarget()
 	{
 		GameObject newTarget = Instantiate(target);
-		newTarget.transform.parent = targetPool.transform;
+        newTarget.transform.parent = targetPool.transform;
 		newTarget.transform.position = new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax), UnityEngine.Random.Range(zMin, zMax));
 		newTarget.transform.LookAt(new Vector3(0f, newTarget.transform.position.y, 0f));
 	}

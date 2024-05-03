@@ -29,7 +29,7 @@ public class FileDataHandler
 		{
 			Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 			string dataToStore = JsonUtility.ToJson(data);
-			Debug.Log(dataToStore);
+			//Debug.Log(dataToStore);
 			if (useEncription)
 			{
 				dataToStore = EncryptDecript(dataToStore);

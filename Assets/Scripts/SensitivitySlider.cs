@@ -20,6 +20,7 @@ public class SensitivitySlider : SliderScript
 	}
 	override public void OnDrag(PointerEventData eventData)
 	{
+		base.OnDrag(eventData);
 		m_Player.LookSensitivity = value = m_Slider.value; //TODO: Multiplayer
 	}
 	override public void OnEndDrag(PointerEventData eventData)
