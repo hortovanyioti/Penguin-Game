@@ -58,13 +58,14 @@ public class GameManagerScript : MonoBehaviour
 
 	private GUIStyle myStyle = new GUIStyle();
 
-	private void Awake()
+	void Awake()
 	{
 		if (instance == null)
 		{
-			Difficulty = new FileDataHandler("gamesettings.cfg", "", false).LoadData<Difficulty>();
-			target.transform.localScale *= difficulty.TargetScale;
-            instance = this;
+			instance = this;
+			Difficulty = new Difficulty();
+			new FileDataHandler("gamesettings.cfg", "", false).LoadData<Difficulty>(Difficulty);
+			Difficulty.InitFromPreset();
 		}
 		else
 		{
@@ -87,6 +88,8 @@ public class GameManagerScript : MonoBehaviour
 			if (PlayerObjects[i] != null)
 				PlayerScripts[i] = PlayerObjects[i].GetComponent<PlayerScript>();
 		}
+
+		target.transform.localScale *= Difficulty.TargetScale;
 
 		myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SensitivitySlider : SliderScript
 {
-	[ExecuteAlways]
 	void Awake()
 	{
 		base.Init();

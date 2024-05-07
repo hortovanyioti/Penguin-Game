@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class Difficulty
 {
-    public Difficulty()
-    {
-        new FileDataHandler("gamesettings.cfg", "", false).LoadData<Difficulty>(this);
-        InitFromPreset();
-    }
     public enum ePreset
     {
         EASY,
@@ -21,7 +16,7 @@ public class Difficulty
     private float targetScale;
     public float TargetScale { get { return targetScale; } private set { targetScale = value; } }
 
-    private void InitFromPreset()
+    public void InitFromPreset()
     {
         switch (Preset)
         {
