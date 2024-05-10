@@ -8,15 +8,7 @@ public class UIDifficultyChangeButton : UIButton
     {
         base.Start();
 
-        /*StartCoroutine(UIInit());
-        IEnumerator UIInit()
-        {
-            while (GameManagerScript.instance.Difficulty == null)
-                yield return new WaitForSeconds(0.001f);
-
-            StopCoroutine(UIInit());
-        }*/
-        text.text = GameManagerScript.instance.Difficulty.Preset.ToString();
+        text.text = GameManagerScript.Instance.Difficulty.Preset.ToString();
     }
     private void OnEnable()
     {
@@ -24,7 +16,7 @@ public class UIDifficultyChangeButton : UIButton
     }
     public void CycleDifficulty()
     {
-        GameManagerScript.instance.Difficulty.CycleDifficulty();
-        text.text = GameManagerScript.instance.Difficulty.Preset.ToString();
+        GameManagerScript.Instance.Difficulty.CycleDifficulty();
+        text.text = GameManagerScript.Instance.Difficulty.Preset.ToString();
     }
 }

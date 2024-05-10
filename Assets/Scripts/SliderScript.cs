@@ -1,40 +1,36 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public abstract class SliderScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public abstract class SliderScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
-	protected Slider m_Slider;
-	[SerializeField] protected float value; //All the time shoud be the same as m_Slider.value (for saving purpose only)
-	protected PlayerScript m_Player;
+    protected Slider m_Slider;
+    protected PlayerScript m_Player;
+    protected TextMeshProUGUI m_ValueText;
 
-	protected void Init()
-	{
-		m_Slider = GetComponent<Slider>();
-		m_Player = GameManagerScript.instance.PlayerScripts[0];
+    protected void Init()
+    {
+        m_Slider = GetComponent<Slider>();
+        m_Player = GameManagerScript.Instance.PlayerScripts[0]; //TODO: Multiplayer
+        m_ValueText = transform.Find("ValueText").GetComponent<TextMeshProUGUI>();
+    }
 
-		new FileDataHandler("config.cfg", "", false).LoadData<SliderScript>(this);
-	}
+    public virtual void OnBeginDrag(PointerEventData eventData) { }
+    public virtual void OnDrag(PointerEventData eventData)
+    {
+        m_Slider.value = (float)Math.Round(m_Slider.value, 2);
+        m_ValueText.text = m_Slider.value.ToString().Replace(',', '.');
+    }
+    public virtual void OnEndDrag(PointerEventData eventData) { }
 
-	public virtual void OnBeginDrag(PointerEventData eventData) { }
-	public virtual void OnDrag(PointerEventData eventData) { }
-	public virtual void OnEndDrag(PointerEventData eventData)
-	{
-		value = m_Slider.value;
-	}
-
-	public object CaptureState()
-	{
-		return new Dictionary<string, object>
-		{
-			{ "slider", m_Slider.value }
-		};
-	}
-	public void RestoreState(object state)
-	{
-		m_Slider.value = (float)((Dictionary<string, object>)state)["slider"];
-	}
+    public void OnValueChange()
+    {
+        if (m_Player != null && m_Slider != null && m_ValueText != null)
+        {
+            OnDrag(null);
+        }
+    }
 }

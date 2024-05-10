@@ -11,7 +11,7 @@ public class BulletScript : MonoBehaviour
 		if (collision.gameObject.tag == "Target")
 		{
 			var reactionTime = collision.gameObject.GetComponent<TargetScript>().lifeTime;
-			GameManagerScript.instance.PlayerScripts[0].TargetHit(reactionTime);//TODO: Multiplayer
+			GameManagerScript.Instance.PlayerScripts[0].TargetHit(reactionTime);//TODO: Multiplayer
 			Destroy(gameObject);
 		}
 	}

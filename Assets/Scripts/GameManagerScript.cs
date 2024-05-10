@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public static GameManagerScript instance;
+    public static GameManagerScript Instance;
 
 	[SerializeField] private GameObject targetPool;
 	public GameObject TargetPool { get { return targetPool; } private set { targetPool = value; } }
@@ -60,9 +60,9 @@ public class GameManagerScript : MonoBehaviour
 
 	void Awake()
 	{
-		if (instance == null)
+		if (Instance == null)
 		{
-			instance = this;
+			Instance = this;
 			Difficulty = new Difficulty();
 			new FileDataHandler("gamesettings.cfg", "", false).LoadData<Difficulty>(Difficulty);
 			Difficulty.InitFromPreset();
@@ -75,9 +75,6 @@ public class GameManagerScript : MonoBehaviour
 
 	void Start()
 	{
-        if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
-            return;
-
         Time.timeScale = 1;
 		//QualitySettings.vSyncCount = 0;//todo: vsync setting
 		Application.targetFrameRate = 1000;
@@ -94,10 +91,6 @@ public class GameManagerScript : MonoBehaviour
 		myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;
 		myStyle.alignment = TextAnchor.UpperCenter;
-
-		/*TODO: TEMPORARY SOLUTION*/
-		pauseMenu.SetActive(true);
-		pauseMenu.SetActive(false);
 	}
 	void Update()
 	{

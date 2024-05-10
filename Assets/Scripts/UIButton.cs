@@ -5,21 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class UIButton : MonoBehaviour
 {
-    public static UIButton instance;
-
     [SerializeField] string sceneToLoad;
-    [SerializeField] GameObject pauseMenu;
+    GameObject pauseMenu;
 
     protected TextMeshProUGUI text;
 
-    void Awake()
-    {
-        if (instance == null)
-            instance = this;
-    }
     protected void Start()
     {
         text = GetComponentInChildren<TextMeshProUGUI>(true);
+        pauseMenu = GameManagerScript.Instance.PauseMenu;
     }
     public void StartButton()   // Load the scene that is specified in the inspector
     {
@@ -48,11 +42,11 @@ public class UIButton : MonoBehaviour
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
-            instance.pauseMenu.SetActive(true);
+            pauseMenu.SetActive(true);
         }
         else
         {
-            instance.pauseMenu.SetActive(false);
+            pauseMenu.SetActive(false);
             Time.timeScale = 1;
         }
     }
@@ -63,11 +57,11 @@ public class UIButton : MonoBehaviour
             if (Time.timeScale == 1)
             {
                 Time.timeScale = 0;
-                instance.pauseMenu.SetActive(true);
+                pauseMenu.SetActive(true);
             }
             else
             {
-                instance.pauseMenu.SetActive(false);
+                pauseMenu.SetActive(false);
                 Time.timeScale = 1;
             }
         }
