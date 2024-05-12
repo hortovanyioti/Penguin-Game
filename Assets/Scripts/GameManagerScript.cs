@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public static GameManagerScript Instance;
+	public static GameManagerScript Instance;
 
 	[SerializeField] private GameObject targetPool;
 	public GameObject TargetPool { get { return targetPool; } private set { targetPool = value; } }
@@ -35,11 +35,11 @@ public class GameManagerScript : MonoBehaviour
 	public float GameTime { get { return gameTime; } private set { gameTime = value; } }
 
 
-    private Difficulty difficulty;
-    public Difficulty Difficulty { get { return difficulty; } private set { difficulty = value; } }
+	private Difficulty difficulty;
+	public Difficulty Difficulty { get { return difficulty; } private set { difficulty = value; } }
 
 
-    [SerializeField] private bool isGameOver = false;
+	[SerializeField] private bool isGameOver = false;
 	public bool IsGameOver { get { return isGameOver; } private set { isGameOver = value; } }
 
 
@@ -75,7 +75,7 @@ public class GameManagerScript : MonoBehaviour
 
 	void Start()
 	{
-        Time.timeScale = 1;
+		Time.timeScale = 1;
 		//QualitySettings.vSyncCount = 0;//todo: vsync setting
 		Application.targetFrameRate = 1000;
 
@@ -86,7 +86,6 @@ public class GameManagerScript : MonoBehaviour
 				PlayerScripts[i] = PlayerObjects[i].GetComponent<PlayerScript>();
 		}
 
-		target.transform.localScale *= Difficulty.TargetScale;
 
 		myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;
@@ -94,7 +93,7 @@ public class GameManagerScript : MonoBehaviour
 	}
 	void Update()
 	{
-		if (SceneManager.GetActiveScene().buildIndex==0)//Dont run in the menu scene
+		if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
 			return;
 
 		if (Time.timeScale != 0)
@@ -124,10 +123,10 @@ public class GameManagerScript : MonoBehaviour
 
 	public void OnGUI()
 	{
-        if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
-            return;
+		if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
+			return;
 
-        if (Time.timeScale == 0)
+		if (Time.timeScale == 0)
 			return;
 
 		GUI.Label(new Rect(10, 10, 400, 300), (1 / Time.unscaledDeltaTime).ToString("0") + " FPS", myStyle);
@@ -190,7 +189,10 @@ public class GameManagerScript : MonoBehaviour
 	public void SpawnTarget()
 	{
 		GameObject newTarget = Instantiate(target);
-        newTarget.transform.parent = targetPool.transform;
+		newTarget.transform.localScale = new Vector3(newTarget.transform.localScale.x * Difficulty.TargetScale,
+													newTarget.transform.localScale.y * Difficulty.TargetScale,
+													newTarget.transform.localScale.z);  //Scaling z below 0.2f causes unstable behaviour		
+		newTarget.transform.parent = targetPool.transform;
 		newTarget.transform.position = new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax), UnityEngine.Random.Range(zMin, zMax));
 		newTarget.transform.LookAt(new Vector3(0f, newTarget.transform.position.y, 0f));
 	}
