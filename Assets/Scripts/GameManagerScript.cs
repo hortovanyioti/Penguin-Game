@@ -123,7 +123,7 @@ public class GameManagerScript : MonoBehaviour
 
 	public void OnGUI()
 	{
-		if (SceneManager.GetActiveScene().buildIndex == 0)//Dont run in the menu scene
+		if (SceneManager.GetActiveScene().buildIndex != 1)//Dont run in the menu scene
 			return;
 
 		if (Time.timeScale == 0)
