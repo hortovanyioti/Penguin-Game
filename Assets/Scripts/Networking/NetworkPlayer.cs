@@ -1,0 +1,61 @@
+using Mirror;
+using Steamworks;
+
+public class NetworkPlayer : NetworkBehaviour
+{
+    //Player Data
+    [SyncVar] public int ConnectionID;
+    [SyncVar] public int PlayerIdNumber;
+    [SyncVar] public ulong PlayerSteamID;
+    [SyncVar(hook = nameof(PlayerNameUpdate))] public string PlayerName;
+
+    private CustomNetworkManager manager;
+
+    private CustomNetworkManager Manager
+    {
+        get
+        {
+            if (manager != null) { return manager; }
+            return manager = CustomNetworkManager.singleton as CustomNetworkManager;
+        }
+    }
+
+    public override void OnStartAuthority()
+    {
+        CmdSetPlayerName(SteamFriends.GetPersonaName().ToString());
+        gameObject.name = "LocalGamePlayer";
+        CustomSteamLobby.Instance.FindLocalPlayer();
+        CustomSteamLobby.Instance.UpdateLobbyName();
+    }
+
+    public override void OnStartClient()
+    {
+        Manager.GamePlayers.Add(this);
+        CustomSteamLobby.Instance.UpdateLobbyName();
+        CustomSteamLobby.Instance.UpdatePlayerList();
+    }
+
+    public override void OnStopClient()
+    {
+        Manager.GamePlayers.Remove(this);
+        CustomSteamLobby.Instance.UpdatePlayerList();
+    }
+
+    [Command]
+    public void CmdSetPlayerName(string PlayerName)
+    {
+        this.PlayerNameUpdate(this.PlayerName, PlayerName);
+    }
+
+    public void PlayerNameUpdate(string oldName, string newName)
+    {
+        if (isServer)
+        {
+            this.PlayerName = newName;
+        }
+        if (isClient)
+        {
+            CustomSteamLobby.Instance.UpdatePlayerList();
+        }
+    }
+}
