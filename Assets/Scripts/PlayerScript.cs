@@ -50,12 +50,12 @@ public class PlayerScript : MonoBehaviour
 	}
 	void Update()
 	{
-		if (SceneManager.GetActiveScene().name == "MainScene")  
+		if (SceneManager.GetActiveScene().name == "MainScene")
 		{
 			if (input.enabled == false)
 			{
 				float spawnRange = 10;
-				transform.position = new Vector3(Random.Range(-spawnRange,spawnRange), Random.Range(-spawnRange, spawnRange), 2);
+				transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 2, Random.Range(-spawnRange, spawnRange));
 				input.enabled = true;
 			}
 			Look(m_Look);
