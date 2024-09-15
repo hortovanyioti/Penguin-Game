@@ -85,12 +85,14 @@ public class NetworkPlayer : NetworkBehaviour
 	[ClientRpc]
 	public void ClientActivateInput(NetworkPlayer player)
 	{
+		Debug.Log("Calling " + player.PlayerSteamID + " as client");
 		player.GetComponent<PlayerScript>().ActivateInput();
 	}
 
 	[Server]
 	public void ServerActivateInput(NetworkPlayer player)
 	{
+		Debug.Log("Calling " + player.PlayerSteamID + " as server");
 		player.GetComponent<PlayerScript>().ActivateInput();
 	}
 }
