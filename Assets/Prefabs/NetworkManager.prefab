@@ -54,18 +54,19 @@ MonoBehaviour:
   sendRate: 128
   autoStartServerBuild: 0
   autoConnectClientBuild: 0
-  offlineScene: 
-  onlineScene: 
-  transport: {fileID: 0}
+  offlineScene: Assets/Scenes/MainMenuCoop.unity
+  onlineScene: Assets/Scenes/MainMenuCoop.unity
+  transport: {fileID: 235165042223944866}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
-  autoCreatePlayer: 0
+  playerPrefab: {fileID: 193462938415849019, guid: 622ba1e4799554a45a3443be2c75dace, type: 3}
+  autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 3303830453334527762, guid: 1cac8714c2f6c9447ba35ca226cc684d, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -81,6 +82,7 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
+  GamePlayerPrefab: {fileID: -9199195382100183324, guid: 1cac8714c2f6c9447ba35ca226cc684d, type: 3}
 --- !u!114 &235165042223944866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,3 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLobbyID: 0
+  autoHostLobby: 0
+  PlayerListViewContent: {fileID: 0}
+  PlayerListItemPrefab: {fileID: 2438157633038024020, guid: fed4231a671de4f4194d2fcdcdd63565, type: 3}
+  LocalPlayerObject: {fileID: 3303830453334527762, guid: 1cac8714c2f6c9447ba35ca226cc684d, type: 3}
+  LobbyNameText: {fileID: 0}

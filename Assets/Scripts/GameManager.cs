@@ -3,9 +3,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerScript : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-	public static GameManagerScript Instance;
+	public static GameManager Instance;
 
 	[SerializeField] private GameObject targetPool;
 	public GameObject TargetPool { get { return targetPool; } private set { targetPool = value; } }
@@ -83,17 +83,21 @@ public class GameManagerScript : MonoBehaviour
 		for (var i = 0; i < PlayerObjects.Length; i++)
 		{
 			if (PlayerObjects[i] != null)
+			{
 				PlayerScripts[i] = PlayerObjects[i].GetComponent<PlayerScript>();
+			}
 		}
 
 
 		myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;
 		myStyle.alignment = TextAnchor.UpperCenter;
+
+		DontDestroyOnLoad(this.gameObject);
 	}
 	void Update()
 	{
-		if (SceneManager.GetActiveScene().buildIndex != 1)//Dont run in the menu scene
+		if (SceneManager.GetActiveScene().name != "MainScene")  //Dont run in the menu scene
 			return;
 
 		if (Time.timeScale != 0)
@@ -123,7 +127,7 @@ public class GameManagerScript : MonoBehaviour
 
 	public void OnGUI()
 	{
-		if (SceneManager.GetActiveScene().buildIndex != 1)//Dont run in the menu scene
+		if (SceneManager.GetActiveScene().name != "MainScene")  //Dont run in the menu scene
 			return;
 
 		if (Time.timeScale == 0)

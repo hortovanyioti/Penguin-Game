@@ -119,13 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c643d4ba1005e4c805ff6287ce6d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <bulletSize>k__BackingField: 1
+  <bulletSize>k__BackingField: 0.1
   <bulletForce>k__BackingField: 60
   <fireRate>k__BackingField: 600
   bulletOffsetForward: 0.5
   bulletOffsetUp: 0.35
   bulletOffsetRight: -0.45
-  projectile: {fileID: 3303830453334527762, guid: 750fd0e01278dbb4584a429ef203a8b6, type: 3}
+  projectile: {fileID: 3303830453334527762, guid: c209ccad71a5e4c42938bfa5a7b6035c, type: 3}
 --- !u!82 &6499907851103581378
 AudioSource:
   m_ObjectHideFlags: 0

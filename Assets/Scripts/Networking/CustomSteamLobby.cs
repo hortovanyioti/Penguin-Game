@@ -22,6 +22,7 @@ public class CustomSteamLobby : MonoBehaviour
 	public ulong CurrentLobbyID;
 	private const string HostAddressKey = "HostAddress";
 	private CustomNetworkManager Manager;
+	public bool autoHostLobby;
 
 	//Player data
 	public GameObject PlayerListViewContent;
@@ -58,7 +59,10 @@ public class CustomSteamLobby : MonoBehaviour
 		JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
 		LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
 
-		HostLobby();
+		if (autoHostLobby)
+		{
+			HostLobby();
+		}
 	}
 
 	/// <summary>
@@ -143,7 +147,7 @@ public class CustomSteamLobby : MonoBehaviour
 	{
 		foreach (NetworkPlayer player in Manager.GamePlayers)
 		{
-			GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
+			GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab);
 			PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
 			NewPlayerItemScript.PlayerName = player.PlayerName;
@@ -215,5 +219,9 @@ public class CustomSteamLobby : MonoBehaviour
 
 			}
 		}
+	}
+	public void StartGame(string SceneName)     //Put this on a button
+	{
+		LocalPlayerController.TryStartGame(SceneName);
 	}
 }

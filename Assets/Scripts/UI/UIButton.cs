@@ -13,7 +13,7 @@ public class UIButton : MonoBehaviour
     protected void Start()
     {
         text = GetComponentInChildren<TextMeshProUGUI>(true);
-        pauseMenu = GameManagerScript.Instance.PauseMenu;
+        pauseMenu = GameManager.Instance.PauseMenu;
     }
     public void StartButton()   // Load the scene that is specified in the inspector
     {

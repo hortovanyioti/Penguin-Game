@@ -8,7 +8,7 @@ public class UIDifficultyChangeButton : UIButton
     {
         base.Start();
 
-        text.text = GameManagerScript.Instance.Difficulty.Preset.ToString();
+        text.text = GameManager.Instance.Difficulty.Preset.ToString();
     }
     private void OnEnable()
     {
@@ -16,7 +16,7 @@ public class UIDifficultyChangeButton : UIButton
     }
     public void CycleDifficulty()
     {
-        GameManagerScript.Instance.Difficulty.CycleDifficulty();
-        text.text = GameManagerScript.Instance.Difficulty.Preset.ToString();
+        GameManager.Instance.Difficulty.CycleDifficulty();
+        text.text = GameManager.Instance.Difficulty.Preset.ToString();
     }
 }

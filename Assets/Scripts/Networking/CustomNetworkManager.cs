@@ -1,8 +1,8 @@
-using UnityEngine;
 using Mirror;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using Steamworks;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Extends the Mirror.NetworkManager class
@@ -12,20 +12,25 @@ using Steamworks;
 
 public class CustomNetworkManager : NetworkManager
 {
-    [SerializeField] private NetworkPlayer GamePlayerPrefab;
+	[SerializeField] private NetworkPlayer GamePlayerPrefab;
 
-    public List<NetworkPlayer> GamePlayers { get; } = new List<NetworkPlayer>();
+	public List<NetworkPlayer> GamePlayers { get; } = new List<NetworkPlayer>();
 
-    public override void OnServerAddPlayer(NetworkConnectionToClient conn)
-    {
-        if(SceneManager.GetActiveScene().name == "MainMenuCoop")
-        {
-            NetworkPlayer GamePlayerInstance = Instantiate(GamePlayerPrefab);
-            GamePlayerInstance.ConnectionID = conn.connectionId;
-            GamePlayerInstance.PlayerIdNumber = GamePlayers.Count + 1;
-            GamePlayerInstance.PlayerSteamID = (ulong) SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CustomSteamLobby.Instance.CurrentLobbyID, GamePlayers.Count);
-        
-            NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
-        }
-    }
+	public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+	{
+		if (SceneManager.GetActiveScene().name == "MainMenuCoop")
+		{
+			NetworkPlayer GamePlayerInstance = Instantiate(GamePlayerPrefab);
+			GamePlayerInstance.ConnectionID = conn.connectionId;
+			GamePlayerInstance.PlayerIdNumber = GamePlayers.Count + 1;
+			GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CustomSteamLobby.Instance.CurrentLobbyID, GamePlayers.Count);
+
+			NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
+		}
+	}
+
+	public void StartGame(string SceneName)
+	{
+		ServerChangeScene(SceneName);
+	}
 }
