@@ -34,7 +34,7 @@ public class CustomSteamLobby : MonoBehaviour
 	private bool PlayerItemCreated = false;
 	private List<PlayerListItem> PlayerListItems = new List<PlayerListItem>();
 
-	//Gameobject
+	//UI
 	public TextMeshProUGUI LobbyNameText;
 
 	private void Start()

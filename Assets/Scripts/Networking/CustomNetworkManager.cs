@@ -44,7 +44,7 @@ public class CustomNetworkManager : NetworkManager
 			}
 			else
 			{
-				player.ClientActivateInput(player);
+				player.ClientActivateInput();
 			}
 		}
 	}
