@@ -128,22 +128,20 @@ public class PlayerScript : MonoBehaviour
 	{
 		stats.TargetHit(reactionTime);
 	}
-	public void Activate(bool islocalPlayer)
+
+	public void ActivatePhysics()
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
-		GameObject camera = transform.Find("Camera").gameObject;
 
 		float spawnRange = 10;
 		transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 3, Random.Range(-spawnRange, spawnRange));
 		rb.useGravity = true;
+	}
 
-		if (islocalPlayer)
-		{
-			camera.SetActive(true);
-			input.enabled = true;
-			Debug.Log("Local Player activated");
-			return;
-		}
-		Debug.Log("Remote Player activated");
+	public void ActivateInput()
+	{
+		GameObject camera = transform.Find("Camera").gameObject;
+		camera.SetActive(true);
+		input.enabled = true;
 	}
 }

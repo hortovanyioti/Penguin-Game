@@ -1,5 +1,6 @@
 using Mirror;
 using Steamworks;
+using UnityEngine;
 
 public class NetworkPlayer : NetworkBehaviour
 {
@@ -79,5 +80,17 @@ public class NetworkPlayer : NetworkBehaviour
 	public void CmdStartGame(string SceneName)
 	{
 		Manager.StartGame(SceneName);
+	}
+
+	[ClientRpc]
+	public void ClientActivateInput(NetworkPlayer player)
+	{
+		player.GetComponent<PlayerScript>().ActivateInput();
+	}
+
+	[Server]
+	public void ServerActivateInput(NetworkPlayer player)
+	{
+		player.GetComponent<PlayerScript>().ActivateInput();
 	}
 }
