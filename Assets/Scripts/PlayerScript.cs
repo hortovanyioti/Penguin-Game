@@ -54,8 +54,6 @@ public class PlayerScript : MonoBehaviour
 		{
 			if (input.enabled == false)
 			{
-				float spawnRange = 10;
-				transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 2, Random.Range(-spawnRange, spawnRange));
 				input.enabled = true;
 			}
 			Look(m_Look);
@@ -139,5 +137,13 @@ public class PlayerScript : MonoBehaviour
 	public void TargetHit(float reactionTime)
 	{
 		stats.TargetHit(reactionTime);
+	}
+	public void Spawn()
+	{
+		float spawnRange = 10;
+		transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 3, Random.Range(-spawnRange, spawnRange));
+		Rigidbody rb = GetComponent<Rigidbody>();
+		rb.useGravity = true;
+		Debug.Log(gameObject.name + " Player spawned at: " + transform.position);
 	}
 }

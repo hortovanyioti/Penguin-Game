@@ -32,5 +32,9 @@ public class CustomNetworkManager : NetworkManager
 	public void StartGame(string SceneName)
 	{
 		ServerChangeScene(SceneName);
+		foreach (var player in GamePlayers)
+		{
+			player.GetComponent<PlayerScript>().Spawn();
+		}
 	}
 }

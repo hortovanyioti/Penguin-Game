@@ -509,9 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0497f93911f40e419b74c99069e638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Slider: {fileID: 0}
-  m_Player: {fileID: 0}
-  m_ValueText: {fileID: 0}
 --- !u!114 &135094630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,9 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c649042b7c27caf44a2cbb603eb9ee45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Slider: {fileID: 0}
-  m_Player: {fileID: 0}
-  m_ValueText: {fileID: 0}
 --- !u!1 &139450218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,115 +1847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1501fb42d6b5fba4e89489aefff84734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPool: {fileID: 462382559}
-  bulletPool: {fileID: 462382559}
-  pauseMenu: {fileID: 135094626}
-  playerObjects: []
-  playerScripts: []
-  spawnTime: 0
-  gameTime: 0
-  isGameOver: 0
-  target: {fileID: 462382559}
-  xMax: 0
-  xMin: 0
-  zMax: 0
-  zMin: 0
-  yMax: 0
-  yMin: 0
-  uptime: 0
-  prepareTime: 3
-  timeLeft: 0
-  myStyle:
-    m_Name: 
-    m_Normal: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_Hover: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_Active: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_Focused: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_OnNormal: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_OnHover: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_OnActive: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_OnFocused: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
-, m_TextColor:
-        r: 0
-        g: 0
-        b: 0
-        a: 1
-}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
 --- !u!1001 &1555270925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2241,9 +2126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ddae2f420203341b2396dcb63829be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
-  pauseMenu: {fileID: 0}
-  text: {fileID: 0}
 --- !u!1 &1788322809
 GameObject:
   m_ObjectHideFlags: 0
