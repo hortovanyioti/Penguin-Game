@@ -52,19 +52,9 @@ public class PlayerScript : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == "MainScene")
 		{
-			if (input.enabled == false)
-			{
-				input.enabled = true;
-			}
+
 			Look(m_Look);
 			Move(m_Move);
-		}
-		else
-		{
-			if (input.enabled == true)
-			{
-				input.enabled = false;
-			}
 		}
 	}
 
@@ -138,12 +128,22 @@ public class PlayerScript : MonoBehaviour
 	{
 		stats.TargetHit(reactionTime);
 	}
-	public void Spawn()
+	public void Activate(bool islocalPlayer)
 	{
+		Rigidbody rb = GetComponent<Rigidbody>();
+		GameObject camera = transform.Find("Camera").gameObject;
+
 		float spawnRange = 10;
 		transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 3, Random.Range(-spawnRange, spawnRange));
-		Rigidbody rb = GetComponent<Rigidbody>();
 		rb.useGravity = true;
-		Debug.Log(gameObject.name + " Player spawned at: " + transform.position);
+
+		if (islocalPlayer)
+		{
+			camera.SetActive(true);
+			input.enabled = true;
+			Debug.Log("Local Player activated");
+			return;
+		}
+		Debug.Log("Remote Player activated");
 	}
 }

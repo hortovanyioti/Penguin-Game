@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8455177129944298375
 Transform:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2526832339564762390}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &3303830453334527762
 GameObject:
   m_ObjectHideFlags: 0

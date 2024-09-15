@@ -34,7 +34,8 @@ public class CustomNetworkManager : NetworkManager
 		ServerChangeScene(SceneName);
 		foreach (var player in GamePlayers)
 		{
-			player.GetComponent<PlayerScript>().Spawn();
+			bool isLocalPlayer = (CSteamID)player.PlayerSteamID == SteamUser.GetSteamID();
+			player.GetComponent<PlayerScript>().Activate(isLocalPlayer);
 		}
 	}
 }

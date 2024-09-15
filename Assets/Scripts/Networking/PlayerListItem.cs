@@ -48,7 +48,6 @@ public class PlayerListItem : MonoBehaviour
 
 	public void SetPlayerValues()
 	{
-		//TODO PlayerNameText.gameObject.SetActive(true);
 		PlayerNameText.text = PlayerName;
 		if (!AvatarReceived)
 		{
