@@ -44,8 +44,8 @@ public class CustomNetworkManager : NetworkManager
 			}
 			else
 			{
-				player.RpcTestClientRpc();
-				player.RpcActivateInputClientRpc();
+				player.RpcTestClientRpc(player.netIdentity);
+				player.RpcActivateInputClientRpc(player.netIdentity);
 			}
 		}
 	}
