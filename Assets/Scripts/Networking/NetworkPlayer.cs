@@ -83,14 +83,14 @@ public class NetworkPlayer : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	public void ActivateInputClientRpc()
+	public void RpcActivateInputClientRpc()
 	{
 		Debug.Log("Calling " + PlayerName + " as client");
 		GetComponent<PlayerScript>().ActivateInput();
 	}
 
 	[ClientRpc]
-	public void TestClientRpc()
+	public void RpcTestClientRpc()
 	{
 		Debug.Log("Calling " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
