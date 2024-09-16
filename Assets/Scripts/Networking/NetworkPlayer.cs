@@ -82,18 +82,13 @@ public class NetworkPlayer : NetworkBehaviour
 		Manager.StartGame(SceneName);
 	}
 
-	[ClientRpc]
-	public void RpcActivateInputClientRpc(NetworkIdentity identity)
+	[TargetRpc]
+	public void RpcActivateInput(NetworkIdentity identity)
 	{
-		Debug.Log("Calling " + PlayerName + " as client");
 		GetComponent<PlayerScript>().ActivateInput();
+		Debug.Log("Calling " + PlayerName + " as client");
 	}
 
-	[TargetRpc]
-	public void RpcTestClientRpc(NetworkIdentity identity)
-	{
-		Debug.Log("Calling " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
-	}
 
 	[Server]
 	public void ServerActivateInput(NetworkPlayer player)
