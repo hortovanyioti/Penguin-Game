@@ -1818,7 +1818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1486634089
 Transform:
   m_ObjectHideFlags: 0
@@ -1844,9 +1844,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486634087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1501fb42d6b5fba4e89489aefff84734, type: 3}
+  m_Script: {fileID: 11500000, guid: 310c65fdc2120fb45aa22ba830dfcf7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPool: {fileID: 0}
+  bulletPool: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  playerObjects: []
+  spawnTime: 0
+  gameTime: 0
+  isGameOver: 0
+  target: {fileID: 0}
+  xMax: 0
+  xMin: 0
+  zMax: 0
+  zMin: 0
+  yMax: 0
+  yMin: 0
 --- !u!1001 &1555270925
 PrefabInstance:
   m_ObjectHideFlags: 0
