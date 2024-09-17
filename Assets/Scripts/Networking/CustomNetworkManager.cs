@@ -35,8 +35,6 @@ public class CustomNetworkManager : NetworkManager
 	{
 		ServerChangeScene(SceneName);
 
-		NetworkPlayers[0].RpcChangeTimeScale(NetworkPlayers[0].netIdentity, 1);
-
 		for (int i = 0; i < NetworkPlayers.Count; i++)
 		{
 
@@ -44,10 +42,12 @@ public class CustomNetworkManager : NetworkManager
 
 			if (isLocalPlayer)
 			{
+				NetworkPlayers[i].ServerChangeTimeScale(NetworkPlayers[i].netIdentity, 1);
 				NetworkPlayers[i].ServerActivateInput(NetworkPlayers[i].netIdentity, i);
 			}
 			else
 			{
+				NetworkPlayers[i].RpcChangeTimeScale(NetworkPlayers[i].netIdentity, 1);
 				NetworkPlayers[i].RpcActivateInput(NetworkPlayers[i].netIdentity, i);
 			}
 		}
