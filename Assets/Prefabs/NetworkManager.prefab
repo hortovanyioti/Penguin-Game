@@ -44,21 +44,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1482122759870241647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12fb5ec394ad7054d8a0720ad08ec938, type: 3}
+  m_Script: {fileID: 11500000, guid: 298931cf1faf3a8479467072b66b8b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   runInBackground: 1
   headlessStartMode: 1
   editorAutoStart: 0
-  sendRate: 128
+  sendRate: 60
   autoStartServerBuild: 0
   autoConnectClientBuild: 0
-  offlineScene: Assets/Scenes/MainMenuCoop.unity
-  onlineScene: Assets/Scenes/MainMenuCoop.unity
+  offlineScene: 
+  onlineScene: 
   transport: {fileID: 235165042223944866}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 10
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
