@@ -39,14 +39,14 @@ public class NetworkPlayer : NetworkBehaviour
 
 	public override void OnStartClient()
 	{
-		Manager.GamePlayers.Add(this);
+		Manager.AddPlayer(this);
 		CustomSteamLobby.Instance.UpdateLobbyName();
 		CustomSteamLobby.Instance.UpdatePlayerList();
 	}
 
 	public override void OnStopClient()
 	{
-		Manager.GamePlayers.Remove(this);
+		Manager.RemovePlayer(this);
 		CustomSteamLobby.Instance.UpdatePlayerList();
 	}
 
@@ -83,17 +83,16 @@ public class NetworkPlayer : NetworkBehaviour
 	}
 
 	[TargetRpc]
-	public void RpcActivateInput(NetworkIdentity identity)
+	public void RpcActivateInput(NetworkIdentity identity,int playerIndex)
 	{
-		GetComponent<PlayerScript>().ActivateInput();
-		Debug.Log("Calling " + PlayerName + " as client");
+		Manager.GamePlayers[playerIndex].ActivateInput();
+		Debug.Log("Activating " + PlayerName + " as client");
 	}
 
-
 	[Server]
-	public void ServerActivateInput(NetworkPlayer player)
+	public void ServerActivateInput(NetworkIdentity identity, int playerIndex)
 	{
-		Debug.Log("Calling " + player.PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
-		player.GetComponent<PlayerScript>().ActivateInput();
+		Manager.GamePlayers[playerIndex].ActivateInput();
+		Debug.Log("Calling " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 }

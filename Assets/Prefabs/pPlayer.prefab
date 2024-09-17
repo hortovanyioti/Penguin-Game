@@ -325,10 +325,10 @@ MonoBehaviour:
     m_ActionName: General/look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIButton, Assembly-CSharp
-        m_MethodName: PauseMenu
-        m_Mode: 0
+      - m_Target: {fileID: 2022831592172622828}
+        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
+        m_MethodName: CallPauseGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -581,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7334346964264673986, guid: f033361ed4aaded43b4329bb4bc82a0e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.651
+      value: 0.785
       objectReference: {fileID: 0}
     - target: {fileID: 7334346964264673986, guid: f033361ed4aaded43b4329bb4bc82a0e, type: 3}
       propertyPath: m_LocalRotation.w

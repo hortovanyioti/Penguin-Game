@@ -133,9 +133,10 @@ public class PlayerScript : MonoBehaviour
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
 
-		float spawnRange = 10;
-		transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 3, Random.Range(-spawnRange, spawnRange));
+		float spawnRange = 20;
+		transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 5, Random.Range(-spawnRange, spawnRange));
 		rb.useGravity = true;
+		Debug.Log("Physics activated");
 	}
 
 	public void ActivateInput()
@@ -143,5 +144,10 @@ public class PlayerScript : MonoBehaviour
 		GameObject camera = transform.Find("Camera").gameObject;
 		camera.SetActive(true);
 		input.enabled = true;
+	}
+
+	public void CallPauseGame()
+	{
+		GameManager.Instance.PauseGame();
 	}
 }

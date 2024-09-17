@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <bulletSize>k__BackingField: 0.1
-  <bulletForce>k__BackingField: 60
+  <bulletForce>k__BackingField: 1
   <fireRate>k__BackingField: 600
-  bulletOffsetForward: 0.5
+  bulletOffsetForward: 1
   bulletOffsetUp: 0.35
   bulletOffsetRight: -0.45
   projectile: {fileID: 3303830453334527762, guid: c209ccad71a5e4c42938bfa5a7b6035c, type: 3}

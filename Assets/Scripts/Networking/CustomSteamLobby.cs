@@ -123,15 +123,15 @@ public class CustomSteamLobby : MonoBehaviour
 		{
 			CreateHostPlayerItem(); //Host
 		}
-		if (PlayerListItems.Count < Manager.GamePlayers.Count)
+		if (PlayerListItems.Count < Manager.NetworkPlayers.Count)
 		{
 			CreateClientPlayerItem(); //Client
 		}
-		if (PlayerListItems.Count > Manager.GamePlayers.Count)
+		if (PlayerListItems.Count > Manager.NetworkPlayers.Count)
 		{
 			RemovePlayerItem();
 		}
-		if (PlayerListItems.Count == Manager.GamePlayers.Count)
+		if (PlayerListItems.Count == Manager.NetworkPlayers.Count)
 		{
 			UpdatePlayerItem();
 		}
@@ -145,7 +145,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void CreateHostPlayerItem()
 	{
-		foreach (NetworkPlayer player in Manager.GamePlayers)
+		foreach (NetworkPlayer player in Manager.NetworkPlayers)
 		{
 			GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab);
 			PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
@@ -164,7 +164,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void CreateClientPlayerItem()
 	{
-		foreach (NetworkPlayer player in Manager.GamePlayers)
+		foreach (NetworkPlayer player in Manager.NetworkPlayers)
 		{
 			if (!PlayerListItems.Any(x => x.ConnectionID == player.ConnectionID))
 			{
@@ -185,7 +185,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void UpdatePlayerItem()
 	{
-		foreach (NetworkPlayer player in Manager.GamePlayers)
+		foreach (NetworkPlayer player in Manager.NetworkPlayers)
 		{
 			foreach (PlayerListItem PlayerListItem in PlayerListItems)
 			{
@@ -203,7 +203,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 		foreach (PlayerListItem playerlistItem in PlayerListItems)
 		{
-			if (!Manager.GamePlayers.Any(x => x.ConnectionID == playerlistItem.ConnectionID))
+			if (!Manager.NetworkPlayers.Any(x => x.ConnectionID == playerlistItem.ConnectionID))
 			{
 				playerListItemToRemove.Add(playerlistItem);
 			}
@@ -220,7 +220,7 @@ public class CustomSteamLobby : MonoBehaviour
 			}
 		}
 	}
-	public void StartGame(string SceneName)     //Put this on a button
+	public void StartGame(string SceneName)     //Put this on a button to start game
 	{
 		LocalPlayerController.TryStartGame(SceneName);
 	}

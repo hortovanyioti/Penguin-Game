@@ -129,7 +129,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1486634089}
     m_Modifications:
     - target: {fileID: 175506539673791634, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -433,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 202.20529
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -441,23 +441,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -672.11926
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -461.19507
       objectReference: {fileID: 0}
     - target: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -521,6 +521,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c649042b7c27caf44a2cbb603eb9ee45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &135094634 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8977327559957754322, guid: e060dd21fd2332a468b00b4a6c9c77c1, type: 3}
+  m_PrefabInstance: {fileID: 135094625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &139450218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462382560}
   m_Layer: 0
-  m_Name: dummy
+  m_Name: TargetPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1818,7 +1823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1486634089
 Transform:
   m_ObjectHideFlags: 0
@@ -1833,6 +1838,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 462382560}
+  - {fileID: 135094634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1486634090
@@ -1847,14 +1853,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310c65fdc2120fb45aa22ba830dfcf7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPool: {fileID: 0}
-  bulletPool: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  playerObjects: []
-  spawnTime: 0
-  gameTime: 0
+  targetPool: {fileID: 462382559}
+  bulletPool: {fileID: 462382559}
+  pauseMenu: {fileID: 135094626}
+  spawnTime: 1
+  gameTime: 10
   isGameOver: 0
-  target: {fileID: 0}
+  targetPrefab: {fileID: 4457741758647206075, guid: e2cb3032dc450bb45b10b752b7ae461c, type: 3}
   xMax: 0
   xMin: 0
   zMax: 0
@@ -2193,7 +2198,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0.9
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2386,7 +2391,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153933df4d682ac48ae8ea57fe03f4fd, type: 3}
+  m_Script: {fileID: 11500000, guid: b2c0c6ae0720d1a49b554ad73c4de089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1948152145 stripped
@@ -2500,7 +2505,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1486634089}
   - {fileID: 2066719790}
-  - {fileID: 135094625}
   - {fileID: 1788322813}
   - {fileID: 460026770}
   - {fileID: 740705356}

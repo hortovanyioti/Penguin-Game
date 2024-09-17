@@ -37,19 +37,6 @@ public class UIButton : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
-    public void PauseMenu() // Load the pause menu
-    {
-        if (Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-            pauseMenu.SetActive(true);
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1;
-        }
-    }
     public void PauseMenu(InputAction.CallbackContext context) // Load the pause menu
     {
         if (context.started)

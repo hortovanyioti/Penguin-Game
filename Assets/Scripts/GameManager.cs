@@ -19,14 +19,6 @@ public class GameManager : MonoBehaviour
 	public GameObject PauseMenu { get { return pauseMenu; } private set { pauseMenu = value; } }
 
 
-	[SerializeField] private GameObject[] playerObjects;
-	public GameObject[] PlayerObjects { get { return playerObjects; } }
-
-
-	private PlayerScript[] playerScripts;
-	public PlayerScript[] PlayerScripts { get { return playerScripts; } private set { playerScripts = value; } }
-
-
 	[SerializeField] private float spawnTime;
 	public float SpawnTime { get { return spawnTime; } private set { spawnTime = value; } }
 
@@ -43,7 +35,7 @@ public class GameManager : MonoBehaviour
 	public bool IsGameOver { get { return isGameOver; } private set { isGameOver = value; } }
 
 
-	[SerializeField] private GameObject target;
+	[SerializeField] private GameObject targetPrefab;
 	[SerializeField] private float xMax;
 	[SerializeField] private float xMin;
 	[SerializeField] private float zMax;
@@ -78,16 +70,6 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1;
 		//QualitySettings.vSyncCount = 0;//todo: vsync setting
 		Application.targetFrameRate = 1000;
-
-		PlayerScripts = new PlayerScript[PlayerObjects.Length];
-		for (var i = 0; i < PlayerObjects.Length; i++)
-		{
-			if (PlayerObjects[i] != null)
-			{
-				PlayerScripts[i] = PlayerObjects[i].GetComponent<PlayerScript>();
-			}
-		}
-
 
 		myStyle.fontSize = 50;
 		myStyle.normal.textColor = Color.green;
@@ -158,6 +140,8 @@ public class GameManager : MonoBehaviour
 			if (targetPool.transform.childCount != 0)
 				Destroy(targetPool.GetComponentInChildren<TargetScript>().gameObject);
 
+			return; //TODO
+			/*
 			playerScripts[0].stats.Calculate();
 			int score = (int)(playerScripts[0].stats.Score * 1000);
 			int fired = playerScripts[0].stats.ShotsFired;
@@ -165,7 +149,7 @@ public class GameManager : MonoBehaviour
 			float accuracy = playerScripts[0].stats.Accuracy;
 			int avgReaction = (int)(playerScripts[0].stats.AvgReactionTime * 1000);
 			int medianRt = (int)(playerScripts[0].stats.MedianReactionTime * 1000);
-
+			
 			GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 5, 400, 300), "Time's up!", myStyle);
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 200, 400, 300), "Score: " + score.ToString(), myStyle);
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 300, 400, 300), "Shots fired: " + fired.ToString(), myStyle);
@@ -173,6 +157,7 @@ public class GameManager : MonoBehaviour
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 500, 400, 300), "Accuracy: " + accuracy.ToString("0.0") + "%", myStyle);
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 600, 400, 300), "Avg reaction: " + avgReaction.ToString() + " ms", myStyle);
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 700, 400, 300), "Median reaction: " + medianRt.ToString() + " ms", myStyle);
+			*/
 		}
 	}
 	private void CheckSpawn()
@@ -192,12 +177,26 @@ public class GameManager : MonoBehaviour
 	}
 	public void SpawnTarget()
 	{
-		GameObject newTarget = Instantiate(target);
+		GameObject newTarget = Instantiate(targetPrefab);
 		newTarget.transform.localScale = new Vector3(newTarget.transform.localScale.x * Difficulty.TargetScale,
 													newTarget.transform.localScale.y * Difficulty.TargetScale,
 													newTarget.transform.localScale.z);  //Scaling z below 0.2f causes unstable behaviour		
 		newTarget.transform.parent = targetPool.transform;
 		newTarget.transform.position = new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax), UnityEngine.Random.Range(zMin, zMax));
 		newTarget.transform.LookAt(new Vector3(0f, newTarget.transform.position.y, 0f));
+	}
+
+	public void PauseGame() // Load the pause menu
+	{
+		if (Time.timeScale == 1)
+		{
+			Time.timeScale = 0;
+			pauseMenu.SetActive(true);
+		}
+		else
+		{
+			pauseMenu.SetActive(false);
+			Time.timeScale = 1;
+		}
 	}
 }

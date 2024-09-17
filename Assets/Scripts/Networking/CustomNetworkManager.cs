@@ -12,9 +12,11 @@ using UnityEngine.SceneManagement;
 
 public class CustomNetworkManager : NetworkManager
 {
+
 	[SerializeField] private NetworkPlayer GamePlayerPrefab;
 
-	public List<NetworkPlayer> GamePlayers { get; } = new List<NetworkPlayer>();
+	public List<NetworkPlayer> NetworkPlayers { get; } = new List<NetworkPlayer>();     //Represents the network related data of the players
+	public List<PlayerScript> GamePlayers { get; } = new List<PlayerScript>();          //Represents the game related data of the players
 
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)
 	{
@@ -22,8 +24,8 @@ public class CustomNetworkManager : NetworkManager
 		{
 			NetworkPlayer GamePlayerInstance = Instantiate(GamePlayerPrefab);
 			GamePlayerInstance.ConnectionID = conn.connectionId;
-			GamePlayerInstance.PlayerIdNumber = GamePlayers.Count + 1;
-			GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CustomSteamLobby.Instance.CurrentLobbyID, GamePlayers.Count);
+			GamePlayerInstance.PlayerIdNumber = NetworkPlayers.Count + 1;
+			GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CustomSteamLobby.Instance.CurrentLobbyID, NetworkPlayers.Count);
 
 			NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
 		}
@@ -32,20 +34,33 @@ public class CustomNetworkManager : NetworkManager
 	public void StartGame(string SceneName)
 	{
 		ServerChangeScene(SceneName);
-		foreach (var player in GamePlayers)
+
+		for (int i = 0; i < NetworkPlayers.Count; i++)
 		{
-			player.GetComponent<PlayerScript>().ActivatePhysics();
+			GamePlayers[i].ActivatePhysics();
 
-			bool isLocalPlayer = (CSteamID)player.PlayerSteamID == SteamUser.GetSteamID();
+			bool isLocalPlayer = (CSteamID)NetworkPlayers[i].PlayerSteamID == SteamUser.GetSteamID();
 
-			if(isLocalPlayer)
+			if (isLocalPlayer)
 			{
-				player.ServerActivateInput(player);
+				NetworkPlayers[i].ServerActivateInput(NetworkPlayers[i].netIdentity, i);
 			}
 			else
 			{
-				player.RpcActivateInput(player.netIdentity);
+				NetworkPlayers[i].RpcActivateInput(NetworkPlayers[i].netIdentity, i);
 			}
 		}
+	}
+
+	public void AddPlayer(NetworkPlayer player)
+	{
+		NetworkPlayers.Add(player);
+		GamePlayers.Add(player.GetComponent<PlayerScript>());
+	}
+
+	public void RemovePlayer(NetworkPlayer player)
+	{
+		GamePlayers.RemoveAt(NetworkPlayers.IndexOf(player));
+		NetworkPlayers.Remove(player);
 	}
 }
