@@ -96,8 +96,8 @@ public class NetworkPlayer : NetworkBehaviour
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
-	[ClientRpc]
-	public void RpcChangeTimeScale(float value)
+	[ClientRpc(includeOwner = true)]
+	public void RpcChangeTimeScale(NetworkIdentity identity, float value)
 	{
 		Time.timeScale = value;
 		Debug.Log("TimeScale changed to " + value +". " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
