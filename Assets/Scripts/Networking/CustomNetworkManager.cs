@@ -35,9 +35,10 @@ public class CustomNetworkManager : NetworkManager
 	{
 		ServerChangeScene(SceneName);
 
+		NetworkPlayers[0].RpcChangeTimeScale(1);
+
 		for (int i = 0; i < NetworkPlayers.Count; i++)
 		{
-			GamePlayers[i].ActivatePhysics();
 
 			bool isLocalPlayer = (CSteamID)NetworkPlayers[i].PlayerSteamID == SteamUser.GetSteamID();
 

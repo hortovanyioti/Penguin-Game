@@ -86,13 +86,20 @@ public class NetworkPlayer : NetworkBehaviour
 	public void RpcActivateInput(NetworkIdentity identity,int playerIndex)
 	{
 		Manager.GamePlayers[playerIndex].ActivateInput();
-		Debug.Log("Activating " + PlayerName + " as client");
+		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
 	[Server]
 	public void ServerActivateInput(NetworkIdentity identity, int playerIndex)
 	{
 		Manager.GamePlayers[playerIndex].ActivateInput();
-		Debug.Log("Calling " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
+		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
+	}
+
+	[ClientRpc]
+	public void RpcChangeTimeScale(float value)
+	{
+		Time.timeScale = value;
+		Debug.Log("TimeScale changed to " + value +". " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 }

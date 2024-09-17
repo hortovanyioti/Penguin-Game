@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		Time.timeScale = 1;
+		Time.timeScale = 0;
 		//QualitySettings.vSyncCount = 0;//todo: vsync setting
 		Application.targetFrameRate = 1000;
 
