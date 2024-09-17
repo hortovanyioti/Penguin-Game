@@ -35,7 +35,7 @@ public class CustomNetworkManager : NetworkManager
 	{
 		ServerChangeScene(SceneName);
 
-		NetworkPlayers[0].RpcChangeTimeScale(1);
+		NetworkPlayers[0].RpcChangeTimeScale(NetworkPlayers[0].netIdentity, 1);
 
 		for (int i = 0; i < NetworkPlayers.Count; i++)
 		{
