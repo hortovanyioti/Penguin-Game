@@ -5,127 +5,149 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    public float MoveSpeed { get { return moveSpeed; } private set { moveSpeed = value; } }
+	[SerializeField] private float moveSpeed;
+	public float MoveSpeed { get { return moveSpeed; } private set { moveSpeed = value; } }
 
 
-    private PlayerConfig playerConfig;
-    public PlayerConfig PlayerConfig { get { return playerConfig; } set { playerConfig = value; } }
+	private PlayerConfig playerConfig;
+	public PlayerConfig PlayerConfig { get { return playerConfig; } set { playerConfig = value; } }
 
 
-    [SerializeField] private float jumpForce;
-    public float JumpForce { get { return jumpForce; } private set { jumpForce = value; } }
+	[SerializeField] private float jumpForce;
+	public float JumpForce { get { return jumpForce; } private set { jumpForce = value; } }
 
 
-    [SerializeField] AudioSource jumpSound;
+	[SerializeField] AudioSource jumpSound;
 
-    private Vector2 m_Rotation;
-    private Vector2 m_Look;
-    private Vector2 m_Move;
+	private Vector2 m_Rotation;
+	private Vector2 m_Look;
+	private Vector2 m_Move;
 
-    private WeaponScript weapon;
-    private PlayerInput input;
+	private WeaponScript weapon;
+	private PlayerInput input;
 
-    public bool isGrounded { get; private set; }
-    public Statistics stats { get; private set; } = new Statistics();
+	public bool isGrounded { get; private set; }
+	public Statistics stats { get; private set; } = new Statistics();
 
-    void Awake()
-    {
-        //PlayerConfig = new PlayerConfig();
-        PlayerConfig = new FileDataHandler("config.cfg", "", false).LoadData<PlayerConfig>(PlayerConfig);
-        
-        if(PlayerConfig==null)
-        {
-            PlayerConfig = new PlayerConfig();
-            PlayerConfig.SetDefault();
-        }
+	void Awake()
+	{
+		//PlayerConfig = new PlayerConfig();
+		PlayerConfig = new FileDataHandler("config.cfg", "", false).LoadData<PlayerConfig>(PlayerConfig);
 
-        AudioListener.volume = PlayerConfig.GlobalVolume;
-    }
-    void Start()
-    {
-        input = GetComponent<PlayerInput>();
-        weapon = GetComponentInChildren<WeaponScript>();
+		if (PlayerConfig == null)
+		{
+			PlayerConfig = new PlayerConfig();
+			PlayerConfig.SetDefault();
+		}
 
-        if (SceneManager.GetActiveScene().buildIndex == 0)  //Dont run in the menu scene
-        {
-            input.enabled = false;
-        }
-    }
-    void Update()
-    {
-        Look(m_Look);
-        Move(m_Move);
-    }
+		AudioListener.volume = PlayerConfig.GlobalVolume;
+	}
+	void Start()
+	{
+		input = GetComponent<PlayerInput>();
+		weapon = GetComponentInChildren<WeaponScript>();
 
-    private void OnDestroy()
-    {
-        PlayerConfig.Save();
-    }
+	}
+	void Update()
+	{
+		if (SceneManager.GetActiveScene().name == "MainScene")
+		{
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        m_Move = context.ReadValue<Vector2>();
-    }
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        Jump();
-    }
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        m_Look = context.ReadValue<Vector2>();
-    }
-    public void OnFire(InputAction.CallbackContext context) //If the button is pressed, set isPrimaryFire to true, if it is released, set it to false
-    {
-        weapon.OnFire(context);
-    }
+			Look(m_Look);
+			Move(m_Move);
+		}
+	}
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-        }
-    }
+	private void OnDestroy()
+	{
+		PlayerConfig.Save();
+	}
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isGrounded = false;
-        }
-    }
+	public void OnMove(InputAction.CallbackContext context)
+	{
+		m_Move = context.ReadValue<Vector2>();
+	}
+	public void OnJump(InputAction.CallbackContext context)
+	{
+		Jump();
+	}
+	public void OnLook(InputAction.CallbackContext context)
+	{
+		m_Look = context.ReadValue<Vector2>();
+	}
+	public void OnFire(InputAction.CallbackContext context) //If the button is pressed, set isPrimaryFire to true, if it is released, set it to false
+	{
+		weapon.OnFire(context);
+	}
 
-    private void Move(Vector2 direction)
-    {
-        if (direction.sqrMagnitude < 0.01)
-            return;
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Ground")
+		{
+			isGrounded = true;
+		}
+	}
 
-        var scaledMoveSpeed = MoveSpeed * Time.deltaTime;
-        var move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(direction.x, 0, direction.y);
-        this.transform.position += move * scaledMoveSpeed;
-    }
-    private void Jump()
-    {
-        if (!isGrounded)    // Only jump if grounded
-            return;
+	void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.tag == "Ground")
+		{
+			isGrounded = false;
+		}
+	}
 
-        Vector3 jump = new Vector3(0f, 1f, 0f);
-        this.GetComponent<Rigidbody>().AddForce(jump * jumpForce, ForceMode.Impulse);
-        jumpSound.Play(0);
-    }
-    private void Look(Vector2 rotate)
-    {
-        if (rotate.sqrMagnitude < 0.01)
-            return;
+	private void Move(Vector2 direction)
+	{
+		if (direction.sqrMagnitude < 0.01)
+			return;
 
-        var scaledRotateSpeed = PlayerConfig.LookSensitivity * Time.deltaTime;
-        m_Rotation.y += rotate.x * scaledRotateSpeed;
-        m_Rotation.x = Mathf.Clamp(m_Rotation.x - rotate.y * scaledRotateSpeed, -89f, 89f);
-        this.transform.localEulerAngles = m_Rotation;
-    }
-    public void TargetHit(float reactionTime)
-    {
-        stats.TargetHit(reactionTime);
-    }
+		var scaledMoveSpeed = MoveSpeed * Time.deltaTime;
+		var move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(direction.x, 0, direction.y);
+		this.transform.position += move * scaledMoveSpeed;
+	}
+	private void Jump()
+	{
+		if (!isGrounded)    // Only jump if grounded
+			return;
+
+		Vector3 jump = new Vector3(0f, 1f, 0f);
+		this.GetComponent<Rigidbody>().AddForce(jump * jumpForce, ForceMode.Impulse);
+		jumpSound.Play(0);
+	}
+	private void Look(Vector2 rotate)
+	{
+		if (rotate.sqrMagnitude < 0.01)
+			return;
+
+		var scaledRotateSpeed = PlayerConfig.LookSensitivity * Time.deltaTime;
+		m_Rotation.y += rotate.x * scaledRotateSpeed;
+		m_Rotation.x = Mathf.Clamp(m_Rotation.x - rotate.y * scaledRotateSpeed, -89f, 89f);
+		this.transform.localEulerAngles = m_Rotation;
+	}
+	public void TargetHit(float reactionTime)
+	{
+		stats.TargetHit(reactionTime);
+	}
+
+	public void ActivatePhysics()
+	{
+		Rigidbody rb = GetComponent<Rigidbody>();
+
+		float spawnRange = 20;
+		transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 5, Random.Range(-spawnRange, spawnRange));
+		rb.useGravity = true;
+		Debug.Log("Physics activated");
+	}
+
+	public void ActivateInput()
+	{
+		GameObject camera = transform.Find("Camera").gameObject;
+		camera.SetActive(true);
+		input.enabled = true;
+	}
+
+	public void CallPauseGame()
+	{
+		GameManager.Instance.PauseGame();
+	}
 }

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-	private float bulletLife = 5.0f;
+	public float bulletLife = 5.0f;
 
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Target")
 		{
 			var reactionTime = collision.gameObject.GetComponent<TargetScript>().lifeTime;
-			GameManagerScript.Instance.PlayerScripts[0].TargetHit(reactionTime);//TODO: Multiplayer
+			//GameManager.Instance.PlayerScripts[0].TargetHit(reactionTime);//TODO: Multiplayer
 			Destroy(gameObject);
 		}
 	}
 	void Update()
 	{
 		bulletLife -= Time.deltaTime;
-		if (bulletLife <= 0 || this.transform.position.magnitude > 1000)
+		if (bulletLife <= 0 || this.transform.position.magnitude > 10000)
 		{
 			Destroy(gameObject);
 		}
