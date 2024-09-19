@@ -15,6 +15,20 @@ public class CustomNetworkManager : NetworkManager
 
 	[SerializeField] private NetworkPlayer GamePlayerPrefab;
 
+	private static CustomNetworkManager instance;
+
+	public static CustomNetworkManager Instance
+	{
+		get
+		{
+			if (instance != null)
+			{
+				return instance;
+			}
+			return instance = CustomNetworkManager.singleton as CustomNetworkManager;
+		}
+	}
+
 	public List<NetworkPlayer> NetworkPlayers { get; } = new List<NetworkPlayer>();     //Represents the network related data of the players
 	public List<PlayerScript> GamePlayers { get; } = new List<PlayerScript>();          //Represents the game related data of the players
 

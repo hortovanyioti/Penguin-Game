@@ -21,7 +21,6 @@ public class CustomSteamLobby : MonoBehaviour
 	//Variables
 	public ulong CurrentLobbyID;
 	private const string HostAddressKey = "HostAddress";
-	private CustomNetworkManager Manager;
 	public bool autoHostLobby;
 
 	//Player data
@@ -54,7 +53,6 @@ public class CustomSteamLobby : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 
-		Manager = GetComponent<CustomNetworkManager>();
 		LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
 		JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
 		LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
@@ -68,9 +66,10 @@ public class CustomSteamLobby : MonoBehaviour
 	/// <summary>
 	/// Steam related functions
 	/// </summary>
+	#region STEAM_FUNCTIONS
 	public void HostLobby()
 	{
-		SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, Manager.maxConnections);
+		SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CustomNetworkManager.Instance.maxConnections);
 	}
 
 	private void OnLobbyCreated(LobbyCreated_t callback)
@@ -81,7 +80,7 @@ public class CustomSteamLobby : MonoBehaviour
 		}
 
 		Debug.Log("Lobby created Successfully");
-		Manager.StartHost();
+		CustomNetworkManager.Instance.StartHost();
 
 		SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 		SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name", SteamFriends.GetPersonaName().ToString() + "'S LOBBY");
@@ -104,34 +103,37 @@ public class CustomSteamLobby : MonoBehaviour
 			return;
 		}
 
-		Manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
+		CustomNetworkManager.Instance.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
 
-		Manager.StartClient();
+		CustomNetworkManager.Instance.StartClient();
 	}
 	public void UpdateLobbyName()
 	{
 		LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "name");
 	}
 
+	#endregion
+
 	/// <summary>
 	/// Player List Functions (Only in lobby)
 	/// </summary>
-
+	#region PLAYER_LIST_FUNCTIONS
+	
 	public void UpdatePlayerList()
 	{
 		if (!PlayerItemCreated)
 		{
 			CreateHostPlayerItem(); //Host
 		}
-		if (PlayerListItems.Count < Manager.NetworkPlayers.Count)
+		if (PlayerListItems.Count < CustomNetworkManager.Instance.NetworkPlayers.Count)
 		{
 			CreateClientPlayerItem(); //Client
 		}
-		if (PlayerListItems.Count > Manager.NetworkPlayers.Count)
+		if (PlayerListItems.Count > CustomNetworkManager.Instance.NetworkPlayers.Count)
 		{
 			RemovePlayerItem();
 		}
-		if (PlayerListItems.Count == Manager.NetworkPlayers.Count)
+		if (PlayerListItems.Count == CustomNetworkManager.Instance.NetworkPlayers.Count)
 		{
 			UpdatePlayerItem();
 		}
@@ -145,7 +147,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void CreateHostPlayerItem()
 	{
-		foreach (NetworkPlayer player in Manager.NetworkPlayers)
+		foreach (NetworkPlayer player in CustomNetworkManager.Instance.NetworkPlayers)
 		{
 			GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab);
 			PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
@@ -164,7 +166,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void CreateClientPlayerItem()
 	{
-		foreach (NetworkPlayer player in Manager.NetworkPlayers)
+		foreach (NetworkPlayer player in CustomNetworkManager.Instance.NetworkPlayers)
 		{
 			if (!PlayerListItems.Any(x => x.ConnectionID == player.ConnectionID))
 			{
@@ -185,7 +187,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void UpdatePlayerItem()
 	{
-		foreach (NetworkPlayer player in Manager.NetworkPlayers)
+		foreach (NetworkPlayer player in CustomNetworkManager.Instance.NetworkPlayers)
 		{
 			foreach (PlayerListItem PlayerListItem in PlayerListItems)
 			{
@@ -203,7 +205,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 		foreach (PlayerListItem playerlistItem in PlayerListItems)
 		{
-			if (!Manager.NetworkPlayers.Any(x => x.ConnectionID == playerlistItem.ConnectionID))
+			if (!CustomNetworkManager.Instance.NetworkPlayers.Any(x => x.ConnectionID == playerlistItem.ConnectionID))
 			{
 				playerListItemToRemove.Add(playerlistItem);
 			}
@@ -224,4 +226,6 @@ public class CustomSteamLobby : MonoBehaviour
 	{
 		LocalPlayerController.TryStartGame(SceneName);
 	}
+
+	#endregion
 }

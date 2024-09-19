@@ -10,20 +10,6 @@ public class NetworkPlayer : NetworkBehaviour
 	[SyncVar] public ulong PlayerSteamID;
 	[SyncVar(hook = nameof(PlayerNameUpdate))] public string PlayerName;
 
-	private CustomNetworkManager manager;
-
-	private CustomNetworkManager Manager
-	{
-		get
-		{
-			if (manager != null)
-			{
-				return manager;
-			}
-			return manager = CustomNetworkManager.singleton as CustomNetworkManager;
-		}
-	}
-
 	private void Start()
 	{
 		DontDestroyOnLoad(this.gameObject);
@@ -39,14 +25,14 @@ public class NetworkPlayer : NetworkBehaviour
 
 	public override void OnStartClient()
 	{
-		Manager.AddPlayer(this);
+		CustomNetworkManager.Instance.AddPlayer(this);
 		CustomSteamLobby.Instance.UpdateLobbyName();
 		CustomSteamLobby.Instance.UpdatePlayerList();
 	}
 
 	public override void OnStopClient()
 	{
-		Manager.RemovePlayer(this);
+		CustomNetworkManager.Instance.RemovePlayer(this);
 		CustomSteamLobby.Instance.UpdatePlayerList();
 	}
 
@@ -79,20 +65,20 @@ public class NetworkPlayer : NetworkBehaviour
 	[Command]
 	public void CmdStartGame(string SceneName)
 	{
-		Manager.StartGame(SceneName);
+		CustomNetworkManager.Instance.StartGame(SceneName);
 	}
 
 	[TargetRpc]
 	public void RpcActivateInput(NetworkIdentity identity,int playerIndex)
 	{
-		Manager.GamePlayers[playerIndex].ActivateInput();
+		CustomNetworkManager.Instance.GamePlayers[playerIndex].ActivateInput();
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
 	[Server]
 	public void ServerActivateInput(NetworkIdentity identity, int playerIndex)
 	{
-		Manager.GamePlayers[playerIndex].ActivateInput();
+		CustomNetworkManager.Instance.GamePlayers[playerIndex].ActivateInput();
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 

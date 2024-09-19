@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using TMPro;
 using UnityEngine;
@@ -14,8 +15,7 @@ public abstract class SliderScript : MonoBehaviour, IBeginDragHandler, IEndDragH
     protected void Init()
     {
         m_Slider = GetComponent<Slider>();
-        //m_Player = GameManager.Instance.PlayerScripts[0]; 
-        //TODO: Multiplayer
+        //TODO m_Player = CustomNetworkManager.Instance.GamePlayers[]; 
         m_ValueText = transform.Find("ValueText").GetComponent<TextMeshProUGUI>();
     }
 
