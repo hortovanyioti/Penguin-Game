@@ -71,14 +71,14 @@ public class NetworkPlayer : NetworkBehaviour
 	[TargetRpc]
 	public void RpcActivateInput(NetworkIdentity identity,int playerIndex)
 	{
-		CustomNetworkManager.Instance.GamePlayers[playerIndex].ActivateInput();
+		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(true);
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
 	[Server]
 	public void ServerActivateInput(NetworkIdentity identity, int playerIndex)
 	{
-		CustomNetworkManager.Instance.GamePlayers[playerIndex].ActivateInput();
+		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(true);
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 

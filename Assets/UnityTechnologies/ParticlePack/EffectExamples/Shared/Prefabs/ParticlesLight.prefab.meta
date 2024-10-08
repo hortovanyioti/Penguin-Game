@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e228781fc0785d34f922ac8055aa5b6c
+timeCreated: 1472572134
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 1.8
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/Shared/Prefabs/ParticlesLight.prefab
+  uploadId: 563305

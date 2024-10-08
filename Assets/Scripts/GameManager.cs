@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -13,10 +14,6 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private GameObject bulletPool;
 	public GameObject BulletPool { get { return bulletPool; } private set { bulletPool = value; } }
-
-
-	[SerializeField] private GameObject pauseMenu;
-	public GameObject PauseMenu { get { return pauseMenu; } private set { pauseMenu = value; } }
 
 
 	[SerializeField] private float spawnTime;
@@ -34,7 +31,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private bool isGameOver = false;
 	public bool IsGameOver { get { return isGameOver; } private set { isGameOver = value; } }
 
-
+	public Volume Brightness;
 	[SerializeField] private GameObject targetPrefab;
 
 	[Header("Target spawning border")]
@@ -189,6 +186,7 @@ public class GameManager : MonoBehaviour
 		newTarget.transform.LookAt(new Vector3(0f, newTarget.transform.position.y, 0f));
 	}
 
+	/*inactive
 	public void PauseGame() // Load the pause menu
 	{
 		if (Time.timeScale == 1)
@@ -201,5 +199,5 @@ public class GameManager : MonoBehaviour
 			pauseMenu.SetActive(false);
 			Time.timeScale = 1;
 		}
-	}
+	}*/
 }

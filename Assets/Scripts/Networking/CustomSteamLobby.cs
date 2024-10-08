@@ -125,15 +125,15 @@ public class CustomSteamLobby : MonoBehaviour
 		{
 			CreateHostPlayerItem(); //Host
 		}
-		if (PlayerListItems.Count < CustomNetworkManager.Instance.NetworkPlayers.Count)
+		if (PlayerListItems.Count < CustomNetworkManager.Instance.Players.Network.Count)
 		{
 			CreateClientPlayerItem(); //Client
 		}
-		if (PlayerListItems.Count > CustomNetworkManager.Instance.NetworkPlayers.Count)
+		if (PlayerListItems.Count > CustomNetworkManager.Instance.Players.Network.Count)
 		{
 			RemovePlayerItem();
 		}
-		if (PlayerListItems.Count == CustomNetworkManager.Instance.NetworkPlayers.Count)
+		if (PlayerListItems.Count == CustomNetworkManager.Instance.Players.Network.Count)
 		{
 			UpdatePlayerItem();
 		}
@@ -147,7 +147,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void CreateHostPlayerItem()
 	{
-		foreach (NetworkPlayer player in CustomNetworkManager.Instance.NetworkPlayers)
+		foreach (NetworkPlayer player in CustomNetworkManager.Instance.Players.Network)
 		{
 			GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab);
 			PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
@@ -166,7 +166,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void CreateClientPlayerItem()
 	{
-		foreach (NetworkPlayer player in CustomNetworkManager.Instance.NetworkPlayers)
+		foreach (NetworkPlayer player in CustomNetworkManager.Instance.Players.Network)
 		{
 			if (!PlayerListItems.Any(x => x.ConnectionID == player.ConnectionID))
 			{
@@ -187,7 +187,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 	public void UpdatePlayerItem()
 	{
-		foreach (NetworkPlayer player in CustomNetworkManager.Instance.NetworkPlayers)
+		foreach (NetworkPlayer player in CustomNetworkManager.Instance.Players.Network)
 		{
 			foreach (PlayerListItem PlayerListItem in PlayerListItems)
 			{
@@ -205,7 +205,7 @@ public class CustomSteamLobby : MonoBehaviour
 
 		foreach (PlayerListItem playerlistItem in PlayerListItems)
 		{
-			if (!CustomNetworkManager.Instance.NetworkPlayers.Any(x => x.ConnectionID == playerlistItem.ConnectionID))
+			if (!CustomNetworkManager.Instance.Players.Network.Any(x => x.ConnectionID == playerlistItem.ConnectionID))
 			{
 				playerListItemToRemove.Add(playerlistItem);
 			}

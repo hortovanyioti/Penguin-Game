@@ -29,8 +29,10 @@ public class CustomNetworkManager : NetworkManager
 		}
 	}
 
-	public List<NetworkPlayer> NetworkPlayers { get; } = new List<NetworkPlayer>();     //Represents the network related data of the players
-	public List<PlayerScript> GamePlayers { get; } = new List<PlayerScript>();          //Represents the game related data of the players
+	public (
+		List<GameObject> GameObjects, 
+		List<NetworkPlayer> Network, 
+		List<PlayerScript> Game) Players { get; } = (new List<GameObject>(), new List<NetworkPlayer>(), new List<PlayerScript>());
 
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)
 	{
@@ -38,8 +40,8 @@ public class CustomNetworkManager : NetworkManager
 		{
 			NetworkPlayer GamePlayerInstance = Instantiate(GamePlayerPrefab);
 			GamePlayerInstance.ConnectionID = conn.connectionId;
-			GamePlayerInstance.PlayerIdNumber = NetworkPlayers.Count + 1;
-			GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CustomSteamLobby.Instance.CurrentLobbyID, NetworkPlayers.Count);
+			GamePlayerInstance.PlayerIdNumber = Players.Network.Count + 1;
+			GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CustomSteamLobby.Instance.CurrentLobbyID, Players.Network.Count);
 
 			NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
 		}
@@ -49,33 +51,35 @@ public class CustomNetworkManager : NetworkManager
 	{
 		ServerChangeScene(SceneName);
 
-		for (int i = 0; i < NetworkPlayers.Count; i++)
+		for (int i = 0; i < Players.Network.Count; i++)
 		{
 
-			bool isLocalPlayer = (CSteamID)NetworkPlayers[i].PlayerSteamID == SteamUser.GetSteamID();
+			bool isLocalPlayer = (CSteamID)Players.Network[i].PlayerSteamID == SteamUser.GetSteamID();
 
 			if (isLocalPlayer)
 			{
-				NetworkPlayers[i].ServerChangeTimeScale(NetworkPlayers[i].netIdentity, 1);
-				NetworkPlayers[i].ServerActivateInput(NetworkPlayers[i].netIdentity, i);
+				Players.Network[i].ServerChangeTimeScale(Players.Network[i].netIdentity, 1);
+				Players.Network[i].ServerActivateInput(Players.Network[i].netIdentity, i);
 			}
 			else
 			{
-				NetworkPlayers[i].RpcChangeTimeScale(NetworkPlayers[i].netIdentity, 1);
-				NetworkPlayers[i].RpcActivateInput(NetworkPlayers[i].netIdentity, i);
+				Players.Network[i].RpcChangeTimeScale(Players.Network[i].netIdentity, 1);
+				Players.Network[i].RpcActivateInput(Players.Network[i].netIdentity, i);
 			}
 		}
 	}
 
 	public void AddPlayer(NetworkPlayer player)
 	{
-		NetworkPlayers.Add(player);
-		GamePlayers.Add(player.GetComponent<PlayerScript>());
+		Players.Network.Add(player);
+		Players.GameObjects.Add(player.gameObject);
+		Players.Game.Add(player.GetComponent<PlayerScript>());
 	}
 
 	public void RemovePlayer(NetworkPlayer player)
 	{
-		GamePlayers.RemoveAt(NetworkPlayers.IndexOf(player));
-		NetworkPlayers.Remove(player);
+		Players.Game.RemoveAt(Players.Network.IndexOf(player));
+		Players.GameObjects.Remove(player.gameObject);
+		Players.Network.Remove(player);
 	}
 }
