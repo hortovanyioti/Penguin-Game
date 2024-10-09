@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f10b09059da4b7c44b9df4b683458390
+timeCreated: 1473942290
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 1.8
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/Blood/Prefabs/BloodSprayEffect.prefab
+  uploadId: 563305

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3dbfa0e6f8c14434d8d34161d7a419a6
+timeCreated: 1472832253
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 1.8
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/Shared/Materials/Skybox.mat
+  uploadId: 563305

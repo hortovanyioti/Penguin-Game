@@ -1,15 +1,13 @@
-using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class SensitivitySlider : SliderScript
 {
-    void Awake()
+    void Start()
     {
         base.Init();
 
-        m_Slider.minValue = m_Player.PlayerConfig.MinLookSensitivity;
-        m_Slider.maxValue = m_Player.PlayerConfig.MaxLookSensitivity;
+        m_Slider.minValue = PlayerConfig.MinLookSensitivity;
+        m_Slider.maxValue = PlayerConfig.MaxLookSensitivity;
         m_Slider.value = m_Player.PlayerConfig.LookSensitivity;
 
         m_ValueText.text = m_Slider.value.ToString().Replace(',', '.');

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f68438c2f9086784e8b081c63e1e642a
+timeCreated: 1473851832
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 1.8
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/Blood/Materials/BloodSplatParticle.mat
+  uploadId: 563305

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9b40878e31fd6b046a7e49e6f6b410be
+timeCreated: 1474987722
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 1.8
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/Shared/Materials/SandSurface.mat
+  uploadId: 563305

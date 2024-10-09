@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ce4c8dfbe7091ca4590041101d7b6261
+timeCreated: 1472572311
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 1.8
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/FireExplosionEffects/Prefabs/PlasmaExplosionEffect.prefab
+  uploadId: 563305
