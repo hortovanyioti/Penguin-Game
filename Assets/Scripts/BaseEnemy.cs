@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.HID;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemy : GameCharacter
 {
+
 	[SerializeField] protected List<GameObject> attackTargets;
 	protected int currentAttackTargetIndex;
 	protected NavMeshAgent navMeshAgent;
@@ -35,7 +36,6 @@ public class BaseEnemy : GameCharacter
 		attackCooldown.CoolDownTime = 1f;
 		attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
 
-		var a = 0;
 #if UNITY_EDITOR
 		if (attackCollider.enabled != false)
 		{

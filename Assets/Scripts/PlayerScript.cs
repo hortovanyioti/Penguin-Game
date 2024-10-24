@@ -146,7 +146,6 @@ public class PlayerScript : GameCharacter
 		m_Look = context.ReadValue<Vector2>();
 	}
 
-	// TODO: This shouldn't be one function, extract build into new func
 	public void OnFire(InputAction.CallbackContext context)
 	{
 		weapon.OnFire(context);

@@ -54,6 +54,10 @@ public abstract class GameCharacter : MonoBehaviour
 	public virtual void Hurt(float damage)
 	{
 		CurrentHealth -= damage;
+		if (CurrentHealth <= 0)
+		{
+			Die();
+		}
 	}
 
 	public virtual void Die()

@@ -16,8 +16,8 @@ public class FileDataHandler
         this.dataDirPath = Application.persistentDataPath;
         this.subDir = subDir;
         this.codeWord = "Árvíztûrõtükörfúrógép";
-
-    }
+        this.useEncription = useEncription;
+	}
 
     public void SaveData<T>(T data, bool prettyPrint = false)
     {
