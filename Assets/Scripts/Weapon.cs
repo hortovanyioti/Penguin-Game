@@ -135,7 +135,7 @@ public abstract class Weapon : MonoBehaviour
 	protected void Init()
 	{
 		Owner = this.transform.parent.parent.gameObject;
-		OwnerScript = Owner.GetComponent<PlayerScript>();
+		OwnerScript = Owner.GetComponent<GameCharacter>();
 		OwnerCamera = Owner.GetComponentInChildren<Camera>();
 		fireSound = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();

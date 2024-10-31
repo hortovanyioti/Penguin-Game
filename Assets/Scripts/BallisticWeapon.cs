@@ -24,6 +24,7 @@ public class BallisticWeapon : Weapon
 		base.SpawnBullet();
 
 		var newProjectile = Instantiate(projectile);
+		newProjectile.GetComponent<BulletScript>().SetOwner(OwnerScript);
 		//TODO: toggle comments off below
 		//newProjectile.transform.parent = GameManagerScript.Instance.BulletPool.transform; 
 

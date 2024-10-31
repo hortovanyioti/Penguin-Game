@@ -36,7 +36,6 @@ public class PlayerScript : GameCharacter
 
 	private PlayerInput input;
 	private Transform weaponTransform;
-	private Weapon weapon;
 	private Animator camAnimator;
 	[SerializeField] private GameObject headCenter;
 	[SerializeField] private GameObject headAim;

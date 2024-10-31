@@ -1339,7 +1339,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1448,11 +1448,11 @@ MonoBehaviour:
   rightHand: {fileID: 7033258079632241866}
   leftHand: {fileID: 424327285121133374}
   leftHandConstraint: {fileID: 5353232695195741647}
+  hud: {fileID: 5510415642662188550}
   slideCooldown:
     coolDownTime: 2
   slideTimeCooldown:
     coolDownTime: 0.5
-  hud: {fileID: 5510415642662188550}
 --- !u!114 &4231622595662582735
 MonoBehaviour:
   m_ObjectHideFlags: 0

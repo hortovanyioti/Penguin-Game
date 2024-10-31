@@ -169,6 +169,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1474018845615487117, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6754714972099628330}
+    - targetCorrespondingSourceObject: {fileID: 1474018845615487117, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1260212819407580107}
   m_SourcePrefab: {fileID: 100100000, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
 --- !u!1 &4932796770271062615 stripped
 GameObject:
@@ -188,12 +191,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 48
+    VectorObservationSize: 7
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 2
+      m_NumContinuousActions: 3
       BranchSizes: 
-    VectorActionSize: 02000000
+    VectorActionSize: 03000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -223,6 +226,7 @@ MonoBehaviour:
   MaxStep: 0
   targets:
   - {fileID: 0}
+  objects: []
 --- !u!114 &6754714972099628330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +241,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
+--- !u!114 &1260212819407580107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932796770271062615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: SpiderEyeRayPerceptionSensor
+  m_DetectableTags:
+  - Player
+  - Wall
+  m_RaysPerDirection: 10
+  m_MaxRayDegrees: 60
+  m_SphereCastRadius: 0
+  m_RayLength: 60
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!4 &5155964122920241108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1697222499462731022, guid: 1438edcb961d0894eb6550057eae8240, type: 3}

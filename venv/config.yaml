@@ -36,7 +36,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 2000000
-    max_steps: 10000000
+    max_steps: 100000000
     time_horizon: 64
     summary_freq: 100000
     threaded: true
@@ -56,13 +56,13 @@ engine_settings:
   width: 84
   height: 84
   quality_level: 1
-  time_scale: 40
+  time_scale: 20
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: test8
+  run_id: rangedTest04multitarget_logging
   initialize_from: null
   load_model: false
   resume: false
@@ -72,4 +72,4 @@ checkpoint_settings:
   results_dir: results
 torch_settings:
   device: cuda
-debug: false
+debug: true

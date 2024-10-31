@@ -23,7 +23,6 @@ public class BaseEnemy : GameCharacter
 	[SerializeField] private float AttackDistance = 3f;
 	private float trackingUpdateTimer;
 	private Cooldown attackCooldown;
-	private Weapon weapon;
 	private BoxCollider attackCollider;
 
 	void Start()
@@ -47,10 +46,12 @@ public class BaseEnemy : GameCharacter
 	}
 	private void Update()
 	{
+		/*
 		trackingUpdateTimer += Time.deltaTime;
 		TryUpdateAttackTarget();
 		TryRangedAttack();
 		UpdateCamera();
+		*/
 	}
 
 	public override void Hurt(float damage)
@@ -142,7 +143,7 @@ public class BaseEnemy : GameCharacter
 		target.gameObject.GetComponent<PlayerScript>().Hurt(10);
 	}
 
-	private void TryRangedAttack()
+	public void TryRangedAttack()
 	{
 		if (attackCooldown.IsCoolingDown || weapon == null)
 		{

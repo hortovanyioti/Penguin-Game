@@ -45,6 +45,7 @@ public abstract class GameCharacter : MonoBehaviour
 	protected new Rigidbody rigidbody;
 	protected new Camera camera;
 	protected Animator animator;
+	public Weapon weapon { get; protected set; }
 
 	protected void Init()
 	{
