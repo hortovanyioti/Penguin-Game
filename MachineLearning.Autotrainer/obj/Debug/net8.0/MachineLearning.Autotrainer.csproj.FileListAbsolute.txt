@@ -1,0 +1,15 @@
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\MachineLearning.Autotrainer.exe
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\MachineLearning.Autotrainer.deps.json
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\MachineLearning.Autotrainer.runtimeconfig.json
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\MachineLearning.Autotrainer.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\MachineLearning.Autotrainer.pdb
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.AssemblyInfoInputs.cache
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.AssemblyInfo.cs
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.csproj.CoreCompileInputs.cache
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.sourcelink.json
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\refint\MachineLearning.Autotrainer.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.pdb
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.genruntimeconfig.cache
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\ref\MachineLearning.Autotrainer.dll

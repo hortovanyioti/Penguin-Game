@@ -1,0 +1,65 @@
+{
+    "MoveToTarget": {
+        "checkpoints": [
+            {
+                "steps": 6999984,
+                "file_path": "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-6999984.onnx",
+                "reward": 0.4322456444834212,
+                "creation_time": 1730746291.1765604,
+                "auxillary_file_paths": [
+                    "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-6999984.pt"
+                ]
+            },
+            {
+                "steps": 7999953,
+                "file_path": "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-7999953.onnx",
+                "reward": 0.4838303329550068,
+                "creation_time": 1730746645.8285372,
+                "auxillary_file_paths": [
+                    "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-7999953.pt"
+                ]
+            },
+            {
+                "steps": 8999979,
+                "file_path": "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-8999979.onnx",
+                "reward": 0.48214817227239515,
+                "creation_time": 1730747001.9467244,
+                "auxillary_file_paths": [
+                    "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-8999979.pt"
+                ]
+            },
+            {
+                "steps": 9999969,
+                "file_path": "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-9999969.onnx",
+                "reward": 0.3914482932907112,
+                "creation_time": 1730747358.8832092,
+                "auxillary_file_paths": [
+                    "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-9999969.pt"
+                ]
+            },
+            {
+                "steps": 10000033,
+                "file_path": "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-10000033.onnx",
+                "reward": 0.3914482932907112,
+                "creation_time": 1730747358.917208,
+                "auxillary_file_paths": [
+                    "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-10000033.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000033,
+            "file_path": "results\\for_comparison_num_of_hid_lay1\\MoveToTarget.onnx",
+            "reward": 0.3914482932907112,
+            "creation_time": 1730747358.917208,
+            "auxillary_file_paths": [
+                "results\\for_comparison_num_of_hid_lay1\\MoveToTarget\\MoveToTarget-10000033.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

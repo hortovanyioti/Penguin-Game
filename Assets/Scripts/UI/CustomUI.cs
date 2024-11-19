@@ -6,6 +6,6 @@ public abstract class CustomUI : MonoBehaviour
 
 	protected virtual void Init()
 	{
-		m_Player = null;//TODO: m_Player = GameManagerScript.Instance.PlayerScripts[0]; //TODO: Multiplayer
+		m_Player = CustomNetworkManager.Instance.Players.Game[0];//TODO: m_Player = GameManagerScript.Instance.PlayerScripts[0]; //TODO: Multiplayer
 	}
 }

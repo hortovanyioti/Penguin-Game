@@ -52,7 +52,7 @@ public abstract class GameCharacter : MonoBehaviour
 		CurrentHealth = MaxHealth;
 		camera = GetComponentInChildren<Camera>();
 	}
-	public virtual void Hurt(float damage)
+	public virtual void TakeDamage(float damage)
 	{
 		CurrentHealth -= damage;
 		if (CurrentHealth <= 0)

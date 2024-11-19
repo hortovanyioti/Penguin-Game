@@ -1,0 +1,65 @@
+{
+    "MoveToTarget": {
+        "checkpoints": [
+            {
+                "steps": 5999921,
+                "file_path": "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-5999921.onnx",
+                "reward": 0.11627033026888967,
+                "creation_time": 1731554790.2334754,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-5999921.pt"
+                ]
+            },
+            {
+                "steps": 6999904,
+                "file_path": "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-6999904.onnx",
+                "reward": 0.4209824468797216,
+                "creation_time": 1731555326.8591714,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-6999904.pt"
+                ]
+            },
+            {
+                "steps": 7999984,
+                "file_path": "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-7999984.onnx",
+                "reward": 0.30830901774710845,
+                "creation_time": 1731555940.1476405,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-7999984.pt"
+                ]
+            },
+            {
+                "steps": 8999889,
+                "file_path": "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-8999889.onnx",
+                "reward": 0.8008924927562475,
+                "creation_time": 1731556823.0591218,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-8999889.pt"
+                ]
+            },
+            {
+                "steps": 9040748,
+                "file_path": "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-9040748.onnx",
+                "reward": 0.7164452499710023,
+                "creation_time": 1731556843.7421231,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-9040748.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9040748,
+            "file_path": "results\\mixedTargets05\\MoveToTarget.onnx",
+            "reward": 0.7164452499710023,
+            "creation_time": 1731556843.7421231,
+            "auxillary_file_paths": [
+                "results\\mixedTargets05\\MoveToTarget\\MoveToTarget-9040748.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

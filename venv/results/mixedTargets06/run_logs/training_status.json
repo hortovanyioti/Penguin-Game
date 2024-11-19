@@ -1,0 +1,56 @@
+{
+    "MoveToTarget": {
+        "checkpoints": [
+            {
+                "steps": 999945,
+                "file_path": "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-999945.onnx",
+                "reward": 0.40569347562268376,
+                "creation_time": 1731557467.468168,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-999945.pt"
+                ]
+            },
+            {
+                "steps": 1999974,
+                "file_path": "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-1999974.onnx",
+                "reward": 0.37337167956866324,
+                "creation_time": 1731558128.2762654,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-1999974.pt"
+                ]
+            },
+            {
+                "steps": 2999963,
+                "file_path": "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-2999963.onnx",
+                "reward": 0.2369452029815875,
+                "creation_time": 1731558779.3020873,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-2999963.pt"
+                ]
+            },
+            {
+                "steps": 3023694,
+                "file_path": "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-3023694.onnx",
+                "reward": 0.49804467655485496,
+                "creation_time": 1731558798.1069715,
+                "auxillary_file_paths": [
+                    "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-3023694.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3023694,
+            "file_path": "results\\mixedTargets06\\MoveToTarget.onnx",
+            "reward": 0.49804467655485496,
+            "creation_time": 1731558798.1069715,
+            "auxillary_file_paths": [
+                "results\\mixedTargets06\\MoveToTarget\\MoveToTarget-3023694.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

@@ -218,7 +218,7 @@ public class PlayerScript : GameCharacter
 			return;
 		}
 
-		if (direction.sqrMagnitude < 0.01)
+		if (direction.magnitude < 0.01)
 			return;
 
 		var scaledMoveSpeed = MoveSpeed * Time.deltaTime;
@@ -282,9 +282,9 @@ public class PlayerScript : GameCharacter
 		}
 	}
 
-	public override void Hurt(float damage)
+	public override void TakeDamage(float damage)
 	{
-		base.Hurt(damage);
+		base.TakeDamage(damage);
 		hud.SetCurrentHealth((int)CurrentHealth);
 	}
 

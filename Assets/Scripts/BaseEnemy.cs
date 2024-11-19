@@ -24,12 +24,15 @@ public class BaseEnemy : GameCharacter
 	private float trackingUpdateTimer;
 	private Cooldown attackCooldown;
 	private BoxCollider attackCollider;
-
+	private void Awake()
+	{
+		weapon = GetComponentInChildren<Weapon>();
+		
+	}
 	void Start()
 	{
 		base.Init();
 		navMeshAgent = GetComponent<NavMeshAgent>();
-		weapon = GetComponentInChildren<Weapon>();
 		attackCollider = GetComponent<BoxCollider>();
 		attackCooldown = new Cooldown();
 		attackCooldown.CoolDownTime = 1f;
@@ -54,9 +57,9 @@ public class BaseEnemy : GameCharacter
 		*/
 	}
 
-	public override void Hurt(float damage)
+	public override void TakeDamage(float damage)
 	{
-		base.Hurt(damage);
+		base.TakeDamage(damage);
 	}
 
 	public override void Die()
@@ -140,7 +143,7 @@ public class BaseEnemy : GameCharacter
 	}
 	protected virtual void MeleeAttack(GameObject target)
 	{
-		target.gameObject.GetComponent<PlayerScript>().Hurt(10);
+		target.gameObject.GetComponent<PlayerScript>().TakeDamage(10);
 	}
 
 	public void TryRangedAttack()

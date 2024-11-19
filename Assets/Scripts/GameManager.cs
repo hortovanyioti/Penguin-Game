@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
 	public Difficulty Difficulty { get { return difficulty; } private set { difficulty = value; } }
 
 
+	private bool isFiendlyFire = false;
+	public bool IsFriendlyFire { get { return isFiendlyFire; } private set { isFiendlyFire = value; } }
+
+
 	[SerializeField] private bool isGameOver = false;
 	public bool IsGameOver { get { return isGameOver; } private set { isGameOver = value; } }
 

@@ -11,10 +11,9 @@ public class BulletScript : MonoBehaviour
 
 	static GameObject BulletCollection;
 
-
 	private void Start()
 	{
-		if(BulletCollection == null)
+		if (BulletCollection == null)
 		{
 			BulletCollection = new GameObject("BulletCollection");
 		}
@@ -29,12 +28,12 @@ public class BulletScript : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.CompareTag("Target") || collision.gameObject.CompareTag("Player"))
+		if (IsTargetValid(collision.gameObject.tag))
 		{
 			var gameChar = collision.gameObject.GetComponent<GameCharacter>();
 			if (gameChar != null)
 			{
-				gameChar.Hurt(10);
+				gameChar.TakeDamage(Owner.weapon.Damage);
 			}
 
 			if (MLAgent != null)
@@ -55,6 +54,24 @@ public class BulletScript : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
+
+	bool IsTargetValid(string tag)	//Add more tags if needed
+	{
+		switch (tag)
+		{
+			case "Target":
+			case "Player":
+			case "Enemy":
+				if (GameManager.Instance.IsFriendlyFire == false && Owner.CompareTag(tag))
+				{
+					return false;
+				}
+				return true;
+			default:
+				return false;
+		}
+	}
+
 	void Update()
 	{
 		bulletLife -= Time.deltaTime;

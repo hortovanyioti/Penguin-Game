@@ -8,14 +8,17 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 46c7c5d2c5fb20c44bd8b27605b1b109
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenuCoop.unity
     guid: 8a23164f49d7c524f9506ca01e2904d9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/test_otto.unity
     guid: e20efd6a1392dfa4f88caaff66f34a68
+  - enabled: 1
+    path: Assets/Scenes/ML_test.unity
+    guid: 264b1c3eaf5bf14478441006b243cec7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6fb5e119be9a30f4587df7516908749f, type: 2}

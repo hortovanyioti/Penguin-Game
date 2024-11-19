@@ -30,9 +30,11 @@ public class CustomNetworkManager : NetworkManager
 	}
 
 	public (
-		List<GameObject> GameObjects, 
-		List<NetworkPlayer> Network, 
-		List<PlayerScript> Game) Players { get; } = (new List<GameObject>(), new List<NetworkPlayer>(), new List<PlayerScript>());
+		List<GameObject> GameObjects,
+		List<NetworkPlayer> Network,
+		List<PlayerScript> Game)
+		Players
+	{ get; } = (new List<GameObject>(), new List<NetworkPlayer>(), new List<PlayerScript>());
 
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)
 	{

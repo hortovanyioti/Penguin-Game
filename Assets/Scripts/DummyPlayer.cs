@@ -1,18 +1,35 @@
-using System;
-using System.Collections;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
-using UnityEngine.Experimental.AI;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class DummyPlayer : GameCharacter
 {
+	NavMeshAgent navmeshAgent;
 
-	public override void Hurt(float damage)
+	float navmeshUpdateInterval = 5f;
+	float navmeshUpdateTimer = float.MaxValue;
+	int spawnRange = 25;
+	private void Start()
+	{
+		navmeshAgent = GetComponent<NavMeshAgent>();
+	}
+
+	private void OnEnable()
+	{
+		CurrentHealth = MaxHealth;
+	}
+
+	private void Update()
+	{
+		navmeshUpdateTimer += Time.deltaTime;
+		if (navmeshUpdateTimer >= navmeshUpdateInterval)
+		{
+			var newDestination = new Vector3(Random.Range(-spawnRange, spawnRange), 0, Random.Range(-spawnRange, spawnRange)) + transform.parent.parent.position;
+			navmeshAgent.SetDestination(newDestination);
+			navmeshUpdateTimer = 0;
+		}
+	}
+
+	public override void TakeDamage(float damage)
 	{
 		CurrentHealth -= damage;
 		if (CurrentHealth <= 0)
@@ -20,6 +37,5 @@ public class DummyPlayer : GameCharacter
 			gameObject.SetActive(false);
 		}
 	}
-
 
 }

@@ -12,21 +12,40 @@ public class MLRangedEnemy : Agent
 	BaseEnemy Base;
 	BehaviorParameters behaviorParameters;
 
-	[SerializeField] List<GameObject> targets;
-	[SerializeField] List<GameObject> objects;
-	private readonly int numOfObservedTargets = 4;
 
-	private float rewardTimer = 0;
-	private readonly float rewardTime = 0.1f;               // Every n seconds
-	private readonly float timebasedRewardAmount = -0.001f;   // Awards m amount
+	[SerializeField] GameObject targetContainer;
+	[SerializeField] GameObject obstacleContainer;
+	[SerializeField] readonly int numOfObservedTargets = 4;
 
-	private float lifeTime = 0;
-	private readonly float forceEndSeconds = 30;
+	[SerializeField] float rewardTimer = 0;
+	[SerializeField] readonly float rewardTime = 0.1f;               // Every n seconds
+	[SerializeField] readonly float timebasedRewardAmount = -0.0003f;   // Awards m amount
 
-	private bool isTraining;
-	private float movementSpeed = 5;
-	private float rotationSpeed = 180;
-	private float hitsToKillTarget=1;
+	[SerializeField] float lifeTime = 0;
+	[SerializeField] readonly float forceEndSeconds = 60;
+
+	[SerializeField] bool isTraining;
+	[SerializeField] float movementSpeed = 5;
+	[SerializeField] float rotationSpeed = 180;
+	[SerializeField] float hitsToKillTarget = 2;
+
+	private float cumulativeRotation = 0;
+	[SerializeField] int spawnRange = 25;
+
+	[SerializeField] readonly float rotationPenaltyThreshold = 720; // Threshold for cumulative rotation penalty
+	[SerializeField] readonly float rotationPenaltyAmount = -0.01f; // Penalty for exceeding the threshold
+	[SerializeField] readonly float smallRotationPenaltyAmount = -0.0001f; // Smaller penalty for any rotation
+	internal class CumulativeRewards
+	{
+		public float bullets = 0;
+		public float time = 0;
+		public float fullRotation = 0;
+		public float smallRotation = 0;
+		public float collision = 0;
+		public float hits = 0;
+	}
+
+	CumulativeRewards cumulativeRewards = new CumulativeRewards();
 
 	private void Start()
 	{
@@ -34,7 +53,7 @@ public class MLRangedEnemy : Agent
 		behaviorParameters = GetComponent<BehaviorParameters>();
 		//behaviorParameters.BrainParameters.VectorObservationSize = (numOfObservedTargets + 1) * 3;
 		isTraining = behaviorParameters.Model == null;
-		hitsToKillTarget= targets[0].GetComponent<GameCharacter>().MaxHealth / Base.weapon.Damage;
+		hitsToKillTarget = targetContainer.transform.GetChild(0).GetComponent<GameCharacter>().MaxHealth / Base.weapon.Damage;
 
 		if (isTraining)
 		{
@@ -48,9 +67,7 @@ public class MLRangedEnemy : Agent
 		{
 			TrainingUpdate();
 		}
-
 	}
-
 
 	#region TRAINING
 	private void TrainingUpdate()
@@ -61,6 +78,7 @@ public class MLRangedEnemy : Agent
 		if (rewardTimer >= rewardTime)
 		{
 			AddReward(timebasedRewardAmount);
+			cumulativeRewards.time += timebasedRewardAmount;
 			rewardTimer = 0;
 		}
 
@@ -74,10 +92,12 @@ public class MLRangedEnemy : Agent
 	{
 		if (isTraining)
 		{
+			LogCumulativeRewards();
 			lifeTime = 0;
 			ResetEnviroment();
 		}
 	}
+
 	public override void CollectObservations(VectorSensor sensor)
 	{
 		sensor.AddObservation(transform.localPosition);
@@ -106,8 +126,27 @@ public class MLRangedEnemy : Agent
 
 		Vector3 moveDir = new Vector3(moveX, 0, moveY);
 
+		var prevRotation = transform.rotation;
+
 		transform.Rotate(new Vector3(0, rotateY * Time.deltaTime * rotationSpeed, 0));
 		transform.localPosition += moveDir * Time.deltaTime * movementSpeed * CustomMathFunction.GetMoveSpeedCoeff(moveDir, transform.forward);
+
+		// Apply small penalty for any rotation
+
+		var rotationPenalty = Mathf.Abs(prevRotation.y - transform.rotation.y) / 360 * smallRotationPenaltyAmount;
+		AddReward(rotationPenalty);
+		cumulativeRewards.smallRotation += rotationPenalty;
+
+		// Calculate rotation penalties
+		cumulativeRotation += rotateY;
+
+		// Apply penalty if cumulative rotation exceeds the threshold
+		if (cumulativeRotation >= rotationPenaltyThreshold)
+		{
+			AddReward(rotationPenaltyAmount);
+			cumulativeRewards.fullRotation += rotationPenaltyAmount;
+			cumulativeRotation = 0;
+		}
 
 		if (doAttack == 1)
 		{
@@ -122,15 +161,18 @@ public class MLRangedEnemy : Agent
 		switch (collision.gameObject.tag)
 		{
 			case "Player":
-				AddReward(0.05f);
-				EndEpisode();
+				/*AddReward(0.05f);
+				cumulativeRewards.collision += 0.05f;
+				EndEpisode();*/
 				break;
 			case "Bullet":
 				AddReward(-0.1f);
+				cumulativeRewards.collision += -0.1f;
 				EndEpisode();
 				break;
 			case "Wall":
 				AddReward(-0.02f);
+				cumulativeRewards.collision += -0.02f;
 				//EndEpisode();
 				break;
 		}
@@ -138,42 +180,53 @@ public class MLRangedEnemy : Agent
 
 	private void ResetEnviroment()
 	{
-		foreach (var target in targets)
+		cumulativeRewards = new CumulativeRewards();
+
+		for (int i = 0; i < targetContainer.transform.childCount; i++)
 		{
+			var target = targetContainer.transform.GetChild(i).gameObject;
 			if (!target.activeSelf)
 			{
 				target.SetActive(true);
 			}
-			target.transform.localPosition = new Vector3(Random.Range(-10, 10), 1, Random.Range(-10, 10));
+			target.transform.localPosition = new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
 		}
-		foreach (var obj in objects)
+
+		for (int i = 0; i < obstacleContainer.transform.childCount; i++)
 		{
-			obj.transform.localPosition = new Vector3(Random.Range(-10, 10), 1, Random.Range(-10, 10));
+			var obstacle = obstacleContainer.transform.GetChild(i).gameObject;
+			obstacle.transform.localPosition = new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
 		}
 
-		transform.localPosition = new Vector3(Random.Range(-10, 10), 1, Random.Range(-10, 10));
+		transform.localPosition = new Vector3(Random.Range(-spawnRange, spawnRange), 2, Random.Range(-spawnRange, spawnRange));
 	}
-
 
 	public void BulletFeedback(bool hit)
 	{
 		if (hit)
 		{
-			AddReward(1f / targets.Count / hitsToKillTarget);
-			for (int i = 0; i < targets.Count; ++i)
+			AddReward(1f / targetContainer.transform.childCount / hitsToKillTarget);
+			cumulativeRewards.hits += 1f / targetContainer.transform.childCount / hitsToKillTarget;
+			for (int i = 0; i < targetContainer.transform.childCount; ++i)
 			{
-				if (targets[i].activeSelf)
+				if (targetContainer.transform.GetChild(i).gameObject.activeSelf)
 				{
-					break;
+					return;
 				}
-
-				EndEpisode();
 			}
+				EndEpisode();
 		}
 		else
 		{
-			AddReward(-0.1f);
+			AddReward(-0.005f);
+			cumulativeRewards.bullets += -0.005f;
 		}
+	}
+
+	private void LogCumulativeRewards()
+	{
+		float totalRewards = cumulativeRewards.bullets + cumulativeRewards.time + cumulativeRewards.fullRotation + cumulativeRewards.smallRotation + cumulativeRewards.collision + cumulativeRewards.hits;
+		Debug.Log($"Bullets: {cumulativeRewards.bullets:0.0000}, Time: {cumulativeRewards.time:0.0000}, Full Rotation: {cumulativeRewards.fullRotation:0.0000}, Small Rotation: {cumulativeRewards.smallRotation:0.0000}, Collision: {cumulativeRewards.collision:0.0000}, Hits: {cumulativeRewards.hits:0.0000}, Total: {totalRewards:0.0000}");
 	}
 	#endregion
 }

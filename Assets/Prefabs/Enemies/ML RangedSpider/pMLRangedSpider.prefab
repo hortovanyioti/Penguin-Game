@@ -179,6 +179,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1474018845615487117, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1260212819407580107}
+    - targetCorrespondingSourceObject: {fileID: 1474018845615487117, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9008002448960515769}
   m_SourcePrefab: {fileID: 100100000, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
 --- !u!1 &4932796770271062615 stripped
 GameObject:
@@ -201,8 +204,15 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  targets: []
-  objects: []
+  targetContainer: {fileID: 0}
+  obstacleContainer: {fileID: 0}
+  rewardTimer: 0
+  lifeTime: 0
+  isTraining: 0
+  movementSpeed: 5
+  rotationSpeed: 180
+  hitsToKillTarget: 2
+  spawnRange: 25
 --- !u!114 &5185826933527980645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,10 +273,36 @@ MonoBehaviour:
   m_DetectableTags:
   - Player
   - Wall
-  m_RaysPerDirection: 10
+  m_RaysPerDirection: 20
   m_MaxRayDegrees: 60
   m_SphereCastRadius: 0
-  m_RayLength: 60
+  m_RayLength: 100
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
+--- !u!114 &9008002448960515769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932796770271062615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags: []
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0
+  m_RayLength: 4
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
