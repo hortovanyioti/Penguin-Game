@@ -16,4 +16,9 @@ public class CustomNavMesh : MonoBehaviour
 			navMeshSurface.BuildNavMesh();
 		}
 	}
+
+	public void Bake()
+	{
+		navMeshSurface.BuildNavMesh();
+	}
 }

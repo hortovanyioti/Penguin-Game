@@ -1,0 +1,367 @@
+
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml
+c:\work\reflex aim trainer\venv\lib\site-packages\torch\__init__.py:955: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\tensor\python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+
+            ┐  ╖
+        ╓╖╬│╡  ││╬╖╖
+    ╓╖╬│││││┘  ╬│││││╬╖
+ ╖╬│││││╬╜        ╙╬│││││╖╖                               ╗╗╗
+ ╬╬╬╬╖││╦╖        ╖╬││╗╣╣╣╬      ╟╣╣╬    ╟╣╣╣             ╜╜╜  ╟╣╣
+ ╬╬╬╬╬╬╬╬╖│╬╖╖╓╬╪│╓╣╣╣╣╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╒╣╣╖╗╣╣╣╗   ╣╣╣ ╣╣╣╣╣╣ ╟╣╣╖   ╣╣╣
+ ╬╬╬╬┐  ╙╬╬╬╬│╓╣╣╣╝╜  ╫╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╟╣╣╣╙ ╙╣╣╣  ╣╣╣ ╙╟╣╣╜╙  ╫╣╣  ╟╣╣
+ ╬╬╬╬┐     ╙╬╬╣╣      ╫╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╟╣╣╬   ╣╣╣  ╣╣╣  ╟╣╣     ╣╣╣┌╣╣╜
+ ╬╬╬╜       ╬╬╣╣      ╙╝╣╣╬      ╙╣╣╣╗╖╓╗╣╣╣╜ ╟╣╣╬   ╣╣╣  ╣╣╣  ╟╣╣╦╓    ╣╣╣╣╣
+ ╙   ╓╦╖    ╬╬╣╣   ╓╗╗╖            ╙╝╣╣╣╣╝╜   ╘╝╝╜   ╝╝╝  ╝╝╝   ╙╣╣╣    ╟╣╣╣
+   ╩╬╬╬╬╬╬╦╦╬╬╣╣╗╣╣╣╣╣╣╣╝                                             ╫╣╣╣╣
+      ╙╬╬╬╬╬╬╬╣╣╣╣╣╣╝╜
+          ╙╬╬╬╣╣╣╜
+             ╙
+
+ Version information:
+  ml-agents: 0.29.0,
+  ml-agents-envs: 0.29.0,
+  Communicator API: 1.5.0,
+  PyTorch: 2.4.1+cu124
+Traceback (most recent call last):
+  File "C:\Users\horto\AppData\Local\Programs\Python\Python38\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\horto\AppData\Local\Programs\Python\Python38\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Work\Reflex Aim Trainer\venv\Scripts\mlagents-learn.exe\__main__.py", line 7, in <module>
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\learn.py", line 260, in main
+    run_cli(parse_command_line())
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\learn.py", line 256, in run_cli
+    run_training(run_seed, options, num_areas)
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\learn.py", line 71, in run_training
+    validate_existing_directories(
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\directory_utils.py", line 25, in validate_existing_directories
+    raise UnityTrainerException(
+mlagents.trainers.exception.UnityTrainerException: Previous data from this run ID was found. Either specify a new run ID, use --resume to resume this run, or use the --force parameter to overwrite existing data.
+
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml
+c:\work\reflex aim trainer\venv\lib\site-packages\torch\__init__.py:955: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\tensor\python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+
+            ┐  ╖
+        ╓╖╬│╡  ││╬╖╖
+    ╓╖╬│││││┘  ╬│││││╬╖
+ ╖╬│││││╬╜        ╙╬│││││╖╖                               ╗╗╗
+ ╬╬╬╬╖││╦╖        ╖╬││╗╣╣╣╬      ╟╣╣╬    ╟╣╣╣             ╜╜╜  ╟╣╣
+ ╬╬╬╬╬╬╬╬╖│╬╖╖╓╬╪│╓╣╣╣╣╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╒╣╣╖╗╣╣╣╗   ╣╣╣ ╣╣╣╣╣╣ ╟╣╣╖   ╣╣╣
+ ╬╬╬╬┐  ╙╬╬╬╬│╓╣╣╣╝╜  ╫╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╟╣╣╣╙ ╙╣╣╣  ╣╣╣ ╙╟╣╣╜╙  ╫╣╣  ╟╣╣
+ ╬╬╬╬┐     ╙╬╬╣╣      ╫╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╟╣╣╬   ╣╣╣  ╣╣╣  ╟╣╣     ╣╣╣┌╣╣╜
+ ╬╬╬╜       ╬╬╣╣      ╙╝╣╣╬      ╙╣╣╣╗╖╓╗╣╣╣╜ ╟╣╣╬   ╣╣╣  ╣╣╣  ╟╣╣╦╓    ╣╣╣╣╣
+ ╙   ╓╦╖    ╬╬╣╣   ╓╗╗╖            ╙╝╣╣╣╣╝╜   ╘╝╝╜   ╝╝╝  ╝╝╝   ╙╣╣╣    ╟╣╣╣
+   ╩╬╬╬╬╬╬╦╦╬╬╣╣╗╣╣╣╣╣╣╣╝                                             ╫╣╣╣╣
+      ╙╬╬╬╬╬╬╬╣╣╣╣╣╣╝╜
+          ╙╬╬╬╣╣╣╜
+             ╙
+
+ Version information:
+  ml-agents: 0.29.0,
+  ml-agents-envs: 0.29.0,
+  Communicator API: 1.5.0,
+  PyTorch: 2.4.1+cu124
+c:\work\reflex aim trainer\venv\lib\site-packages\torch\__init__.py:955: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\tensor\python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Hyperparameters for behavior name MoveToTarget:
+        trainer_type:   ppo
+        hyperparameters:
+          batch_size:   4096
+          buffer_size:  16384
+          learning_rate:        0.0003
+          beta: 0.005
+          epsilon:      0.2
+          lambd:        0.95
+          num_epoch:    3
+          learning_rate_schedule:       linear
+          beta_schedule:        linear
+          epsilon_schedule:     linear
+        network_settings:
+          normalize:    False
+          hidden_units: 256
+          num_layers:   1
+          vis_encode_type:      simple
+          memory:       None
+          goal_conditioning_type:       hyper
+          deterministic:        False
+        reward_signals:
+          extrinsic:
+            gamma:      0.99
+            strength:   1.0
+            network_settings:
+              normalize:        False
+              hidden_units:     256
+              num_layers:       1
+              vis_encode_type:  simple
+              memory:   None
+              goal_conditioning_type:   hyper
+              deterministic:    False
+        init_path:      None
+        keep_checkpoints:       5
+        checkpoint_interval:    1000000
+        max_steps:      10000000
+        time_horizon:   64
+        summary_freq:   50000
+        threaded:       True
+        self_play:      None
+        behavioral_cloning:     None
+c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\torch\networks.py:91: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\utils\tensor_new.cpp:281.)
+  enc.update_normalization(torch.as_tensor(vec_input))
+c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\torch\utils.py:320: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\aten\src\ATen\native\TensorShape.cpp:3701.)
+  return (tensor.T * masks).sum() / torch.clamp(
+[INFO] MoveToTarget. Step: 50000. Time Elapsed: 19.211 s. Mean Reward: -2.197. Std of Reward: 1.316. Training.
+[INFO] MoveToTarget. Step: 100000. Time Elapsed: 38.637 s. Mean Reward: -2.161. Std of Reward: 1.237. Training.
+[INFO] MoveToTarget. Step: 150000. Time Elapsed: 56.609 s. Mean Reward: -1.816. Std of Reward: 1.509. Training.
+[INFO] MoveToTarget. Step: 200000. Time Elapsed: 74.531 s. Mean Reward: -1.984. Std of Reward: 1.323. Training.
+[INFO] MoveToTarget. Step: 250000. Time Elapsed: 92.341 s. Mean Reward: -1.690. Std of Reward: 1.468. Training.
+[INFO] MoveToTarget. Step: 300000. Time Elapsed: 110.155 s. Mean Reward: -1.446. Std of Reward: 1.397. Training.
+[INFO] MoveToTarget. Step: 350000. Time Elapsed: 128.098 s. Mean Reward: -1.372. Std of Reward: 1.453. Training.
+[INFO] MoveToTarget. Step: 400000. Time Elapsed: 146.310 s. Mean Reward: -1.089. Std of Reward: 1.284. Training.
+[INFO] MoveToTarget. Step: 450000. Time Elapsed: 164.765 s. Mean Reward: -0.866. Std of Reward: 1.260. Training.
+[INFO] MoveToTarget. Step: 500000. Time Elapsed: 183.034 s. Mean Reward: -0.846. Std of Reward: 1.296. Training.
+[INFO] MoveToTarget. Step: 550000. Time Elapsed: 201.120 s. Mean Reward: -0.650. Std of Reward: 1.128. Training.
+[INFO] MoveToTarget. Step: 600000. Time Elapsed: 219.310 s. Mean Reward: -0.589. Std of Reward: 1.141. Training.
+[INFO] MoveToTarget. Step: 650000. Time Elapsed: 237.423 s. Mean Reward: -0.507. Std of Reward: 0.976. Training.
+[INFO] MoveToTarget. Step: 700000. Time Elapsed: 255.874 s. Mean Reward: -0.341. Std of Reward: 0.910. Training.
+[INFO] MoveToTarget. Step: 750000. Time Elapsed: 274.244 s. Mean Reward: -0.289. Std of Reward: 0.866. Training.
+[INFO] MoveToTarget. Step: 800000. Time Elapsed: 292.407 s. Mean Reward: -0.544. Std of Reward: 1.115. Training.
+[INFO] MoveToTarget. Step: 850000. Time Elapsed: 310.793 s. Mean Reward: -0.219. Std of Reward: 0.896. Training.
+[INFO] MoveToTarget. Step: 900000. Time Elapsed: 329.068 s. Mean Reward: -0.136. Std of Reward: 0.754. Training.
+[INFO] MoveToTarget. Step: 950000. Time Elapsed: 346.743 s. Mean Reward: -0.061. Std of Reward: 0.618. Training.
+[INFO] MoveToTarget. Step: 1000000. Time Elapsed: 365.219 s. Mean Reward: 0.007. Std of Reward: 0.662. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-999987.onnx
+[INFO] MoveToTarget. Step: 1050000. Time Elapsed: 383.732 s. Mean Reward: -0.143. Std of Reward: 0.675. Training.
+[INFO] MoveToTarget. Step: 1100000. Time Elapsed: 401.984 s. Mean Reward: 0.052. Std of Reward: 0.652. Training.
+[INFO] MoveToTarget. Step: 1150000. Time Elapsed: 419.767 s. Mean Reward: -0.014. Std of Reward: 0.662. Training.
+[INFO] MoveToTarget. Step: 1200000. Time Elapsed: 437.534 s. Mean Reward: 0.053. Std of Reward: 0.582. Training.
+[INFO] MoveToTarget. Step: 1250000. Time Elapsed: 455.127 s. Mean Reward: 0.097. Std of Reward: 0.598. Training.
+[INFO] MoveToTarget. Step: 1300000. Time Elapsed: 473.135 s. Mean Reward: 0.083. Std of Reward: 0.713. Training.
+[INFO] MoveToTarget. Step: 1350000. Time Elapsed: 493.512 s. Mean Reward: 0.091. Std of Reward: 0.685. Training.
+[INFO] MoveToTarget. Step: 1400000. Time Elapsed: 511.371 s. Mean Reward: 0.157. Std of Reward: 0.521. Training.
+[INFO] MoveToTarget. Step: 1450000. Time Elapsed: 529.483 s. Mean Reward: 0.258. Std of Reward: 0.417. Training.
+[INFO] MoveToTarget. Step: 1500000. Time Elapsed: 547.584 s. Mean Reward: 0.213. Std of Reward: 0.509. Training.
+[INFO] MoveToTarget. Step: 1550000. Time Elapsed: 565.711 s. Mean Reward: 0.240. Std of Reward: 0.414. Training.
+[INFO] MoveToTarget. Step: 1600000. Time Elapsed: 583.859 s. Mean Reward: 0.322. Std of Reward: 0.369. Training.
+[INFO] MoveToTarget. Step: 1650000. Time Elapsed: 601.742 s. Mean Reward: 0.285. Std of Reward: 0.390. Training.
+[INFO] MoveToTarget. Step: 1700000. Time Elapsed: 620.177 s. Mean Reward: 0.285. Std of Reward: 0.472. Training.
+[INFO] MoveToTarget. Step: 1750000. Time Elapsed: 638.652 s. Mean Reward: 0.334. Std of Reward: 0.367. Training.
+[INFO] MoveToTarget. Step: 1800000. Time Elapsed: 656.853 s. Mean Reward: 0.321. Std of Reward: 0.491. Training.
+[INFO] MoveToTarget. Step: 1850000. Time Elapsed: 675.151 s. Mean Reward: 0.313. Std of Reward: 0.418. Training.
+[INFO] MoveToTarget. Step: 1900000. Time Elapsed: 693.377 s. Mean Reward: 0.329. Std of Reward: 0.424. Training.
+[INFO] MoveToTarget. Step: 1950000. Time Elapsed: 711.993 s. Mean Reward: 0.346. Std of Reward: 0.424. Training.
+[INFO] MoveToTarget. Step: 2000000. Time Elapsed: 730.535 s. Mean Reward: 0.372. Std of Reward: 0.422. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-1999965.onnx
+[INFO] MoveToTarget. Step: 2050000. Time Elapsed: 748.502 s. Mean Reward: 0.417. Std of Reward: 0.361. Training.
+[INFO] MoveToTarget. Step: 2100000. Time Elapsed: 766.414 s. Mean Reward: 0.367. Std of Reward: 0.349. Training.
+[INFO] MoveToTarget. Step: 2150000. Time Elapsed: 783.971 s. Mean Reward: 0.364. Std of Reward: 0.340. Training.
+[INFO] MoveToTarget. Step: 2200000. Time Elapsed: 801.788 s. Mean Reward: 0.414. Std of Reward: 0.302. Training.
+[INFO] MoveToTarget. Step: 2250000. Time Elapsed: 819.409 s. Mean Reward: 0.416. Std of Reward: 0.328. Training.
+[INFO] MoveToTarget. Step: 2300000. Time Elapsed: 836.988 s. Mean Reward: 0.386. Std of Reward: 0.359. Training.
+[INFO] MoveToTarget. Step: 2350000. Time Elapsed: 854.578 s. Mean Reward: 0.390. Std of Reward: 0.378. Training.
+[INFO] MoveToTarget. Step: 2400000. Time Elapsed: 872.408 s. Mean Reward: 0.446. Std of Reward: 0.311. Training.
+[INFO] MoveToTarget. Step: 2450000. Time Elapsed: 890.045 s. Mean Reward: 0.398. Std of Reward: 0.337. Training.
+[INFO] MoveToTarget. Step: 2500000. Time Elapsed: 907.609 s. Mean Reward: 0.388. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 2550000. Time Elapsed: 927.044 s. Mean Reward: 0.382. Std of Reward: 0.428. Training.
+[INFO] MoveToTarget. Step: 2600000. Time Elapsed: 944.564 s. Mean Reward: 0.424. Std of Reward: 0.389. Training.
+[INFO] MoveToTarget. Step: 2650000. Time Elapsed: 962.174 s. Mean Reward: 0.424. Std of Reward: 0.330. Training.
+[INFO] MoveToTarget. Step: 2700000. Time Elapsed: 979.953 s. Mean Reward: 0.396. Std of Reward: 0.328. Training.
+[INFO] MoveToTarget. Step: 2750000. Time Elapsed: 997.533 s. Mean Reward: 0.380. Std of Reward: 0.370. Training.
+[INFO] MoveToTarget. Step: 2800000. Time Elapsed: 1015.169 s. Mean Reward: 0.441. Std of Reward: 0.299. Training.
+[INFO] MoveToTarget. Step: 2850000. Time Elapsed: 1033.012 s. Mean Reward: 0.430. Std of Reward: 0.316. Training.
+[INFO] MoveToTarget. Step: 2900000. Time Elapsed: 1050.694 s. Mean Reward: 0.443. Std of Reward: 0.318. Training.
+[INFO] MoveToTarget. Step: 2950000. Time Elapsed: 1068.507 s. Mean Reward: 0.401. Std of Reward: 0.340. Training.
+[INFO] MoveToTarget. Step: 3000000. Time Elapsed: 1086.290 s. Mean Reward: 0.421. Std of Reward: 0.350. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-2999979.onnx
+[INFO] MoveToTarget. Step: 3050000. Time Elapsed: 1103.898 s. Mean Reward: 0.431. Std of Reward: 0.353. Training.
+[INFO] MoveToTarget. Step: 3100000. Time Elapsed: 1121.493 s. Mean Reward: 0.441. Std of Reward: 0.339. Training.
+[INFO] MoveToTarget. Step: 3150000. Time Elapsed: 1139.145 s. Mean Reward: 0.401. Std of Reward: 0.311. Training.
+[INFO] MoveToTarget. Step: 3200000. Time Elapsed: 1156.794 s. Mean Reward: 0.433. Std of Reward: 0.324. Training.
+[INFO] MoveToTarget. Step: 3250000. Time Elapsed: 1174.544 s. Mean Reward: 0.412. Std of Reward: 0.308. Training.
+[INFO] MoveToTarget. Step: 3300000. Time Elapsed: 1192.169 s. Mean Reward: 0.436. Std of Reward: 0.331. Training.
+[INFO] MoveToTarget. Step: 3350000. Time Elapsed: 1209.775 s. Mean Reward: 0.416. Std of Reward: 0.316. Training.
+[INFO] MoveToTarget. Step: 3400000. Time Elapsed: 1227.304 s. Mean Reward: 0.456. Std of Reward: 0.340. Training.
+[INFO] MoveToTarget. Step: 3450000. Time Elapsed: 1245.140 s. Mean Reward: 0.418. Std of Reward: 0.359. Training.
+[INFO] MoveToTarget. Step: 3500000. Time Elapsed: 1262.869 s. Mean Reward: 0.471. Std of Reward: 0.323. Training.
+[INFO] MoveToTarget. Step: 3550000. Time Elapsed: 1280.633 s. Mean Reward: 0.422. Std of Reward: 0.336. Training.
+[INFO] MoveToTarget. Step: 3600000. Time Elapsed: 1298.210 s. Mean Reward: 0.408. Std of Reward: 0.352. Training.
+[INFO] MoveToTarget. Step: 3650000. Time Elapsed: 1316.018 s. Mean Reward: 0.429. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 3700000. Time Elapsed: 1333.957 s. Mean Reward: 0.437. Std of Reward: 0.339. Training.
+[INFO] MoveToTarget. Step: 3750000. Time Elapsed: 1353.383 s. Mean Reward: 0.428. Std of Reward: 0.362. Training.
+[INFO] MoveToTarget. Step: 3800000. Time Elapsed: 1370.938 s. Mean Reward: 0.433. Std of Reward: 0.325. Training.
+[INFO] MoveToTarget. Step: 3850000. Time Elapsed: 1388.508 s. Mean Reward: 0.457. Std of Reward: 0.292. Training.
+[INFO] MoveToTarget. Step: 3900000. Time Elapsed: 1406.146 s. Mean Reward: 0.459. Std of Reward: 0.302. Training.
+[INFO] MoveToTarget. Step: 3950000. Time Elapsed: 1423.666 s. Mean Reward: 0.419. Std of Reward: 0.343. Training.
+[INFO] MoveToTarget. Step: 4000000. Time Elapsed: 1441.396 s. Mean Reward: 0.447. Std of Reward: 0.299. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-3999995.onnx
+[INFO] MoveToTarget. Step: 4050000. Time Elapsed: 1459.078 s. Mean Reward: 0.396. Std of Reward: 0.400. Training.
+[INFO] MoveToTarget. Step: 4100000. Time Elapsed: 1476.583 s. Mean Reward: 0.433. Std of Reward: 0.310. Training.
+[INFO] MoveToTarget. Step: 4150000. Time Elapsed: 1494.265 s. Mean Reward: 0.442. Std of Reward: 0.336. Training.
+[INFO] MoveToTarget. Step: 4200000. Time Elapsed: 1511.877 s. Mean Reward: 0.410. Std of Reward: 0.338. Training.
+[INFO] MoveToTarget. Step: 4250000. Time Elapsed: 1529.471 s. Mean Reward: 0.425. Std of Reward: 0.327. Training.
+[INFO] MoveToTarget. Step: 4300000. Time Elapsed: 1547.001 s. Mean Reward: 0.417. Std of Reward: 0.383. Training.
+[INFO] MoveToTarget. Step: 4350000. Time Elapsed: 1564.678 s. Mean Reward: 0.402. Std of Reward: 0.354. Training.
+[INFO] MoveToTarget. Step: 4400000. Time Elapsed: 1582.216 s. Mean Reward: 0.437. Std of Reward: 0.338. Training.
+[INFO] MoveToTarget. Step: 4450000. Time Elapsed: 1599.724 s. Mean Reward: 0.393. Std of Reward: 0.398. Training.
+[INFO] MoveToTarget. Step: 4500000. Time Elapsed: 1617.353 s. Mean Reward: 0.404. Std of Reward: 0.335. Training.
+[INFO] MoveToTarget. Step: 4550000. Time Elapsed: 1634.946 s. Mean Reward: 0.434. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 4600000. Time Elapsed: 1652.498 s. Mean Reward: 0.430. Std of Reward: 0.313. Training.
+[INFO] MoveToTarget. Step: 4650000. Time Elapsed: 1670.182 s. Mean Reward: 0.437. Std of Reward: 0.298. Training.
+[INFO] MoveToTarget. Step: 4700000. Time Elapsed: 1687.744 s. Mean Reward: 0.433. Std of Reward: 0.355. Training.
+[INFO] MoveToTarget. Step: 4750000. Time Elapsed: 1705.407 s. Mean Reward: 0.420. Std of Reward: 0.378. Training.
+[INFO] MoveToTarget. Step: 4800000. Time Elapsed: 1722.787 s. Mean Reward: 0.447. Std of Reward: 0.326. Training.
+[INFO] MoveToTarget. Step: 4850000. Time Elapsed: 1740.327 s. Mean Reward: 0.438. Std of Reward: 0.325. Training.
+[INFO] MoveToTarget. Step: 4900000. Time Elapsed: 1757.764 s. Mean Reward: 0.434. Std of Reward: 0.315. Training.
+[INFO] MoveToTarget. Step: 4950000. Time Elapsed: 1775.232 s. Mean Reward: 0.461. Std of Reward: 0.310. Training.
+[INFO] MoveToTarget. Step: 5000000. Time Elapsed: 1794.511 s. Mean Reward: 0.419. Std of Reward: 0.326. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-4999987.onnx
+[INFO] MoveToTarget. Step: 5050000. Time Elapsed: 1811.837 s. Mean Reward: 0.434. Std of Reward: 0.321. Training.
+[INFO] MoveToTarget. Step: 5100000. Time Elapsed: 1829.450 s. Mean Reward: 0.436. Std of Reward: 0.347. Training.
+[INFO] MoveToTarget. Step: 5150000. Time Elapsed: 1847.186 s. Mean Reward: 0.455. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 5200000. Time Elapsed: 1864.875 s. Mean Reward: 0.459. Std of Reward: 0.337. Training.
+[INFO] MoveToTarget. Step: 5250000. Time Elapsed: 1882.565 s. Mean Reward: 0.424. Std of Reward: 0.288. Training.
+[INFO] MoveToTarget. Step: 5300000. Time Elapsed: 1900.188 s. Mean Reward: 0.417. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 5350000. Time Elapsed: 1917.779 s. Mean Reward: 0.490. Std of Reward: 0.309. Training.
+[INFO] MoveToTarget. Step: 5400000. Time Elapsed: 1935.323 s. Mean Reward: 0.447. Std of Reward: 0.298. Training.
+[INFO] MoveToTarget. Step: 5450000. Time Elapsed: 1953.169 s. Mean Reward: 0.432. Std of Reward: 0.321. Training.
+[INFO] MoveToTarget. Step: 5500000. Time Elapsed: 1970.783 s. Mean Reward: 0.479. Std of Reward: 0.287. Training.
+[INFO] MoveToTarget. Step: 5550000. Time Elapsed: 1988.534 s. Mean Reward: 0.473. Std of Reward: 0.314. Training.
+[INFO] MoveToTarget. Step: 5600000. Time Elapsed: 2006.271 s. Mean Reward: 0.449. Std of Reward: 0.313. Training.
+[INFO] MoveToTarget. Step: 5650000. Time Elapsed: 2023.942 s. Mean Reward: 0.470. Std of Reward: 0.311. Training.
+[INFO] MoveToTarget. Step: 5700000. Time Elapsed: 2041.598 s. Mean Reward: 0.472. Std of Reward: 0.292. Training.
+[INFO] MoveToTarget. Step: 5750000. Time Elapsed: 2059.264 s. Mean Reward: 0.444. Std of Reward: 0.339. Training.
+[INFO] MoveToTarget. Step: 5800000. Time Elapsed: 2076.956 s. Mean Reward: 0.437. Std of Reward: 0.352. Training.
+[INFO] MoveToTarget. Step: 5850000. Time Elapsed: 2094.666 s. Mean Reward: 0.450. Std of Reward: 0.327. Training.
+[INFO] MoveToTarget. Step: 5900000. Time Elapsed: 2112.237 s. Mean Reward: 0.455. Std of Reward: 0.307. Training.
+[INFO] MoveToTarget. Step: 5950000. Time Elapsed: 2129.985 s. Mean Reward: 0.427. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 6000000. Time Elapsed: 2147.621 s. Mean Reward: 0.448. Std of Reward: 0.319. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-5999958.onnx
+[INFO] MoveToTarget. Step: 6050000. Time Elapsed: 2165.248 s. Mean Reward: 0.455. Std of Reward: 0.329. Training.
+[INFO] MoveToTarget. Step: 6100000. Time Elapsed: 2182.839 s. Mean Reward: 0.451. Std of Reward: 0.297. Training.
+[INFO] MoveToTarget. Step: 6150000. Time Elapsed: 2202.255 s. Mean Reward: 0.421. Std of Reward: 0.363. Training.
+[INFO] MoveToTarget. Step: 6200000. Time Elapsed: 2219.852 s. Mean Reward: 0.421. Std of Reward: 0.346. Training.
+[INFO] MoveToTarget. Step: 6250000. Time Elapsed: 2237.555 s. Mean Reward: 0.451. Std of Reward: 0.295. Training.
+[INFO] MoveToTarget. Step: 6300000. Time Elapsed: 2255.153 s. Mean Reward: 0.455. Std of Reward: 0.361. Training.
+[INFO] MoveToTarget. Step: 6350000. Time Elapsed: 2272.713 s. Mean Reward: 0.450. Std of Reward: 0.321. Training.
+[INFO] MoveToTarget. Step: 6400000. Time Elapsed: 2290.317 s. Mean Reward: 0.419. Std of Reward: 0.291. Training.
+[INFO] MoveToTarget. Step: 6450000. Time Elapsed: 2307.933 s. Mean Reward: 0.469. Std of Reward: 0.310. Training.
+[INFO] MoveToTarget. Step: 6500000. Time Elapsed: 2325.634 s. Mean Reward: 0.443. Std of Reward: 0.303. Training.
+[INFO] MoveToTarget. Step: 6550000. Time Elapsed: 2343.430 s. Mean Reward: 0.428. Std of Reward: 0.309. Training.
+[INFO] MoveToTarget. Step: 6600000. Time Elapsed: 2361.052 s. Mean Reward: 0.461. Std of Reward: 0.313. Training.
+[INFO] MoveToTarget. Step: 6650000. Time Elapsed: 2378.646 s. Mean Reward: 0.421. Std of Reward: 0.315. Training.
+[INFO] MoveToTarget. Step: 6700000. Time Elapsed: 2396.214 s. Mean Reward: 0.446. Std of Reward: 0.342. Training.
+[INFO] MoveToTarget. Step: 6750000. Time Elapsed: 2413.823 s. Mean Reward: 0.436. Std of Reward: 0.317. Training.
+[INFO] MoveToTarget. Step: 6800000. Time Elapsed: 2431.697 s. Mean Reward: 0.444. Std of Reward: 0.292. Training.
+[INFO] MoveToTarget. Step: 6850000. Time Elapsed: 2449.245 s. Mean Reward: 0.461. Std of Reward: 0.279. Training.
+[INFO] MoveToTarget. Step: 6900000. Time Elapsed: 2466.975 s. Mean Reward: 0.424. Std of Reward: 0.370. Training.
+[INFO] MoveToTarget. Step: 6950000. Time Elapsed: 2484.766 s. Mean Reward: 0.461. Std of Reward: 0.302. Training.
+[INFO] MoveToTarget. Step: 7000000. Time Elapsed: 2502.442 s. Mean Reward: 0.450. Std of Reward: 0.304. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-6999984.onnx
+[INFO] MoveToTarget. Step: 7050000. Time Elapsed: 2520.279 s. Mean Reward: 0.454. Std of Reward: 0.305. Training.
+[INFO] MoveToTarget. Step: 7100000. Time Elapsed: 2537.860 s. Mean Reward: 0.430. Std of Reward: 0.330. Training.
+[INFO] MoveToTarget. Step: 7150000. Time Elapsed: 2555.510 s. Mean Reward: 0.499. Std of Reward: 0.289. Training.
+[INFO] MoveToTarget. Step: 7200000. Time Elapsed: 2573.199 s. Mean Reward: 0.456. Std of Reward: 0.305. Training.
+[INFO] MoveToTarget. Step: 7250000. Time Elapsed: 2590.797 s. Mean Reward: 0.455. Std of Reward: 0.332. Training.
+[INFO] MoveToTarget. Step: 7300000. Time Elapsed: 2610.242 s. Mean Reward: 0.442. Std of Reward: 0.336. Training.
+[INFO] MoveToTarget. Step: 7350000. Time Elapsed: 2627.694 s. Mean Reward: 0.419. Std of Reward: 0.318. Training.
+[INFO] MoveToTarget. Step: 7400000. Time Elapsed: 2645.090 s. Mean Reward: 0.441. Std of Reward: 0.344. Training.
+[INFO] MoveToTarget. Step: 7450000. Time Elapsed: 2662.746 s. Mean Reward: 0.434. Std of Reward: 0.320. Training.
+[INFO] MoveToTarget. Step: 7500000. Time Elapsed: 2680.311 s. Mean Reward: 0.459. Std of Reward: 0.310. Training.
+[INFO] MoveToTarget. Step: 7550000. Time Elapsed: 2697.942 s. Mean Reward: 0.455. Std of Reward: 0.323. Training.
+[INFO] MoveToTarget. Step: 7600000. Time Elapsed: 2715.722 s. Mean Reward: 0.453. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 7650000. Time Elapsed: 2733.357 s. Mean Reward: 0.456. Std of Reward: 0.369. Training.
+[INFO] MoveToTarget. Step: 7700000. Time Elapsed: 2750.867 s. Mean Reward: 0.454. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 7750000. Time Elapsed: 2768.494 s. Mean Reward: 0.457. Std of Reward: 0.347. Training.
+[INFO] MoveToTarget. Step: 7800000. Time Elapsed: 2786.081 s. Mean Reward: 0.462. Std of Reward: 0.318. Training.
+[INFO] MoveToTarget. Step: 7850000. Time Elapsed: 2803.718 s. Mean Reward: 0.486. Std of Reward: 0.318. Training.
+[INFO] MoveToTarget. Step: 7900000. Time Elapsed: 2821.526 s. Mean Reward: 0.429. Std of Reward: 0.282. Training.
+[INFO] MoveToTarget. Step: 7950000. Time Elapsed: 2839.388 s. Mean Reward: 0.466. Std of Reward: 0.307. Training.
+[INFO] MoveToTarget. Step: 8000000. Time Elapsed: 2857.094 s. Mean Reward: 0.464. Std of Reward: 0.321. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-7999953.onnx
+[INFO] MoveToTarget. Step: 8050000. Time Elapsed: 2874.771 s. Mean Reward: 0.429. Std of Reward: 0.325. Training.
+[INFO] MoveToTarget. Step: 8100000. Time Elapsed: 2892.509 s. Mean Reward: 0.474. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 8150000. Time Elapsed: 2910.374 s. Mean Reward: 0.450. Std of Reward: 0.305. Training.
+[INFO] MoveToTarget. Step: 8200000. Time Elapsed: 2928.069 s. Mean Reward: 0.479. Std of Reward: 0.324. Training.
+[INFO] MoveToTarget. Step: 8250000. Time Elapsed: 2945.873 s. Mean Reward: 0.472. Std of Reward: 0.305. Training.
+[INFO] MoveToTarget. Step: 8300000. Time Elapsed: 2963.603 s. Mean Reward: 0.446. Std of Reward: 0.307. Training.
+[INFO] MoveToTarget. Step: 8350000. Time Elapsed: 2981.335 s. Mean Reward: 0.463. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 8400000. Time Elapsed: 2998.988 s. Mean Reward: 0.463. Std of Reward: 0.341. Training.
+[INFO] MoveToTarget. Step: 8450000. Time Elapsed: 3016.659 s. Mean Reward: 0.412. Std of Reward: 0.332. Training.
+[INFO] MoveToTarget. Step: 8500000. Time Elapsed: 3034.326 s. Mean Reward: 0.436. Std of Reward: 0.309. Training.
+[INFO] MoveToTarget. Step: 8550000. Time Elapsed: 3053.844 s. Mean Reward: 0.465. Std of Reward: 0.297. Training.
+[INFO] MoveToTarget. Step: 8600000. Time Elapsed: 3071.361 s. Mean Reward: 0.461. Std of Reward: 0.312. Training.
+[INFO] MoveToTarget. Step: 8650000. Time Elapsed: 3089.184 s. Mean Reward: 0.480. Std of Reward: 0.295. Training.
+[INFO] MoveToTarget. Step: 8700000. Time Elapsed: 3106.797 s. Mean Reward: 0.453. Std of Reward: 0.320. Training.
+[INFO] MoveToTarget. Step: 8750000. Time Elapsed: 3124.458 s. Mean Reward: 0.461. Std of Reward: 0.349. Training.
+[INFO] MoveToTarget. Step: 8800000. Time Elapsed: 3142.175 s. Mean Reward: 0.461. Std of Reward: 0.337. Training.
+[INFO] MoveToTarget. Step: 8850000. Time Elapsed: 3159.968 s. Mean Reward: 0.450. Std of Reward: 0.330. Training.
+[INFO] MoveToTarget. Step: 8900000. Time Elapsed: 3177.729 s. Mean Reward: 0.482. Std of Reward: 0.308. Training.
+[INFO] MoveToTarget. Step: 8950000. Time Elapsed: 3195.434 s. Mean Reward: 0.483. Std of Reward: 0.293. Training.
+[INFO] MoveToTarget. Step: 9000000. Time Elapsed: 3213.213 s. Mean Reward: 0.455. Std of Reward: 0.315. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-8999979.onnx
+[INFO] MoveToTarget. Step: 9050000. Time Elapsed: 3230.954 s. Mean Reward: 0.450. Std of Reward: 0.289. Training.
+[INFO] MoveToTarget. Step: 9100000. Time Elapsed: 3248.721 s. Mean Reward: 0.496. Std of Reward: 0.301. Training.
+[INFO] MoveToTarget. Step: 9150000. Time Elapsed: 3266.481 s. Mean Reward: 0.456. Std of Reward: 0.299. Training.
+[INFO] MoveToTarget. Step: 9200000. Time Elapsed: 3284.253 s. Mean Reward: 0.484. Std of Reward: 0.305. Training.
+[INFO] MoveToTarget. Step: 9250000. Time Elapsed: 3302.047 s. Mean Reward: 0.474. Std of Reward: 0.314. Training.
+[INFO] MoveToTarget. Step: 9300000. Time Elapsed: 3319.864 s. Mean Reward: 0.468. Std of Reward: 0.309. Training.
+[INFO] MoveToTarget. Step: 9350000. Time Elapsed: 3337.530 s. Mean Reward: 0.433. Std of Reward: 0.331. Training.
+[INFO] MoveToTarget. Step: 9400000. Time Elapsed: 3355.283 s. Mean Reward: 0.477. Std of Reward: 0.334. Training.
+[INFO] MoveToTarget. Step: 9450000. Time Elapsed: 3372.857 s. Mean Reward: 0.472. Std of Reward: 0.316. Training.
+[INFO] MoveToTarget. Step: 9500000. Time Elapsed: 3390.867 s. Mean Reward: 0.479. Std of Reward: 0.302. Training.
+[INFO] MoveToTarget. Step: 9550000. Time Elapsed: 3408.644 s. Mean Reward: 0.486. Std of Reward: 0.308. Training.
+[INFO] MoveToTarget. Step: 9600000. Time Elapsed: 3426.526 s. Mean Reward: 0.470. Std of Reward: 0.327. Training.
+[INFO] MoveToTarget. Step: 9650000. Time Elapsed: 3444.256 s. Mean Reward: 0.470. Std of Reward: 0.344. Training.
+[INFO] MoveToTarget. Step: 9700000. Time Elapsed: 3462.012 s. Mean Reward: 0.439. Std of Reward: 0.320. Training.
+[INFO] MoveToTarget. Step: 9750000. Time Elapsed: 3481.705 s. Mean Reward: 0.440. Std of Reward: 0.348. Training.
+[INFO] MoveToTarget. Step: 9800000. Time Elapsed: 3499.376 s. Mean Reward: 0.460. Std of Reward: 0.303. Training.
+[INFO] MoveToTarget. Step: 9850000. Time Elapsed: 3517.089 s. Mean Reward: 0.471. Std of Reward: 0.302. Training.
+[INFO] MoveToTarget. Step: 9900000. Time Elapsed: 3534.780 s. Mean Reward: 0.481. Std of Reward: 0.353. Training.
+[INFO] MoveToTarget. Step: 9950000. Time Elapsed: 3552.387 s. Mean Reward: 0.476. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 10000000. Time Elapsed: 3570.150 s. Mean Reward: 0.446. Std of Reward: 0.311. Training.
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-9999969.onnx
+[INFO] Exported results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-10000033.onnx
+[INFO] Copied results\for_comparison_num_of_hid_lay1\MoveToTarget\MoveToTarget-10000033.onnx to results\for_comparison_num_of_hid_lay1\MoveToTarget.onnx.
+
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml
+c:\work\reflex aim trainer\venv\lib\site-packages\torch\__init__.py:955: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\tensor\python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+
+            ┐  ╖
+        ╓╖╬│╡  ││╬╖╖
+    ╓╖╬│││││┘  ╬│││││╬╖
+ ╖╬│││││╬╜        ╙╬│││││╖╖                               ╗╗╗
+ ╬╬╬╬╖││╦╖        ╖╬││╗╣╣╣╬      ╟╣╣╬    ╟╣╣╣             ╜╜╜  ╟╣╣
+ ╬╬╬╬╬╬╬╬╖│╬╖╖╓╬╪│╓╣╣╣╣╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╒╣╣╖╗╣╣╣╗   ╣╣╣ ╣╣╣╣╣╣ ╟╣╣╖   ╣╣╣
+ ╬╬╬╬┐  ╙╬╬╬╬│╓╣╣╣╝╜  ╫╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╟╣╣╣╙ ╙╣╣╣  ╣╣╣ ╙╟╣╣╜╙  ╫╣╣  ╟╣╣
+ ╬╬╬╬┐     ╙╬╬╣╣      ╫╣╣╣╬      ╟╣╣╬    ╟╣╣╣ ╟╣╣╬   ╣╣╣  ╣╣╣  ╟╣╣     ╣╣╣┌╣╣╜
+ ╬╬╬╜       ╬╬╣╣      ╙╝╣╣╬      ╙╣╣╣╗╖╓╗╣╣╣╜ ╟╣╣╬   ╣╣╣  ╣╣╣  ╟╣╣╦╓    ╣╣╣╣╣
+ ╙   ╓╦╖    ╬╬╣╣   ╓╗╗╖            ╙╝╣╣╣╣╝╜   ╘╝╝╜   ╝╝╝  ╝╝╝   ╙╣╣╣    ╟╣╣╣
+   ╩╬╬╬╬╬╬╦╦╬╬╣╣╗╣╣╣╣╣╣╣╝                                             ╫╣╣╣╣
+      ╙╬╬╬╬╬╬╬╣╣╣╣╣╣╝╜
+          ╙╬╬╬╣╣╣╜
+             ╙
+
+ Version information:
+  ml-agents: 0.29.0,
+  ml-agents-envs: 0.29.0,
+  Communicator API: 1.5.0,
+  PyTorch: 2.4.1+cu124
+Traceback (most recent call last):
+  File "C:\Users\horto\AppData\Local\Programs\Python\Python38\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\horto\AppData\Local\Programs\Python\Python38\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Work\Reflex Aim Trainer\venv\Scripts\mlagents-learn.exe\__main__.py", line 7, in <module>
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\learn.py", line 260, in main
+    run_cli(parse_command_line())
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\learn.py", line 256, in run_cli
+    run_training(run_seed, options, num_areas)
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\learn.py", line 71, in run_training
+    validate_existing_directories(
+  File "c:\work\reflex aim trainer\venv\lib\site-packages\mlagents\trainers\directory_utils.py", line 25, in validate_existing_directories
+    raise UnityTrainerException(
+mlagents.trainers.exception.UnityTrainerException: Previous data from this run ID was found. Either specify a new run ID, use --resume to resume this run, or use the --force parameter to overwrite existing data.

@@ -27,7 +27,7 @@ public class MLTrainer : MonoBehaviour
 	}
 	public void ClearChildren()
 	{
-		while(transform.childCount > 0)
+		while (transform.childCount > 0)
 		{
 			DestroyImmediate(transform.GetChild(0).gameObject);
 		}

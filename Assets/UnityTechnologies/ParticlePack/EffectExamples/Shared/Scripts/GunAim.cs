@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public class GunAim:MonoBehaviour
+public class GunAim : MonoBehaviour
 {
 	public int borderLeft;
 	public int borderRight;
@@ -11,7 +11,7 @@ public class GunAim:MonoBehaviour
 	private Camera parentCamera;
 	private bool isOutOfBounds;
 
-	void Start () 
+	void Start()
 	{
 		parentCamera = GetComponentInParent<Camera>();
 	}
@@ -21,18 +21,18 @@ public class GunAim:MonoBehaviour
 		float mouseX = Input.mousePosition.x;
 		float mouseY = Input.mousePosition.y;
 
-		if (mouseX <= borderLeft || mouseX >= Screen.width - borderRight || mouseY <= borderBottom || mouseY >= Screen.height - borderTop) 
+		if (mouseX <= borderLeft || mouseX >= Screen.width - borderRight || mouseY <= borderBottom || mouseY >= Screen.height - borderTop)
 		{
 			isOutOfBounds = true;
-		} 
-		else 
+		}
+		else
 		{
 			isOutOfBounds = false;
 		}
 
 		if (!isOutOfBounds)
 		{
-			transform.LookAt(parentCamera.ScreenToWorldPoint (new Vector3(mouseX, mouseY, 5.0f)));
+			transform.LookAt(parentCamera.ScreenToWorldPoint(new Vector3(mouseX, mouseY, 5.0f)));
 		}
 	}
 

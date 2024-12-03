@@ -1,0 +1,159 @@
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: MoveToTarget?team=0
+	Unity Technologies
+ Version information:
+  ml-agents: 0.29.0,
+  ml-agents-envs: 0.29.0,
+  Communicator API: 1.5.0,
+  PyTorch: 2.4.1+cu124
+[INFO] Hyperparameters for behavior name MoveToTarget: 
+	trainer_type:	ppo
+	hyperparameters:	
+	  batch_size:	4096
+	  buffer_size:	16384
+	  learning_rate:	0.0003
+	  beta:	0.005
+	  epsilon:	0.2
+	  lambd:	0.95
+	  num_epoch:	3
+	  learning_rate_schedule:	linear
+	  beta_schedule:	linear
+	  epsilon_schedule:	linear
+	network_settings:	
+	  normalize:	False
+	  hidden_units:	256
+	  num_layers:	3
+	  vis_encode_type:	simple
+	  memory:	None
+	  goal_conditioning_type:	hyper
+	  deterministic:	False
+	reward_signals:	
+	  extrinsic:	
+	    gamma:	0.99
+	    strength:	1.0
+	    network_settings:	
+	      normalize:	False
+	      hidden_units:	512
+	      num_layers:	4
+	      vis_encode_type:	simple
+	      memory:	None
+	      goal_conditioning_type:	hyper
+	      deterministic:	False
+	init_path:	None
+	keep_checkpoints:	5
+	checkpoint_interval:	1000000
+	max_steps:	6000000
+	time_horizon:	64
+	summary_freq:	60000
+	threaded:	True
+	self_play:	None
+	behavioral_cloning:	None
+[INFO] MoveToTarget. Step: 60000. Time Elapsed: 34.056 s. Mean Reward: -0.456. Std of Reward: 0.544. Training.
+[INFO] MoveToTarget. Step: 120000. Time Elapsed: 60.196 s. Mean Reward: -0.409. Std of Reward: 0.748. Training.
+[INFO] MoveToTarget. Step: 180000. Time Elapsed: 88.042 s. Mean Reward: -0.566. Std of Reward: 0.620. Training.
+[INFO] MoveToTarget. Step: 240000. Time Elapsed: 114.049 s. Mean Reward: -0.227. Std of Reward: 0.366. Training.
+[INFO] MoveToTarget. Step: 300000. Time Elapsed: 141.445 s. Mean Reward: -0.233. Std of Reward: 0.646. Training.
+[INFO] MoveToTarget. Step: 360000. Time Elapsed: 167.672 s. Mean Reward: -0.338. Std of Reward: 0.529. Training.
+[INFO] MoveToTarget. Step: 420000. Time Elapsed: 195.473 s. Mean Reward: 0.017. Std of Reward: 0.376. Training.
+[INFO] MoveToTarget. Step: 480000. Time Elapsed: 221.522 s. Mean Reward: 0.140. Std of Reward: 0.275. Training.
+[INFO] MoveToTarget. Step: 540000. Time Elapsed: 247.585 s. Mean Reward: 0.184. Std of Reward: 0.381. Training.
+[INFO] MoveToTarget. Step: 600000. Time Elapsed: 275.476 s. Mean Reward: 0.200. Std of Reward: 0.556. Training.
+[INFO] MoveToTarget. Step: 660000. Time Elapsed: 301.189 s. Mean Reward: 0.220. Std of Reward: 0.452. Training.
+[INFO] MoveToTarget. Step: 720000. Time Elapsed: 328.578 s. Mean Reward: 0.192. Std of Reward: 0.357. Training.
+[INFO] MoveToTarget. Step: 780000. Time Elapsed: 353.952 s. Mean Reward: 0.346. Std of Reward: 0.184. Training.
+[INFO] MoveToTarget. Step: 840000. Time Elapsed: 380.958 s. Mean Reward: 0.413. Std of Reward: 0.266. Training.
+[INFO] MoveToTarget. Step: 900000. Time Elapsed: 406.048 s. Mean Reward: 0.362. Std of Reward: 0.238. Training.
+[INFO] MoveToTarget. Step: 960000. Time Elapsed: 432.708 s. Mean Reward: 0.260. Std of Reward: 0.526. Training.
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-999994.onnx
+[INFO] MoveToTarget. Step: 1020000. Time Elapsed: 460.439 s. Mean Reward: 0.354. Std of Reward: 0.612. Training.
+[INFO] MoveToTarget. Step: 1080000. Time Elapsed: 485.907 s. Mean Reward: 0.229. Std of Reward: 0.643. Training.
+[INFO] MoveToTarget. Step: 1140000. Time Elapsed: 513.318 s. Mean Reward: 0.315. Std of Reward: 0.344. Training.
+[INFO] MoveToTarget. Step: 1200000. Time Elapsed: 539.093 s. Mean Reward: 0.502. Std of Reward: 0.176. Training.
+[INFO] MoveToTarget. Step: 1260000. Time Elapsed: 566.630 s. Mean Reward: 0.468. Std of Reward: 0.230. Training.
+[INFO] MoveToTarget. Step: 1320000. Time Elapsed: 593.903 s. Mean Reward: 0.504. Std of Reward: 0.239. Training.
+[INFO] MoveToTarget. Step: 1380000. Time Elapsed: 619.605 s. Mean Reward: 0.401. Std of Reward: 0.304. Training.
+[INFO] MoveToTarget. Step: 1440000. Time Elapsed: 646.894 s. Mean Reward: 0.499. Std of Reward: 0.220. Training.
+[INFO] MoveToTarget. Step: 1500000. Time Elapsed: 674.353 s. Mean Reward: 0.460. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 1560000. Time Elapsed: 700.018 s. Mean Reward: 0.461. Std of Reward: 0.255. Training.
+[INFO] MoveToTarget. Step: 1620000. Time Elapsed: 727.331 s. Mean Reward: 0.488. Std of Reward: 0.204. Training.
+[INFO] MoveToTarget. Step: 1680000. Time Elapsed: 754.744 s. Mean Reward: 0.520. Std of Reward: 0.251. Training.
+[INFO] MoveToTarget. Step: 1740000. Time Elapsed: 780.358 s. Mean Reward: 0.478. Std of Reward: 0.274. Training.
+[INFO] MoveToTarget. Step: 1800000. Time Elapsed: 807.822 s. Mean Reward: 0.392. Std of Reward: 0.319. Training.
+[INFO] MoveToTarget. Step: 1860000. Time Elapsed: 835.387 s. Mean Reward: 0.493. Std of Reward: 0.246. Training.
+[INFO] MoveToTarget. Step: 1920000. Time Elapsed: 860.824 s. Mean Reward: 0.481. Std of Reward: 0.164. Training.
+[INFO] MoveToTarget. Step: 1980000. Time Elapsed: 888.095 s. Mean Reward: 0.438. Std of Reward: 0.282. Training.
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-1999953.onnx
+[INFO] MoveToTarget. Step: 2040000. Time Elapsed: 913.726 s. Mean Reward: 0.516. Std of Reward: 0.186. Training.
+[INFO] MoveToTarget. Step: 2100000. Time Elapsed: 940.941 s. Mean Reward: 0.480. Std of Reward: 0.197. Training.
+[INFO] MoveToTarget. Step: 2160000. Time Elapsed: 968.162 s. Mean Reward: 0.407. Std of Reward: 0.291. Training.
+[INFO] MoveToTarget. Step: 2220000. Time Elapsed: 993.885 s. Mean Reward: 0.410. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 2280000. Time Elapsed: 1020.949 s. Mean Reward: 0.465. Std of Reward: 0.238. Training.
+[INFO] MoveToTarget. Step: 2340000. Time Elapsed: 1048.407 s. Mean Reward: 0.462. Std of Reward: 0.228. Training.
+[INFO] MoveToTarget. Step: 2400000. Time Elapsed: 1073.940 s. Mean Reward: 0.426. Std of Reward: 0.239. Training.
+[INFO] MoveToTarget. Step: 2460000. Time Elapsed: 1101.240 s. Mean Reward: 0.362. Std of Reward: 0.354. Training.
+[INFO] MoveToTarget. Step: 2520000. Time Elapsed: 1128.541 s. Mean Reward: 0.380. Std of Reward: 0.279. Training.
+[INFO] MoveToTarget. Step: 2580000. Time Elapsed: 1154.082 s. Mean Reward: 0.516. Std of Reward: 0.227. Training.
+[INFO] MoveToTarget. Step: 2640000. Time Elapsed: 1181.656 s. Mean Reward: 0.425. Std of Reward: 0.535. Training.
+[INFO] MoveToTarget. Step: 2700000. Time Elapsed: 1209.721 s. Mean Reward: 0.468. Std of Reward: 0.185. Training.
+[INFO] MoveToTarget. Step: 2760000. Time Elapsed: 1235.601 s. Mean Reward: 0.483. Std of Reward: 0.291. Training.
+[INFO] MoveToTarget. Step: 2820000. Time Elapsed: 1263.322 s. Mean Reward: 0.472. Std of Reward: 0.223. Training.
+[INFO] MoveToTarget. Step: 2880000. Time Elapsed: 1290.332 s. Mean Reward: 0.428. Std of Reward: 0.425. Training.
+[INFO] MoveToTarget. Step: 2940000. Time Elapsed: 1319.236 s. Mean Reward: 0.474. Std of Reward: 0.231. Training.
+[INFO] MoveToTarget. Step: 3000000. Time Elapsed: 1348.117 s. Mean Reward: 0.545. Std of Reward: 0.197. Training.
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-2999984.onnx
+[INFO] MoveToTarget. Step: 3060000. Time Elapsed: 1375.135 s. Mean Reward: 0.572. Std of Reward: 0.145. Training.
+[INFO] MoveToTarget. Step: 3120000. Time Elapsed: 1403.794 s. Mean Reward: 0.557. Std of Reward: 0.267. Training.
+[INFO] MoveToTarget. Step: 3180000. Time Elapsed: 1432.667 s. Mean Reward: 0.456. Std of Reward: 0.217. Training.
+[INFO] MoveToTarget. Step: 3240000. Time Elapsed: 1458.925 s. Mean Reward: 0.551. Std of Reward: 0.262. Training.
+[INFO] MoveToTarget. Step: 3300000. Time Elapsed: 1486.340 s. Mean Reward: 0.531. Std of Reward: 0.238. Training.
+[INFO] MoveToTarget. Step: 3360000. Time Elapsed: 1513.739 s. Mean Reward: 0.575. Std of Reward: 0.166. Training.
+[INFO] MoveToTarget. Step: 3420000. Time Elapsed: 1539.291 s. Mean Reward: 0.498. Std of Reward: 0.164. Training.
+[INFO] MoveToTarget. Step: 3480000. Time Elapsed: 1566.614 s. Mean Reward: 0.506. Std of Reward: 0.196. Training.
+[INFO] MoveToTarget. Step: 3540000. Time Elapsed: 1594.128 s. Mean Reward: 0.485. Std of Reward: 0.217. Training.
+[INFO] MoveToTarget. Step: 3600000. Time Elapsed: 1619.653 s. Mean Reward: 0.489. Std of Reward: 0.265. Training.
+[INFO] MoveToTarget. Step: 3660000. Time Elapsed: 1646.994 s. Mean Reward: 0.548. Std of Reward: 0.194. Training.
+[INFO] MoveToTarget. Step: 3720000. Time Elapsed: 1674.710 s. Mean Reward: 0.512. Std of Reward: 0.247. Training.
+[INFO] MoveToTarget. Step: 3780000. Time Elapsed: 1700.158 s. Mean Reward: 0.527. Std of Reward: 0.216. Training.
+[INFO] MoveToTarget. Step: 3840000. Time Elapsed: 1727.449 s. Mean Reward: 0.493. Std of Reward: 0.221. Training.
+[INFO] MoveToTarget. Step: 3900000. Time Elapsed: 1753.151 s. Mean Reward: 0.402. Std of Reward: 0.454. Training.
+[INFO] MoveToTarget. Step: 3960000. Time Elapsed: 1780.475 s. Mean Reward: 0.507. Std of Reward: 0.237. Training.
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-3999998.onnx
+[INFO] MoveToTarget. Step: 4020000. Time Elapsed: 1807.908 s. Mean Reward: 0.554. Std of Reward: 0.191. Training.
+[INFO] MoveToTarget. Step: 4080000. Time Elapsed: 1833.517 s. Mean Reward: 0.575. Std of Reward: 0.235. Training.
+[INFO] MoveToTarget. Step: 4140000. Time Elapsed: 1861.017 s. Mean Reward: 0.481. Std of Reward: 0.260. Training.
+[INFO] MoveToTarget. Step: 4200000. Time Elapsed: 1888.336 s. Mean Reward: 0.412. Std of Reward: 0.498. Training.
+[INFO] MoveToTarget. Step: 4260000. Time Elapsed: 1913.984 s. Mean Reward: 0.541. Std of Reward: 0.209. Training.
+[INFO] MoveToTarget. Step: 4320000. Time Elapsed: 1941.221 s. Mean Reward: 0.515. Std of Reward: 0.241. Training.
+[INFO] MoveToTarget. Step: 4380000. Time Elapsed: 1968.433 s. Mean Reward: 0.462. Std of Reward: 0.224. Training.
+[INFO] MoveToTarget. Step: 4440000. Time Elapsed: 1994.000 s. Mean Reward: 0.486. Std of Reward: 0.293. Training.
+[INFO] MoveToTarget. Step: 4500000. Time Elapsed: 2021.478 s. Mean Reward: 0.486. Std of Reward: 0.210. Training.
+[INFO] MoveToTarget. Step: 4560000. Time Elapsed: 2048.698 s. Mean Reward: 0.521. Std of Reward: 0.264. Training.
+[INFO] MoveToTarget. Step: 4620000. Time Elapsed: 2073.930 s. Mean Reward: 0.491. Std of Reward: 0.324. Training.
+[INFO] MoveToTarget. Step: 4680000. Time Elapsed: 2100.733 s. Mean Reward: 0.516. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 4740000. Time Elapsed: 2128.233 s. Mean Reward: 0.482. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 4800000. Time Elapsed: 2153.055 s. Mean Reward: 0.563. Std of Reward: 0.192. Training.
+[INFO] MoveToTarget. Step: 4860000. Time Elapsed: 2180.034 s. Mean Reward: 0.495. Std of Reward: 0.277. Training.
+[INFO] MoveToTarget. Step: 4920000. Time Elapsed: 2205.360 s. Mean Reward: 0.551. Std of Reward: 0.239. Training.
+[INFO] MoveToTarget. Step: 4980000. Time Elapsed: 2232.307 s. Mean Reward: 0.512. Std of Reward: 0.168. Training.
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-4999957.onnx
+[INFO] MoveToTarget. Step: 5040000. Time Elapsed: 2259.313 s. Mean Reward: 0.541. Std of Reward: 0.185. Training.
+[INFO] MoveToTarget. Step: 5100000. Time Elapsed: 2284.719 s. Mean Reward: 0.505. Std of Reward: 0.264. Training.
+[INFO] MoveToTarget. Step: 5160000. Time Elapsed: 2311.554 s. Mean Reward: 0.513. Std of Reward: 0.314. Training.
+[INFO] MoveToTarget. Step: 5220000. Time Elapsed: 2338.587 s. Mean Reward: 0.572. Std of Reward: 0.210. Training.
+[INFO] MoveToTarget. Step: 5280000. Time Elapsed: 2363.768 s. Mean Reward: 0.549. Std of Reward: 0.216. Training.
+[INFO] MoveToTarget. Step: 5340000. Time Elapsed: 2390.764 s. Mean Reward: 0.473. Std of Reward: 0.307. Training.
+[INFO] MoveToTarget. Step: 5400000. Time Elapsed: 2417.892 s. Mean Reward: 0.488. Std of Reward: 0.222. Training.
+[INFO] MoveToTarget. Step: 5460000. Time Elapsed: 2443.149 s. Mean Reward: 0.560. Std of Reward: 0.155. Training.
+[INFO] MoveToTarget. Step: 5520000. Time Elapsed: 2470.089 s. Mean Reward: 0.558. Std of Reward: 0.181. Training.
+[INFO] MoveToTarget. Step: 5580000. Time Elapsed: 2497.323 s. Mean Reward: 0.519. Std of Reward: 0.164. Training.
+[INFO] MoveToTarget. Step: 5640000. Time Elapsed: 2522.384 s. Mean Reward: 0.572. Std of Reward: 0.193. Training.
+[INFO] MoveToTarget. Step: 5700000. Time Elapsed: 2549.447 s. Mean Reward: 0.539. Std of Reward: 0.186. Training.
+[INFO] MoveToTarget. Step: 5760000. Time Elapsed: 2574.907 s. Mean Reward: 0.518. Std of Reward: 0.257. Training.
+[INFO] MoveToTarget. Step: 5820000. Time Elapsed: 2601.920 s. Mean Reward: 0.557. Std of Reward: 0.237. Training.
+[INFO] MoveToTarget. Step: 5880000. Time Elapsed: 2628.893 s. Mean Reward: 0.547. Std of Reward: 0.173. Training.
+[INFO] MoveToTarget. Step: 5940000. Time Elapsed: 2654.173 s. Mean Reward: 0.569. Std of Reward: 0.178. Training.
+[INFO] MoveToTarget. Step: 6000000. Time Elapsed: 2681.282 s. Mean Reward: 0.510. Std of Reward: 0.275. Training.
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-5999997.onnx
+[INFO] Exported results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-6000061.onnx
+[INFO] Copied results\env_overload_sigle_env_nocuda\MoveToTarget\MoveToTarget-6000061.onnx to results\env_overload_sigle_env_nocuda\MoveToTarget.onnx.

@@ -38,7 +38,7 @@ public class PlayerScript : GameCharacter
 	private Transform weaponTransform;
 	private Animator camAnimator;
 	[SerializeField] private GameObject headCenter;
-	[SerializeField] private GameObject headAim;
+	[SerializeField] private GameObject aimDirection;
 	[SerializeField] private Transform rightHand;
 	[SerializeField] private Transform leftHand;
 	[SerializeField] private TwoBoneIKConstraint leftHandConstraint;
@@ -230,7 +230,7 @@ public class PlayerScript : GameCharacter
 		if (!IsGrounded)    // Only jump if grounded
 			return;
 
-		Vector3 jump = new Vector3(0f, 1f, 0f);
+		Vector3 jump = new Vector3(0f, rigidbody.mass, 0f);
 		rigidbody.AddForce(jump * jumpForce, ForceMode.Impulse);
 
 		//TODO
@@ -254,16 +254,13 @@ public class PlayerScript : GameCharacter
 
 
 		////////////   ROTATE WEAPON, CHANGE RIGHT HAND POSITION    ////////////////
-		float rot;
-		if (camera.transform.eulerAngles.x <= 180f)
+		float rot = camera.transform.eulerAngles.x;
+		if (rot > 180f)
 		{
-			rot = camera.transform.eulerAngles.x;
+			rot -= 360f;
 		}
-		else
-		{
-			rot = camera.transform.eulerAngles.x - 360f;
-		}
-		headAim.transform.position = headCenter.transform.position + (camera.transform.position - headCenter.transform.position).normalized + new Vector3(0, Mathf.Sin(-rot * Mathf.Deg2Rad), 0);
+
+		aimDirection.transform.position = headCenter.transform.position + (camera.transform.position - headCenter.transform.position).normalized + new Vector3(0, Mathf.Sin(-rot * Mathf.Deg2Rad), 0);
 		rightHand.transform.position = weapon.rightHandle.transform.position;
 	}
 	private void OpenBuildMenu()
@@ -311,13 +308,15 @@ public class PlayerScript : GameCharacter
 
 	void UpdateHUD()
 	{
-		hud.SetMaxHealth((int)MaxHealth);
-		hud.SetCurrentHealth((int)CurrentHealth);
-		hud.SetRemainingAmmo(weapon.CurrentAmmo - weapon.CurrentMagazine);
-		hud.SetCurrentMagazine(weapon.CurrentMagazine);
-		hud.SetMaxMagazine(weapon.MaxMagazine);
+		if (hud.isActiveAndEnabled)
+		{
+			hud.SetMaxHealth((int)MaxHealth);
+			hud.SetCurrentHealth((int)CurrentHealth);
+			hud.SetRemainingAmmo(weapon.CurrentAmmo - weapon.CurrentMagazine);
+			hud.SetCurrentMagazine(weapon.CurrentMagazine);
+			hud.SetMaxMagazine(weapon.MaxMagazine);
+		}
 	}
-
 	private void MoveWeapon()
 	{
 		if (slideTimeCooldown.IsCoolingDown)

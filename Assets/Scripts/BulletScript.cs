@@ -55,7 +55,7 @@ public class BulletScript : MonoBehaviour
 		}
 	}
 
-	bool IsTargetValid(string tag)	//Add more tags if needed
+	bool IsTargetValid(string tag)  //Add more tags if needed
 	{
 		switch (tag)
 		{

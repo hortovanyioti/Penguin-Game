@@ -119,7 +119,7 @@ public abstract class Weapon : MonoBehaviour
 
 	[SerializeField] protected ParticleSystem shootingSystem;
 	[SerializeField] protected ParticleSystem impactParticleSystem;
-	[SerializeField] protected Transform bulletSpawnPoint;	
+	[SerializeField] protected Transform bulletSpawnPoint;
 	[SerializeField] protected AudioSource fireSound;
 	[SerializeField] protected AudioSource emptyMagazineSound;
 	[SerializeField] protected AudioSource refillSound;
@@ -272,7 +272,7 @@ public abstract class Weapon : MonoBehaviour
 		Vector3 direction;
 		Vector3 aimingAt = ShootRay();
 
-		if (aimingAt == Vector3.zero)   //if aiming at nothing, weapon won't be accurate
+		if (aimingAt == Vector3.zero || Owner.GetType() != typeof(PlayerScript))   //TODO check for player type another way
 		{
 			direction = transform.parent.forward;
 		}

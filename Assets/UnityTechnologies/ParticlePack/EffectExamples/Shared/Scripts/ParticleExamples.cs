@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ParticleExamples {
+public class ParticleExamples
+{
 
 	public string title;
 	[TextArea]

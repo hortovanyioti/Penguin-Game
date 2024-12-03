@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 	[SerializeField] GameObject[] enemyPrefabs;
-	[SerializeField] float initialSpawnInterval = 8f;
+	[SerializeField] float initialSpawnInterval = 5f;
 	[SerializeField] float minSpawnInterval = 2f;
-	private float spawnInterval=0;
+	private float spawnInterval = 0;
 	private float spawnTimer = 0;
 
 	[SerializeField] float spawnRange = 5f;
@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 #endif
 
 		spawnInterval = initialSpawnInterval;
-
+		spawnTimer = spawnInterval - 3;	//TODO Link to prep time
 	}
 
 	// Update is called once per frame

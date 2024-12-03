@@ -1,0 +1,263 @@
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: MoveToTarget?team=0
+	Unity Technologies
+ Version information:
+  ml-agents: 0.29.0,
+  ml-agents-envs: 0.29.0,
+  Communicator API: 1.5.0,
+  PyTorch: 2.4.1+cu124
+[INFO] Hyperparameters for behavior name MoveToTarget: 
+	trainer_type:	ppo
+	hyperparameters:	
+	  batch_size:	4096
+	  buffer_size:	16384
+	  learning_rate:	0.0003
+	  beta:	0.005
+	  epsilon:	0.2
+	  lambd:	0.95
+	  num_epoch:	3
+	  learning_rate_schedule:	linear
+	  beta_schedule:	linear
+	  epsilon_schedule:	linear
+	network_settings:	
+	  normalize:	False
+	  hidden_units:	256
+	  num_layers:	3
+	  vis_encode_type:	simple
+	  memory:	None
+	  goal_conditioning_type:	hyper
+	  deterministic:	False
+	reward_signals:	
+	  extrinsic:	
+	    gamma:	0.99
+	    strength:	1.0
+	    network_settings:	
+	      normalize:	False
+	      hidden_units:	512
+	      num_layers:	4
+	      vis_encode_type:	simple
+	      memory:	None
+	      goal_conditioning_type:	hyper
+	      deterministic:	False
+	init_path:	None
+	keep_checkpoints:	5
+	checkpoint_interval:	1000000
+	max_steps:	10000000
+	time_horizon:	64
+	summary_freq:	50000
+	threaded:	True
+	self_play:	None
+	behavioral_cloning:	None
+[INFO] MoveToTarget. Step: 50000. Time Elapsed: 24.828 s. Mean Reward: -0.393. Std of Reward: 0.538. Training.
+[INFO] MoveToTarget. Step: 100000. Time Elapsed: 47.483 s. Mean Reward: -0.161. Std of Reward: 0.284. Training.
+[INFO] MoveToTarget. Step: 150000. Time Elapsed: 70.571 s. Mean Reward: -0.376. Std of Reward: 0.587. Training.
+[INFO] MoveToTarget. Step: 200000. Time Elapsed: 93.083 s. Mean Reward: -0.506. Std of Reward: 0.436. Training.
+[INFO] MoveToTarget. Step: 250000. Time Elapsed: 116.126 s. Mean Reward: -0.409. Std of Reward: 0.507. Training.
+[INFO] MoveToTarget. Step: 300000. Time Elapsed: 138.602 s. Mean Reward: -0.349. Std of Reward: 0.586. Training.
+[INFO] MoveToTarget. Step: 350000. Time Elapsed: 161.702 s. Mean Reward: -0.341. Std of Reward: 0.649. Training.
+[INFO] MoveToTarget. Step: 400000. Time Elapsed: 182.626 s. Mean Reward: -0.023. Std of Reward: 0.398. Training.
+[INFO] MoveToTarget. Step: 450000. Time Elapsed: 205.700 s. Mean Reward: -0.041. Std of Reward: 0.314. Training.
+[INFO] MoveToTarget. Step: 500000. Time Elapsed: 228.373 s. Mean Reward: 0.023. Std of Reward: 0.336. Training.
+[INFO] MoveToTarget. Step: 550000. Time Elapsed: 251.336 s. Mean Reward: 0.175. Std of Reward: 0.307. Training.
+[INFO] MoveToTarget. Step: 600000. Time Elapsed: 273.954 s. Mean Reward: 0.032. Std of Reward: 0.389. Training.
+[INFO] MoveToTarget. Step: 650000. Time Elapsed: 296.836 s. Mean Reward: 0.274. Std of Reward: 0.336. Training.
+[INFO] MoveToTarget. Step: 700000. Time Elapsed: 319.630 s. Mean Reward: 0.197. Std of Reward: 0.373. Training.
+[INFO] MoveToTarget. Step: 750000. Time Elapsed: 340.216 s. Mean Reward: 0.103. Std of Reward: 1.097. Training.
+[INFO] MoveToTarget. Step: 800000. Time Elapsed: 362.566 s. Mean Reward: 0.301. Std of Reward: 0.233. Training.
+[INFO] MoveToTarget. Step: 850000. Time Elapsed: 385.143 s. Mean Reward: 0.340. Std of Reward: 0.314. Training.
+[INFO] MoveToTarget. Step: 900000. Time Elapsed: 407.403 s. Mean Reward: 0.324. Std of Reward: 0.311. Training.
+[INFO] MoveToTarget. Step: 950000. Time Elapsed: 429.693 s. Mean Reward: 0.381. Std of Reward: 0.248. Training.
+[INFO] MoveToTarget. Step: 1000000. Time Elapsed: 451.858 s. Mean Reward: 0.353. Std of Reward: 0.367. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-999968.onnx
+[INFO] MoveToTarget. Step: 1050000. Time Elapsed: 474.410 s. Mean Reward: 0.332. Std of Reward: 0.288. Training.
+[INFO] MoveToTarget. Step: 1100000. Time Elapsed: 496.505 s. Mean Reward: 0.318. Std of Reward: 0.296. Training.
+[INFO] MoveToTarget. Step: 1150000. Time Elapsed: 518.468 s. Mean Reward: 0.419. Std of Reward: 0.278. Training.
+[INFO] MoveToTarget. Step: 1200000. Time Elapsed: 540.577 s. Mean Reward: 0.361. Std of Reward: 0.255. Training.
+[INFO] MoveToTarget. Step: 1250000. Time Elapsed: 562.743 s. Mean Reward: 0.408. Std of Reward: 0.251. Training.
+[INFO] MoveToTarget. Step: 1300000. Time Elapsed: 584.861 s. Mean Reward: 0.287. Std of Reward: 0.380. Training.
+[INFO] MoveToTarget. Step: 1350000. Time Elapsed: 606.956 s. Mean Reward: 0.393. Std of Reward: 0.244. Training.
+[INFO] MoveToTarget. Step: 1400000. Time Elapsed: 628.949 s. Mean Reward: 0.499. Std of Reward: 0.159. Training.
+[INFO] MoveToTarget. Step: 1450000. Time Elapsed: 650.952 s. Mean Reward: 0.451. Std of Reward: 0.278. Training.
+[INFO] MoveToTarget. Step: 1500000. Time Elapsed: 672.980 s. Mean Reward: 0.426. Std of Reward: 0.353. Training.
+[INFO] MoveToTarget. Step: 1550000. Time Elapsed: 694.992 s. Mean Reward: 0.388. Std of Reward: 0.448. Training.
+[INFO] MoveToTarget. Step: 1600000. Time Elapsed: 717.237 s. Mean Reward: 0.476. Std of Reward: 0.228. Training.
+[INFO] MoveToTarget. Step: 1650000. Time Elapsed: 741.404 s. Mean Reward: 0.309. Std of Reward: 0.390. Training.
+[INFO] MoveToTarget. Step: 1700000. Time Elapsed: 763.304 s. Mean Reward: 0.404. Std of Reward: 0.422. Training.
+[INFO] MoveToTarget. Step: 1750000. Time Elapsed: 785.419 s. Mean Reward: 0.433. Std of Reward: 0.250. Training.
+[INFO] MoveToTarget. Step: 1800000. Time Elapsed: 807.578 s. Mean Reward: 0.297. Std of Reward: 0.352. Training.
+[INFO] MoveToTarget. Step: 1850000. Time Elapsed: 829.786 s. Mean Reward: 0.243. Std of Reward: 0.504. Training.
+[INFO] MoveToTarget. Step: 1900000. Time Elapsed: 851.970 s. Mean Reward: 0.289. Std of Reward: 0.550. Training.
+[INFO] MoveToTarget. Step: 1950000. Time Elapsed: 874.150 s. Mean Reward: 0.297. Std of Reward: 1.132. Training.
+[INFO] MoveToTarget. Step: 2000000. Time Elapsed: 896.200 s. Mean Reward: 0.444. Std of Reward: 0.219. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-1999938.onnx
+[INFO] MoveToTarget. Step: 2050000. Time Elapsed: 918.437 s. Mean Reward: 0.453. Std of Reward: 0.216. Training.
+[INFO] MoveToTarget. Step: 2100000. Time Elapsed: 940.364 s. Mean Reward: 0.327. Std of Reward: 0.376. Training.
+[INFO] MoveToTarget. Step: 2150000. Time Elapsed: 962.560 s. Mean Reward: 0.372. Std of Reward: 0.279. Training.
+[INFO] MoveToTarget. Step: 2200000. Time Elapsed: 984.736 s. Mean Reward: 0.462. Std of Reward: 0.255. Training.
+[INFO] MoveToTarget. Step: 2250000. Time Elapsed: 1007.227 s. Mean Reward: 0.359. Std of Reward: 0.399. Training.
+[INFO] MoveToTarget. Step: 2300000. Time Elapsed: 1029.484 s. Mean Reward: 0.305. Std of Reward: 0.564. Training.
+[INFO] MoveToTarget. Step: 2350000. Time Elapsed: 1051.467 s. Mean Reward: 0.308. Std of Reward: 0.638. Training.
+[INFO] MoveToTarget. Step: 2400000. Time Elapsed: 1073.592 s. Mean Reward: 0.477. Std of Reward: 0.239. Training.
+[INFO] MoveToTarget. Step: 2450000. Time Elapsed: 1095.734 s. Mean Reward: 0.408. Std of Reward: 0.382. Training.
+[INFO] MoveToTarget. Step: 2500000. Time Elapsed: 1117.784 s. Mean Reward: 0.400. Std of Reward: 0.381. Training.
+[INFO] MoveToTarget. Step: 2550000. Time Elapsed: 1140.358 s. Mean Reward: 0.378. Std of Reward: 0.296. Training.
+[INFO] MoveToTarget. Step: 2600000. Time Elapsed: 1162.798 s. Mean Reward: 0.501. Std of Reward: 0.143. Training.
+[INFO] MoveToTarget. Step: 2650000. Time Elapsed: 1184.956 s. Mean Reward: 0.423. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 2700000. Time Elapsed: 1206.956 s. Mean Reward: 0.445. Std of Reward: 0.235. Training.
+[INFO] MoveToTarget. Step: 2750000. Time Elapsed: 1228.981 s. Mean Reward: 0.400. Std of Reward: 0.208. Training.
+[INFO] MoveToTarget. Step: 2800000. Time Elapsed: 1251.186 s. Mean Reward: 0.437. Std of Reward: 0.232. Training.
+[INFO] MoveToTarget. Step: 2850000. Time Elapsed: 1273.021 s. Mean Reward: 0.489. Std of Reward: 0.273. Training.
+[INFO] MoveToTarget. Step: 2900000. Time Elapsed: 1295.169 s. Mean Reward: 0.493. Std of Reward: 0.203. Training.
+[INFO] MoveToTarget. Step: 2950000. Time Elapsed: 1318.920 s. Mean Reward: 0.390. Std of Reward: 0.473. Training.
+[INFO] MoveToTarget. Step: 3000000. Time Elapsed: 1341.050 s. Mean Reward: 0.321. Std of Reward: 0.354. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-2999939.onnx
+[INFO] MoveToTarget. Step: 3050000. Time Elapsed: 1363.060 s. Mean Reward: 0.403. Std of Reward: 0.248. Training.
+[INFO] MoveToTarget. Step: 3100000. Time Elapsed: 1385.105 s. Mean Reward: 0.443. Std of Reward: 0.191. Training.
+[INFO] MoveToTarget. Step: 3150000. Time Elapsed: 1407.247 s. Mean Reward: 0.475. Std of Reward: 0.266. Training.
+[INFO] MoveToTarget. Step: 3200000. Time Elapsed: 1429.300 s. Mean Reward: 0.426. Std of Reward: 0.309. Training.
+[INFO] MoveToTarget. Step: 3250000. Time Elapsed: 1451.164 s. Mean Reward: 0.404. Std of Reward: 0.323. Training.
+[INFO] MoveToTarget. Step: 3300000. Time Elapsed: 1473.027 s. Mean Reward: 0.529. Std of Reward: 0.286. Training.
+[INFO] MoveToTarget. Step: 3350000. Time Elapsed: 1495.231 s. Mean Reward: 0.479. Std of Reward: 0.242. Training.
+[INFO] MoveToTarget. Step: 3400000. Time Elapsed: 1517.126 s. Mean Reward: 0.461. Std of Reward: 0.294. Training.
+[INFO] MoveToTarget. Step: 3450000. Time Elapsed: 1539.502 s. Mean Reward: 0.488. Std of Reward: 0.196. Training.
+[INFO] MoveToTarget. Step: 3500000. Time Elapsed: 1561.782 s. Mean Reward: 0.478. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 3550000. Time Elapsed: 1584.112 s. Mean Reward: 0.577. Std of Reward: 0.211. Training.
+[INFO] MoveToTarget. Step: 3600000. Time Elapsed: 1606.075 s. Mean Reward: 0.554. Std of Reward: 0.221. Training.
+[INFO] MoveToTarget. Step: 3650000. Time Elapsed: 1628.264 s. Mean Reward: 0.440. Std of Reward: 0.218. Training.
+[INFO] MoveToTarget. Step: 3700000. Time Elapsed: 1650.386 s. Mean Reward: 0.467. Std of Reward: 0.275. Training.
+[INFO] MoveToTarget. Step: 3750000. Time Elapsed: 1672.346 s. Mean Reward: 0.508. Std of Reward: 0.192. Training.
+[INFO] MoveToTarget. Step: 3800000. Time Elapsed: 1702.104 s. Mean Reward: 0.486. Std of Reward: 0.271. Training.
+[INFO] MoveToTarget. Step: 3850000. Time Elapsed: 1734.401 s. Mean Reward: 0.455. Std of Reward: 0.292. Training.
+[INFO] MoveToTarget. Step: 3900000. Time Elapsed: 1766.907 s. Mean Reward: 0.527. Std of Reward: 0.216. Training.
+[INFO] MoveToTarget. Step: 3950000. Time Elapsed: 1799.389 s. Mean Reward: 0.451. Std of Reward: 0.231. Training.
+[INFO] MoveToTarget. Step: 4000000. Time Elapsed: 1831.676 s. Mean Reward: 0.394. Std of Reward: 0.434. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-3999985.onnx
+[INFO] MoveToTarget. Step: 4050000. Time Elapsed: 1864.061 s. Mean Reward: 0.478. Std of Reward: 0.187. Training.
+[INFO] MoveToTarget. Step: 4100000. Time Elapsed: 1896.017 s. Mean Reward: 0.445. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 4150000. Time Elapsed: 1928.146 s. Mean Reward: 0.514. Std of Reward: 0.218. Training.
+[INFO] MoveToTarget. Step: 4200000. Time Elapsed: 1963.986 s. Mean Reward: 0.564. Std of Reward: 0.139. Training.
+[INFO] MoveToTarget. Step: 4250000. Time Elapsed: 1996.077 s. Mean Reward: 0.514. Std of Reward: 0.220. Training.
+[INFO] MoveToTarget. Step: 4300000. Time Elapsed: 2027.895 s. Mean Reward: 0.364. Std of Reward: 0.333. Training.
+[INFO] MoveToTarget. Step: 4350000. Time Elapsed: 2059.791 s. Mean Reward: 0.507. Std of Reward: 0.222. Training.
+[INFO] MoveToTarget. Step: 4400000. Time Elapsed: 2092.013 s. Mean Reward: 0.436. Std of Reward: 0.360. Training.
+[INFO] MoveToTarget. Step: 4450000. Time Elapsed: 2124.316 s. Mean Reward: 0.372. Std of Reward: 0.346. Training.
+[INFO] MoveToTarget. Step: 4500000. Time Elapsed: 2156.361 s. Mean Reward: 0.382. Std of Reward: 0.528. Training.
+[INFO] MoveToTarget. Step: 4550000. Time Elapsed: 2188.523 s. Mean Reward: 0.564. Std of Reward: 0.226. Training.
+[INFO] MoveToTarget. Step: 4600000. Time Elapsed: 2220.560 s. Mean Reward: 0.453. Std of Reward: 0.217. Training.
+[INFO] MoveToTarget. Step: 4650000. Time Elapsed: 2252.742 s. Mean Reward: 0.466. Std of Reward: 0.230. Training.
+[INFO] MoveToTarget. Step: 4700000. Time Elapsed: 2285.077 s. Mean Reward: 0.528. Std of Reward: 0.173. Training.
+[INFO] MoveToTarget. Step: 4750000. Time Elapsed: 2317.926 s. Mean Reward: 0.454. Std of Reward: 0.280. Training.
+[INFO] MoveToTarget. Step: 4800000. Time Elapsed: 2350.418 s. Mean Reward: 0.454. Std of Reward: 0.235. Training.
+[INFO] MoveToTarget. Step: 4850000. Time Elapsed: 2382.535 s. Mean Reward: 0.483. Std of Reward: 0.301. Training.
+[INFO] MoveToTarget. Step: 4900000. Time Elapsed: 2414.748 s. Mean Reward: 0.485. Std of Reward: 0.313. Training.
+[INFO] MoveToTarget. Step: 4950000. Time Elapsed: 2447.220 s. Mean Reward: 0.504. Std of Reward: 0.274. Training.
+[INFO] MoveToTarget. Step: 5000000. Time Elapsed: 2479.930 s. Mean Reward: 0.488. Std of Reward: 0.341. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-4999986.onnx
+[INFO] MoveToTarget. Step: 5050000. Time Elapsed: 2512.354 s. Mean Reward: 0.474. Std of Reward: 0.276. Training.
+[INFO] MoveToTarget. Step: 5100000. Time Elapsed: 2544.306 s. Mean Reward: 0.540. Std of Reward: 0.146. Training.
+[INFO] MoveToTarget. Step: 5150000. Time Elapsed: 2576.095 s. Mean Reward: 0.544. Std of Reward: 0.173. Training.
+[INFO] MoveToTarget. Step: 5200000. Time Elapsed: 2608.177 s. Mean Reward: 0.506. Std of Reward: 0.212. Training.
+[INFO] MoveToTarget. Step: 5250000. Time Elapsed: 2640.540 s. Mean Reward: 0.522. Std of Reward: 0.216. Training.
+[INFO] MoveToTarget. Step: 5300000. Time Elapsed: 2672.525 s. Mean Reward: 0.379. Std of Reward: 0.267. Training.
+[INFO] MoveToTarget. Step: 5350000. Time Elapsed: 2704.558 s. Mean Reward: 0.366. Std of Reward: 0.545. Training.
+[INFO] MoveToTarget. Step: 5400000. Time Elapsed: 2736.512 s. Mean Reward: 0.500. Std of Reward: 0.271. Training.
+[INFO] MoveToTarget. Step: 5450000. Time Elapsed: 2768.515 s. Mean Reward: 0.528. Std of Reward: 0.345. Training.
+[INFO] MoveToTarget. Step: 5500000. Time Elapsed: 2804.158 s. Mean Reward: 0.447. Std of Reward: 0.250. Training.
+[INFO] MoveToTarget. Step: 5550000. Time Elapsed: 2836.577 s. Mean Reward: 0.573. Std of Reward: 0.193. Training.
+[INFO] MoveToTarget. Step: 5600000. Time Elapsed: 2869.007 s. Mean Reward: 0.395. Std of Reward: 0.356. Training.
+[INFO] MoveToTarget. Step: 5650000. Time Elapsed: 2901.718 s. Mean Reward: 0.500. Std of Reward: 0.226. Training.
+[INFO] MoveToTarget. Step: 5700000. Time Elapsed: 2934.758 s. Mean Reward: 0.479. Std of Reward: 0.277. Training.
+[INFO] MoveToTarget. Step: 5750000. Time Elapsed: 2966.887 s. Mean Reward: 0.553. Std of Reward: 0.196. Training.
+[INFO] MoveToTarget. Step: 5800000. Time Elapsed: 2999.428 s. Mean Reward: 0.596. Std of Reward: 0.172. Training.
+[INFO] MoveToTarget. Step: 5850000. Time Elapsed: 3031.687 s. Mean Reward: 0.604. Std of Reward: 0.158. Training.
+[INFO] MoveToTarget. Step: 5900000. Time Elapsed: 3053.611 s. Mean Reward: 0.578. Std of Reward: 0.210. Training.
+[INFO] MoveToTarget. Step: 5950000. Time Elapsed: 3075.486 s. Mean Reward: 0.602. Std of Reward: 0.227. Training.
+[INFO] MoveToTarget. Step: 6000000. Time Elapsed: 3097.289 s. Mean Reward: 0.566. Std of Reward: 0.199. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-5999959.onnx
+[INFO] MoveToTarget. Step: 6050000. Time Elapsed: 3119.005 s. Mean Reward: 0.472. Std of Reward: 0.245. Training.
+[INFO] MoveToTarget. Step: 6100000. Time Elapsed: 3140.836 s. Mean Reward: 0.549. Std of Reward: 0.222. Training.
+[INFO] MoveToTarget. Step: 6150000. Time Elapsed: 3162.793 s. Mean Reward: 0.572. Std of Reward: 0.197. Training.
+[INFO] MoveToTarget. Step: 6200000. Time Elapsed: 3185.403 s. Mean Reward: 0.542. Std of Reward: 0.238. Training.
+[INFO] MoveToTarget. Step: 6250000. Time Elapsed: 3207.328 s. Mean Reward: 0.503. Std of Reward: 0.208. Training.
+[INFO] MoveToTarget. Step: 6300000. Time Elapsed: 3229.141 s. Mean Reward: 0.528. Std of Reward: 0.310. Training.
+[INFO] MoveToTarget. Step: 6350000. Time Elapsed: 3251.027 s. Mean Reward: 0.548. Std of Reward: 0.197. Training.
+[INFO] MoveToTarget. Step: 6400000. Time Elapsed: 3272.583 s. Mean Reward: 0.509. Std of Reward: 0.162. Training.
+[INFO] MoveToTarget. Step: 6450000. Time Elapsed: 3294.345 s. Mean Reward: 0.590. Std of Reward: 0.173. Training.
+[INFO] MoveToTarget. Step: 6500000. Time Elapsed: 3316.414 s. Mean Reward: 0.530. Std of Reward: 0.383. Training.
+[INFO] MoveToTarget. Step: 6550000. Time Elapsed: 3338.941 s. Mean Reward: 0.518. Std of Reward: 0.256. Training.
+[INFO] MoveToTarget. Step: 6600000. Time Elapsed: 3360.829 s. Mean Reward: 0.527. Std of Reward: 0.238. Training.
+[INFO] MoveToTarget. Step: 6650000. Time Elapsed: 3382.918 s. Mean Reward: 0.504. Std of Reward: 0.228. Training.
+[INFO] MoveToTarget. Step: 6700000. Time Elapsed: 3405.051 s. Mean Reward: 0.539. Std of Reward: 0.213. Training.
+[INFO] MoveToTarget. Step: 6750000. Time Elapsed: 3427.428 s. Mean Reward: 0.571. Std of Reward: 0.167. Training.
+[INFO] MoveToTarget. Step: 6800000. Time Elapsed: 3462.502 s. Mean Reward: 0.474. Std of Reward: 0.207. Training.
+[INFO] MoveToTarget. Step: 6850000. Time Elapsed: 3494.503 s. Mean Reward: 0.500. Std of Reward: 0.253. Training.
+[INFO] MoveToTarget. Step: 6900000. Time Elapsed: 3526.530 s. Mean Reward: 0.567. Std of Reward: 0.178. Training.
+[INFO] MoveToTarget. Step: 6950000. Time Elapsed: 3558.674 s. Mean Reward: 0.593. Std of Reward: 0.158. Training.
+[INFO] MoveToTarget. Step: 7000000. Time Elapsed: 3591.130 s. Mean Reward: 0.463. Std of Reward: 0.605. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-6999984.onnx
+[INFO] MoveToTarget. Step: 7050000. Time Elapsed: 3623.283 s. Mean Reward: 0.503. Std of Reward: 0.169. Training.
+[INFO] MoveToTarget. Step: 7100000. Time Elapsed: 3655.793 s. Mean Reward: 0.556. Std of Reward: 0.165. Training.
+[INFO] MoveToTarget. Step: 7150000. Time Elapsed: 3688.118 s. Mean Reward: 0.568. Std of Reward: 0.213. Training.
+[INFO] MoveToTarget. Step: 7200000. Time Elapsed: 3720.616 s. Mean Reward: 0.580. Std of Reward: 0.160. Training.
+[INFO] MoveToTarget. Step: 7250000. Time Elapsed: 3753.087 s. Mean Reward: 0.507. Std of Reward: 0.214. Training.
+[INFO] MoveToTarget. Step: 7300000. Time Elapsed: 3785.261 s. Mean Reward: 0.530. Std of Reward: 0.229. Training.
+[INFO] MoveToTarget. Step: 7350000. Time Elapsed: 3817.463 s. Mean Reward: 0.522. Std of Reward: 0.258. Training.
+[INFO] MoveToTarget. Step: 7400000. Time Elapsed: 3849.606 s. Mean Reward: 0.497. Std of Reward: 0.368. Training.
+[INFO] MoveToTarget. Step: 7450000. Time Elapsed: 3881.650 s. Mean Reward: 0.546. Std of Reward: 0.205. Training.
+[INFO] MoveToTarget. Step: 7500000. Time Elapsed: 3913.632 s. Mean Reward: 0.544. Std of Reward: 0.178. Training.
+[INFO] MoveToTarget. Step: 7550000. Time Elapsed: 3945.491 s. Mean Reward: 0.566. Std of Reward: 0.190. Training.
+[INFO] MoveToTarget. Step: 7600000. Time Elapsed: 3977.592 s. Mean Reward: 0.577. Std of Reward: 0.181. Training.
+[INFO] MoveToTarget. Step: 7650000. Time Elapsed: 4009.518 s. Mean Reward: 0.510. Std of Reward: 0.221. Training.
+[INFO] MoveToTarget. Step: 7700000. Time Elapsed: 4041.698 s. Mean Reward: 0.528. Std of Reward: 0.225. Training.
+[INFO] MoveToTarget. Step: 7750000. Time Elapsed: 4074.108 s. Mean Reward: 0.465. Std of Reward: 0.272. Training.
+[INFO] MoveToTarget. Step: 7800000. Time Elapsed: 4105.861 s. Mean Reward: 0.528. Std of Reward: 0.186. Training.
+[INFO] MoveToTarget. Step: 7850000. Time Elapsed: 4137.441 s. Mean Reward: 0.511. Std of Reward: 0.226. Training.
+[INFO] MoveToTarget. Step: 7900000. Time Elapsed: 4169.053 s. Mean Reward: 0.599. Std of Reward: 0.197. Training.
+[INFO] MoveToTarget. Step: 7950000. Time Elapsed: 4200.848 s. Mean Reward: 0.539. Std of Reward: 0.157. Training.
+[INFO] MoveToTarget. Step: 8000000. Time Elapsed: 4232.497 s. Mean Reward: 0.527. Std of Reward: 0.235. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-7999985.onnx
+[INFO] MoveToTarget. Step: 8050000. Time Elapsed: 4264.410 s. Mean Reward: 0.509. Std of Reward: 0.421. Training.
+[INFO] MoveToTarget. Step: 8100000. Time Elapsed: 4299.560 s. Mean Reward: 0.519. Std of Reward: 0.210. Training.
+[INFO] MoveToTarget. Step: 8150000. Time Elapsed: 4322.992 s. Mean Reward: 0.506. Std of Reward: 0.270. Training.
+[INFO] MoveToTarget. Step: 8200000. Time Elapsed: 4344.399 s. Mean Reward: 0.497. Std of Reward: 0.309. Training.
+[INFO] MoveToTarget. Step: 8250000. Time Elapsed: 4365.781 s. Mean Reward: 0.540. Std of Reward: 0.203. Training.
+[INFO] MoveToTarget. Step: 8300000. Time Elapsed: 4387.647 s. Mean Reward: 0.485. Std of Reward: 0.325. Training.
+[INFO] MoveToTarget. Step: 8350000. Time Elapsed: 4409.314 s. Mean Reward: 0.573. Std of Reward: 0.179. Training.
+[INFO] MoveToTarget. Step: 8400000. Time Elapsed: 4430.911 s. Mean Reward: 0.553. Std of Reward: 0.222. Training.
+[INFO] MoveToTarget. Step: 8450000. Time Elapsed: 4452.547 s. Mean Reward: 0.482. Std of Reward: 0.265. Training.
+[INFO] MoveToTarget. Step: 8500000. Time Elapsed: 4474.062 s. Mean Reward: 0.512. Std of Reward: 0.242. Training.
+[INFO] MoveToTarget. Step: 8550000. Time Elapsed: 4496.126 s. Mean Reward: 0.515. Std of Reward: 0.296. Training.
+[INFO] MoveToTarget. Step: 8600000. Time Elapsed: 4517.721 s. Mean Reward: 0.488. Std of Reward: 0.249. Training.
+[INFO] MoveToTarget. Step: 8650000. Time Elapsed: 4539.319 s. Mean Reward: 0.583. Std of Reward: 0.161. Training.
+[INFO] MoveToTarget. Step: 8700000. Time Elapsed: 4561.117 s. Mean Reward: 0.581. Std of Reward: 0.180. Training.
+[INFO] MoveToTarget. Step: 8750000. Time Elapsed: 4582.508 s. Mean Reward: 0.581. Std of Reward: 0.216. Training.
+[INFO] MoveToTarget. Step: 8800000. Time Elapsed: 4604.127 s. Mean Reward: 0.534. Std of Reward: 0.179. Training.
+[INFO] MoveToTarget. Step: 8850000. Time Elapsed: 4625.627 s. Mean Reward: 0.538. Std of Reward: 0.176. Training.
+[INFO] MoveToTarget. Step: 8900000. Time Elapsed: 4647.167 s. Mean Reward: 0.568. Std of Reward: 0.262. Training.
+[INFO] MoveToTarget. Step: 8950000. Time Elapsed: 4669.322 s. Mean Reward: 0.571. Std of Reward: 0.160. Training.
+[INFO] MoveToTarget. Step: 9000000. Time Elapsed: 4701.234 s. Mean Reward: 0.533. Std of Reward: 0.174. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-8999983.onnx
+[INFO] MoveToTarget. Step: 9050000. Time Elapsed: 4732.800 s. Mean Reward: 0.568. Std of Reward: 0.198. Training.
+[INFO] MoveToTarget. Step: 9100000. Time Elapsed: 4764.518 s. Mean Reward: 0.551. Std of Reward: 0.183. Training.
+[INFO] MoveToTarget. Step: 9150000. Time Elapsed: 4796.287 s. Mean Reward: 0.559. Std of Reward: 0.233. Training.
+[INFO] MoveToTarget. Step: 9200000. Time Elapsed: 4827.964 s. Mean Reward: 0.539. Std of Reward: 0.291. Training.
+[INFO] MoveToTarget. Step: 9250000. Time Elapsed: 4859.741 s. Mean Reward: 0.559. Std of Reward: 0.204. Training.
+[INFO] MoveToTarget. Step: 9300000. Time Elapsed: 4891.146 s. Mean Reward: 0.522. Std of Reward: 0.257. Training.
+[INFO] MoveToTarget. Step: 9350000. Time Elapsed: 4926.708 s. Mean Reward: 0.544. Std of Reward: 0.260. Training.
+[INFO] MoveToTarget. Step: 9400000. Time Elapsed: 4957.971 s. Mean Reward: 0.615. Std of Reward: 0.183. Training.
+[INFO] MoveToTarget. Step: 9450000. Time Elapsed: 4989.428 s. Mean Reward: 0.494. Std of Reward: 0.194. Training.
+[INFO] MoveToTarget. Step: 9500000. Time Elapsed: 5021.050 s. Mean Reward: 0.574. Std of Reward: 0.158. Training.
+[INFO] MoveToTarget. Step: 9550000. Time Elapsed: 5052.798 s. Mean Reward: 0.547. Std of Reward: 0.312. Training.
+[INFO] MoveToTarget. Step: 9600000. Time Elapsed: 5084.361 s. Mean Reward: 0.534. Std of Reward: 0.241. Training.
+[INFO] MoveToTarget. Step: 9650000. Time Elapsed: 5116.088 s. Mean Reward: 0.574. Std of Reward: 0.193. Training.
+[INFO] MoveToTarget. Step: 9700000. Time Elapsed: 5147.737 s. Mean Reward: 0.559. Std of Reward: 0.184. Training.
+[INFO] MoveToTarget. Step: 9750000. Time Elapsed: 5179.448 s. Mean Reward: 0.550. Std of Reward: 0.193. Training.
+[INFO] MoveToTarget. Step: 9800000. Time Elapsed: 5211.112 s. Mean Reward: 0.605. Std of Reward: 0.170. Training.
+[INFO] MoveToTarget. Step: 9850000. Time Elapsed: 5242.774 s. Mean Reward: 0.548. Std of Reward: 0.191. Training.
+[INFO] MoveToTarget. Step: 9900000. Time Elapsed: 5274.325 s. Mean Reward: 0.512. Std of Reward: 0.217. Training.
+[INFO] MoveToTarget. Step: 9950000. Time Elapsed: 5306.112 s. Mean Reward: 0.572. Std of Reward: 0.211. Training.
+[INFO] MoveToTarget. Step: 10000000. Time Elapsed: 5337.680 s. Mean Reward: 0.551. Std of Reward: 0.290. Training.
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-9999977.onnx
+[INFO] Exported results\timescale_50\MoveToTarget\MoveToTarget-10000041.onnx
+[INFO] Copied results\timescale_50\MoveToTarget\MoveToTarget-10000041.onnx to results\timescale_50\MoveToTarget.onnx.

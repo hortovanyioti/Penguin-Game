@@ -1,0 +1,65 @@
+{
+    "MoveToTarget": {
+        "checkpoints": [
+            {
+                "steps": 2999981,
+                "file_path": "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-2999981.onnx",
+                "reward": 0.35622025679185754,
+                "creation_time": 1732592061.6584406,
+                "auxillary_file_paths": [
+                    "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-2999981.pt"
+                ]
+            },
+            {
+                "steps": 3999999,
+                "file_path": "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-3999999.onnx",
+                "reward": 0.2762182018632302,
+                "creation_time": 1732592491.9979818,
+                "auxillary_file_paths": [
+                    "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-3999999.pt"
+                ]
+            },
+            {
+                "steps": 4999981,
+                "file_path": "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-4999981.onnx",
+                "reward": 0.4255921975709498,
+                "creation_time": 1732592920.869515,
+                "auxillary_file_paths": [
+                    "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-4999981.pt"
+                ]
+            },
+            {
+                "steps": 5999988,
+                "file_path": "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-5999988.onnx",
+                "reward": 0.2542476937479268,
+                "creation_time": 1732593363.3012445,
+                "auxillary_file_paths": [
+                    "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-5999988.pt"
+                ]
+            },
+            {
+                "steps": 6000116,
+                "file_path": "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-6000116.onnx",
+                "reward": 0.2542476937479268,
+                "creation_time": 1732593363.3512435,
+                "auxillary_file_paths": [
+                    "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-6000116.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6000116,
+            "file_path": "results\\numofhiddenlayers_1\\MoveToTarget.onnx",
+            "reward": 0.2542476937479268,
+            "creation_time": 1732593363.3512435,
+            "auxillary_file_paths": [
+                "results\\numofhiddenlayers_1\\MoveToTarget\\MoveToTarget-6000116.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

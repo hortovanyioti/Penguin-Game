@@ -1,6 +1,6 @@
 default_settings: null
 behaviors:
-  MoveToTarget:
+  Default:
     trainer_type: ppo
     hyperparameters:
       batch_size: 4096
@@ -35,10 +35,10 @@ behaviors:
           deterministic: false
     init_path: null
     keep_checkpoints: 5
-    checkpoint_interval: 100000
+    checkpoint_interval: 1000000
     max_steps: 1000000
     time_horizon: 64
-    summary_freq: 5000
+    summary_freq: 50000
     threaded: true
     self_play: null
     behavioral_cloning: null
@@ -62,7 +62,7 @@ engine_settings:
   no_graphics: true
 environment_parameters: null
 checkpoint_settings:
-  run_id: run01
+  run_id: asdasd1
   initialize_from: null
   load_model: false
   resume: false

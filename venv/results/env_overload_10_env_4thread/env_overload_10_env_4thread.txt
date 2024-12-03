@@ -1,0 +1,1 @@
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml

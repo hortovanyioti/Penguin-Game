@@ -64,7 +64,7 @@ public class SettingsTabSelector : MonoBehaviour
 	{
 		for (int i = 0; i < Tabs.Length; i++)
 		{
-			int index = i;	//!Important
+			int index = i;  //!Important
 			TabSelectorButtons[i].GetComponent<Button>().onClick.AddListener(() => SelectTab(TabSelectorButtons[index]));
 		}
 	}

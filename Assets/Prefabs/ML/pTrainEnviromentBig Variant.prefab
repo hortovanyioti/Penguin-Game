@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: pTrainEnviromentBig Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5453343344610894931, guid: b8ffcf429f799d14087e63bbc8227dbd, type: 3}
+      propertyPath: _assetId
+      value: 1913685019
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548171003897724181, guid: b8ffcf429f799d14087e63bbc8227dbd, type: 3}
+      propertyPath: _assetId
+      value: 1913685019
+      objectReference: {fileID: 0}
     - target: {fileID: 7511840055375540686, guid: b8ffcf429f799d14087e63bbc8227dbd, type: 3}
       propertyPath: m_Speed
       value: 0

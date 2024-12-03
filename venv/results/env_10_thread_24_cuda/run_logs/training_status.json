@@ -1,0 +1,65 @@
+{
+    "MoveToTarget": {
+        "checkpoints": [
+            {
+                "steps": 2999976,
+                "file_path": "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-2999976.onnx",
+                "reward": 0.553614601586014,
+                "creation_time": 1732611650.4797192,
+                "auxillary_file_paths": [
+                    "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-2999976.pt"
+                ]
+            },
+            {
+                "steps": 3999943,
+                "file_path": "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-3999943.onnx",
+                "reward": 0.3757442261558026,
+                "creation_time": 1732611900.9934754,
+                "auxillary_file_paths": [
+                    "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-3999943.pt"
+                ]
+            },
+            {
+                "steps": 4999994,
+                "file_path": "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-4999994.onnx",
+                "reward": 0.3968444080092013,
+                "creation_time": 1732612155.6565495,
+                "auxillary_file_paths": [
+                    "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-4999994.pt"
+                ]
+            },
+            {
+                "steps": 5999992,
+                "file_path": "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-5999992.onnx",
+                "reward": 0.5322947554086568,
+                "creation_time": 1732612439.9501388,
+                "auxillary_file_paths": [
+                    "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-5999992.pt"
+                ]
+            },
+            {
+                "steps": 6000288,
+                "file_path": "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-6000288.onnx",
+                "reward": 0.5342044441844337,
+                "creation_time": 1732612440.0231392,
+                "auxillary_file_paths": [
+                    "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-6000288.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6000288,
+            "file_path": "results\\env_overload_cuda\\MoveToTarget.onnx",
+            "reward": 0.5342044441844337,
+            "creation_time": 1732612440.0231392,
+            "auxillary_file_paths": [
+                "results\\env_overload_cuda\\MoveToTarget\\MoveToTarget-6000288.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

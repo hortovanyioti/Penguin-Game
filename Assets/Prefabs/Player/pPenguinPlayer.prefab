@@ -1441,7 +1441,7 @@ MonoBehaviour:
   isGrounded: 0
   jumpSound: {fileID: 0}
   headCenter: {fileID: 2060962355076025062}
-  headAim: {fileID: 6205664533745396832}
+  aimDirection: {fileID: 6205664533745396832}
   rightHand: {fileID: 7033258079632241866}
   leftHand: {fileID: 424327285121133374}
   leftHandConstraint: {fileID: 5353232695195741647}

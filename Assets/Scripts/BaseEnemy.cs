@@ -24,10 +24,13 @@ public class BaseEnemy : GameCharacter
 	private float trackingUpdateTimer;
 	private Cooldown attackCooldown;
 	private BoxCollider attackCollider;
+
+	public bool EnableUpdate { get; set; } = true;
+
 	private void Awake()
 	{
 		weapon = GetComponentInChildren<Weapon>();
-		
+
 	}
 	void Start()
 	{
@@ -45,16 +48,21 @@ public class BaseEnemy : GameCharacter
 		}
 #endif
 		StartCoroutine(DelayAttackEnable());
-		//TODO: fill attackTargets array with all player objects
+
+		attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
 	}
 	private void Update()
 	{
-		/*
+		if (!EnableUpdate)
+		{
+			return;
+		}
+
 		trackingUpdateTimer += Time.deltaTime;
 		TryUpdateAttackTarget();
 		TryRangedAttack();
 		UpdateCamera();
-		*/
+
 	}
 
 	public override void TakeDamage(float damage)
@@ -126,8 +134,11 @@ public class BaseEnemy : GameCharacter
 	}
 	private void UpdateAttackTarget()
 	{
-		navMeshAgent.SetDestination(attackTargets[currentAttackTargetIndex].transform.position);
-		trackingUpdateTimer = 0;
+		if (navMeshAgent.isOnNavMesh)
+		{
+			navMeshAgent.SetDestination(attackTargets[currentAttackTargetIndex].transform.position);
+			trackingUpdateTimer = 0;
+		}
 	}
 
 	private void TryMeleeAttack(GameObject target)

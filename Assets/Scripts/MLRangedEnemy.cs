@@ -51,12 +51,12 @@ public class MLRangedEnemy : Agent
 	{
 		Base = GetComponent<BaseEnemy>();
 		behaviorParameters = GetComponent<BehaviorParameters>();
-		//behaviorParameters.BrainParameters.VectorObservationSize = (numOfObservedTargets + 1) * 3;
-		isTraining = behaviorParameters.Model == null;
-		hitsToKillTarget = targetContainer.transform.GetChild(0).GetComponent<GameCharacter>().MaxHealth / Base.weapon.Damage;
+		Base.EnableUpdate = false;
 
 		if (isTraining)
 		{
+			behaviorParameters.BehaviorType = BehaviorType.InferenceOnly;
+			hitsToKillTarget = targetContainer.transform.GetChild(0).GetComponent<GameCharacter>().MaxHealth / Base.weapon.Damage;
 			ResetEnviroment();
 		}
 	}
@@ -203,6 +203,11 @@ public class MLRangedEnemy : Agent
 
 	public void BulletFeedback(bool hit)
 	{
+		if (!isTraining)
+		{
+			return;
+		}
+
 		if (hit)
 		{
 			AddReward(1f / targetContainer.transform.childCount / hitsToKillTarget);
@@ -214,7 +219,7 @@ public class MLRangedEnemy : Agent
 					return;
 				}
 			}
-				EndEpisode();
+			EndEpisode();
 		}
 		else
 		{

@@ -1,0 +1,177 @@
+(venv) C:\Work\Reflex Aim Trainer\venv>mlagents-learn config.yaml
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+[INFO] Connected new brain: MoveToTarget?team=0
+	Unity Technologies
+ Version information:
+  ml-agents: 0.29.0,
+  ml-agents-envs: 0.29.0,
+  Communicator API: 1.5.0,
+  PyTorch: 2.4.1+cu124
+[INFO] Hyperparameters for behavior name MoveToTarget: 
+	trainer_type:	ppo
+	hyperparameters:	
+	  batch_size:	4096
+	  buffer_size:	16384
+	  learning_rate:	0.0003
+	  beta:	0.005
+	  epsilon:	0.2
+	  lambd:	0.95
+	  num_epoch:	3
+	  learning_rate_schedule:	linear
+	  beta_schedule:	linear
+	  epsilon_schedule:	linear
+	network_settings:	
+	  normalize:	False
+	  hidden_units:	256
+	  num_layers:	3
+	  vis_encode_type:	simple
+	  memory:	None
+	  goal_conditioning_type:	hyper
+	  deterministic:	False
+	reward_signals:	
+	  extrinsic:	
+	    gamma:	0.99
+	    strength:	1.0
+	    network_settings:	
+	      normalize:	False
+	      hidden_units:	512
+	      num_layers:	4
+	      vis_encode_type:	simple
+	      memory:	None
+	      goal_conditioning_type:	hyper
+	      deterministic:	False
+	init_path:	None
+	keep_checkpoints:	5
+	checkpoint_interval:	1000000
+	max_steps:	6000000
+	time_horizon:	64
+	summary_freq:	60000
+	threaded:	True
+	self_play:	None
+	behavioral_cloning:	None
+[INFO] MoveToTarget. Step: 60000. Time Elapsed: 25.416 s. No episode was completed since last summary. Training.
+[INFO] MoveToTarget. Step: 120000. Time Elapsed: 40.441 s. No episode was completed since last summary. Training.
+[INFO] MoveToTarget. Step: 180000. Time Elapsed: 56.637 s. No episode was completed since last summary. Training.
+[INFO] MoveToTarget. Step: 240000. Time Elapsed: 70.966 s. No episode was completed since last summary. Training.
+[INFO] MoveToTarget. Step: 300000. Time Elapsed: 87.212 s. Mean Reward: -0.287. Std of Reward: 0.525. Training.
+[INFO] MoveToTarget. Step: 360000. Time Elapsed: 101.820 s. Mean Reward: -0.079. Std of Reward: 0.320. Training.
+[INFO] MoveToTarget. Step: 420000. Time Elapsed: 117.889 s. Mean Reward: -0.285. Std of Reward: 0.612. Training.
+[INFO] MoveToTarget. Step: 480000. Time Elapsed: 132.437 s. Mean Reward: -0.191. Std of Reward: 0.581. Training.
+[INFO] MoveToTarget. Step: 540000. Time Elapsed: 148.578 s. Mean Reward: -0.067. Std of Reward: 0.410. Training.
+[INFO] MoveToTarget. Step: 600000. Time Elapsed: 163.190 s. Mean Reward: -0.018. Std of Reward: 0.604. Training.
+[INFO] MoveToTarget. Step: 660000. Time Elapsed: 179.497 s. No episode was completed since last summary. Training.
+[INFO] MoveToTarget. Step: 720000. Time Elapsed: 193.852 s. Mean Reward: 0.145. Std of Reward: 0.263. Training.
+[INFO] MoveToTarget. Step: 780000. Time Elapsed: 210.430 s. Mean Reward: 0.220. Std of Reward: 0.357. Training.
+[INFO] MoveToTarget. Step: 840000. Time Elapsed: 224.965 s. Mean Reward: 0.251. Std of Reward: 0.233. Training.
+[INFO] MoveToTarget. Step: 900000. Time Elapsed: 241.153 s. Mean Reward: 0.168. Std of Reward: 0.375. Training.
+[INFO] MoveToTarget. Step: 960000. Time Elapsed: 255.279 s. Mean Reward: 0.284. Std of Reward: 0.335. Training.
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-999968.onnx
+[INFO] MoveToTarget. Step: 1020000. Time Elapsed: 271.837 s. Mean Reward: 0.304. Std of Reward: 0.335. Training.
+[INFO] MoveToTarget. Step: 1080000. Time Elapsed: 286.265 s. Mean Reward: 0.226. Std of Reward: 0.327. Training.
+[INFO] MoveToTarget. Step: 1140000. Time Elapsed: 302.363 s. Mean Reward: 0.617. Std of Reward: 0.127. Training.
+[INFO] MoveToTarget. Step: 1200000. Time Elapsed: 316.902 s. Mean Reward: 0.314. Std of Reward: 0.341. Training.
+[INFO] MoveToTarget. Step: 1260000. Time Elapsed: 332.780 s. Mean Reward: 0.363. Std of Reward: 0.256. Training.
+[INFO] MoveToTarget. Step: 1320000. Time Elapsed: 347.625 s. Mean Reward: 0.295. Std of Reward: 0.417. Training.
+[INFO] MoveToTarget. Step: 1380000. Time Elapsed: 364.870 s. Mean Reward: 0.403. Std of Reward: 0.339. Training.
+[INFO] MoveToTarget. Step: 1440000. Time Elapsed: 382.390 s. Mean Reward: 0.344. Std of Reward: 0.372. Training.
+[INFO] MoveToTarget. Step: 1500000. Time Elapsed: 400.288 s. Mean Reward: 0.450. Std of Reward: 0.349. Training.
+[INFO] MoveToTarget. Step: 1560000. Time Elapsed: 419.466 s. Mean Reward: 0.396. Std of Reward: 0.236. Training.
+[INFO] MoveToTarget. Step: 1620000. Time Elapsed: 436.984 s. Mean Reward: 0.353. Std of Reward: 0.284. Training.
+[INFO] MoveToTarget. Step: 1680000. Time Elapsed: 455.788 s. Mean Reward: 0.478. Std of Reward: 0.224. Training.
+[INFO] MoveToTarget. Step: 1740000. Time Elapsed: 473.664 s. Mean Reward: 0.346. Std of Reward: 0.378. Training.
+[INFO] MoveToTarget. Step: 1800000. Time Elapsed: 492.643 s. Mean Reward: 0.460. Std of Reward: 0.228. Training.
+[INFO] MoveToTarget. Step: 1860000. Time Elapsed: 510.013 s. Mean Reward: 0.323. Std of Reward: 0.430. Training.
+[INFO] MoveToTarget. Step: 1920000. Time Elapsed: 528.692 s. Mean Reward: 0.502. Std of Reward: 0.174. Training.
+[INFO] MoveToTarget. Step: 1980000. Time Elapsed: 546.073 s. Mean Reward: 0.478. Std of Reward: 0.246. Training.
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-1999984.onnx
+[INFO] MoveToTarget. Step: 2040000. Time Elapsed: 561.990 s. Mean Reward: 0.461. Std of Reward: 0.220. Training.
+[INFO] MoveToTarget. Step: 2100000. Time Elapsed: 575.752 s. Mean Reward: 0.370. Std of Reward: 0.262. Training.
+[INFO] MoveToTarget. Step: 2160000. Time Elapsed: 591.427 s. Mean Reward: 0.440. Std of Reward: 0.180. Training.
+[INFO] MoveToTarget. Step: 2220000. Time Elapsed: 607.142 s. Mean Reward: 0.527. Std of Reward: 0.298. Training.
+[INFO] MoveToTarget. Step: 2280000. Time Elapsed: 621.306 s. Mean Reward: 0.454. Std of Reward: 0.217. Training.
+[INFO] MoveToTarget. Step: 2340000. Time Elapsed: 636.919 s. Mean Reward: 0.404. Std of Reward: 0.257. Training.
+[INFO] MoveToTarget. Step: 2400000. Time Elapsed: 651.081 s. Mean Reward: 0.428. Std of Reward: 0.269. Training.
+[INFO] MoveToTarget. Step: 2460000. Time Elapsed: 666.764 s. Mean Reward: 0.488. Std of Reward: 0.253. Training.
+[INFO] MoveToTarget. Step: 2520000. Time Elapsed: 680.730 s. Mean Reward: 0.489. Std of Reward: 0.214. Training.
+[INFO] MoveToTarget. Step: 2580000. Time Elapsed: 696.493 s. Mean Reward: 0.459. Std of Reward: 0.243. Training.
+[INFO] MoveToTarget. Step: 2640000. Time Elapsed: 712.089 s. Mean Reward: 0.506. Std of Reward: 0.185. Training.
+[INFO] MoveToTarget. Step: 2700000. Time Elapsed: 725.983 s. Mean Reward: 0.398. Std of Reward: 0.280. Training.
+[INFO] MoveToTarget. Step: 2760000. Time Elapsed: 741.846 s. Mean Reward: 0.515. Std of Reward: 0.411. Training.
+[INFO] MoveToTarget. Step: 2820000. Time Elapsed: 755.977 s. Mean Reward: 0.567. Std of Reward: 0.149. Training.
+[INFO] MoveToTarget. Step: 2880000. Time Elapsed: 771.627 s. Mean Reward: 0.440. Std of Reward: 0.285. Training.
+[INFO] MoveToTarget. Step: 2940000. Time Elapsed: 787.407 s. Mean Reward: 0.474. Std of Reward: 0.284. Training.
+[INFO] MoveToTarget. Step: 3000000. Time Elapsed: 801.394 s. Mean Reward: 0.507. Std of Reward: 0.306. Training.
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-2999976.onnx
+[INFO] MoveToTarget. Step: 3060000. Time Elapsed: 817.300 s. Mean Reward: 0.464. Std of Reward: 0.230. Training.
+[INFO] MoveToTarget. Step: 3120000. Time Elapsed: 831.527 s. Mean Reward: 0.463. Std of Reward: 0.300. Training.
+[INFO] MoveToTarget. Step: 3180000. Time Elapsed: 847.065 s. Mean Reward: 0.426. Std of Reward: 0.283. Training.
+[INFO] MoveToTarget. Step: 3240000. Time Elapsed: 862.806 s. Mean Reward: 0.507. Std of Reward: 0.264. Training.
+[INFO] MoveToTarget. Step: 3300000. Time Elapsed: 876.916 s. Mean Reward: 0.535. Std of Reward: 0.228. Training.
+[INFO] MoveToTarget. Step: 3360000. Time Elapsed: 892.455 s. Mean Reward: 0.426. Std of Reward: 0.318. Training.
+[INFO] MoveToTarget. Step: 3420000. Time Elapsed: 908.293 s. Mean Reward: 0.445. Std of Reward: 0.256. Training.
+[INFO] MoveToTarget. Step: 3480000. Time Elapsed: 922.165 s. Mean Reward: 0.507. Std of Reward: 0.225. Training.
+[INFO] MoveToTarget. Step: 3540000. Time Elapsed: 937.654 s. Mean Reward: 0.489. Std of Reward: 0.192. Training.
+[INFO] MoveToTarget. Step: 3600000. Time Elapsed: 951.938 s. Mean Reward: 0.416. Std of Reward: 0.287. Training.
+[INFO] MoveToTarget. Step: 3660000. Time Elapsed: 967.484 s. Mean Reward: 0.470. Std of Reward: 0.350. Training.
+[INFO] MoveToTarget. Step: 3720000. Time Elapsed: 983.412 s. Mean Reward: 0.449. Std of Reward: 0.333. Training.
+[INFO] MoveToTarget. Step: 3780000. Time Elapsed: 997.305 s. Mean Reward: 0.463. Std of Reward: 0.256. Training.
+[INFO] MoveToTarget. Step: 3840000. Time Elapsed: 1012.952 s. Mean Reward: 0.511. Std of Reward: 0.293. Training.
+[INFO] MoveToTarget. Step: 3900000. Time Elapsed: 1026.960 s. Mean Reward: 0.492. Std of Reward: 0.284. Training.
+[INFO] MoveToTarget. Step: 3960000. Time Elapsed: 1042.674 s. Mean Reward: 0.526. Std of Reward: 0.208. Training.
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-3999943.onnx
+[INFO] MoveToTarget. Step: 4020000. Time Elapsed: 1058.157 s. Mean Reward: 0.474. Std of Reward: 0.226. Training.
+[INFO] MoveToTarget. Step: 4080000. Time Elapsed: 1072.201 s. Mean Reward: 0.450. Std of Reward: 0.328. Training.
+[INFO] MoveToTarget. Step: 4140000. Time Elapsed: 1087.783 s. Mean Reward: 0.465. Std of Reward: 0.230. Training.
+[INFO] MoveToTarget. Step: 4200000. Time Elapsed: 1103.381 s. Mean Reward: 0.488. Std of Reward: 0.332. Training.
+[INFO] MoveToTarget. Step: 4260000. Time Elapsed: 1117.349 s. Mean Reward: 0.526. Std of Reward: 0.220. Training.
+[INFO] MoveToTarget. Step: 4320000. Time Elapsed: 1132.946 s. Mean Reward: 0.527. Std of Reward: 0.253. Training.
+[INFO] MoveToTarget. Step: 4380000. Time Elapsed: 1147.002 s. Mean Reward: 0.507. Std of Reward: 0.304. Training.
+[INFO] MoveToTarget. Step: 4440000. Time Elapsed: 1162.616 s. Mean Reward: 0.544. Std of Reward: 0.164. Training.
+[INFO] MoveToTarget. Step: 4500000. Time Elapsed: 1178.137 s. Mean Reward: 0.457. Std of Reward: 0.302. Training.
+[INFO] MoveToTarget. Step: 4560000. Time Elapsed: 1192.081 s. Mean Reward: 0.502. Std of Reward: 0.195. Training.
+[INFO] MoveToTarget. Step: 4620000. Time Elapsed: 1207.619 s. Mean Reward: 0.524. Std of Reward: 0.267. Training.
+[INFO] MoveToTarget. Step: 4680000. Time Elapsed: 1223.235 s. Mean Reward: 0.548. Std of Reward: 0.212. Training.
+[INFO] MoveToTarget. Step: 4740000. Time Elapsed: 1237.261 s. Mean Reward: 0.560. Std of Reward: 0.169. Training.
+[INFO] MoveToTarget. Step: 4800000. Time Elapsed: 1252.814 s. Mean Reward: 0.581. Std of Reward: 0.209. Training.
+[INFO] MoveToTarget. Step: 4860000. Time Elapsed: 1267.127 s. Mean Reward: 0.528. Std of Reward: 0.219. Training.
+[INFO] MoveToTarget. Step: 4920000. Time Elapsed: 1283.116 s. Mean Reward: 0.489. Std of Reward: 0.225. Training.
+[INFO] MoveToTarget. Step: 4980000. Time Elapsed: 1301.013 s. Mean Reward: 0.490. Std of Reward: 0.211. Training.
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-4999994.onnx
+[INFO] MoveToTarget. Step: 5040000. Time Elapsed: 1317.524 s. Mean Reward: 0.492. Std of Reward: 0.270. Training.
+[INFO] MoveToTarget. Step: 5100000. Time Elapsed: 1335.552 s. Mean Reward: 0.486. Std of Reward: 0.200. Training.
+[INFO] MoveToTarget. Step: 5160000. Time Elapsed: 1353.666 s. Mean Reward: 0.474. Std of Reward: 0.352. Training.
+[INFO] MoveToTarget. Step: 5220000. Time Elapsed: 1370.073 s. Mean Reward: 0.480. Std of Reward: 0.192. Training.
+[INFO] MoveToTarget. Step: 5280000. Time Elapsed: 1388.133 s. Mean Reward: 0.499. Std of Reward: 0.183. Training.
+[INFO] MoveToTarget. Step: 5340000. Time Elapsed: 1404.498 s. Mean Reward: 0.551. Std of Reward: 0.176. Training.
+[INFO] MoveToTarget. Step: 5400000. Time Elapsed: 1422.556 s. Mean Reward: 0.502. Std of Reward: 0.200. Training.
+[INFO] MoveToTarget. Step: 5460000. Time Elapsed: 1440.549 s. Mean Reward: 0.526. Std of Reward: 0.195. Training.
+[INFO] MoveToTarget. Step: 5520000. Time Elapsed: 1456.897 s. Mean Reward: 0.479. Std of Reward: 0.313. Training.
+[INFO] MoveToTarget. Step: 5580000. Time Elapsed: 1475.019 s. Mean Reward: 0.467. Std of Reward: 0.228. Training.
+[INFO] MoveToTarget. Step: 5640000. Time Elapsed: 1493.034 s. Mean Reward: 0.411. Std of Reward: 0.220. Training.
+[INFO] MoveToTarget. Step: 5700000. Time Elapsed: 1509.520 s. Mean Reward: 0.504. Std of Reward: 0.198. Training.
+[INFO] MoveToTarget. Step: 5760000. Time Elapsed: 1527.607 s. Mean Reward: 0.484. Std of Reward: 0.179. Training.
+[INFO] MoveToTarget. Step: 5820000. Time Elapsed: 1544.024 s. Mean Reward: 0.557. Std of Reward: 0.191. Training.
+[INFO] MoveToTarget. Step: 5880000. Time Elapsed: 1561.072 s. Mean Reward: 0.535. Std of Reward: 0.235. Training.
+[INFO] MoveToTarget. Step: 5940000. Time Elapsed: 1576.689 s. Mean Reward: 0.475. Std of Reward: 0.420. Training.
+[INFO] MoveToTarget. Step: 6000000. Time Elapsed: 1590.862 s. Mean Reward: 0.485. Std of Reward: 0.188. Training.
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-5999992.onnx
+[INFO] Exported results\env_overload_cuda\MoveToTarget\MoveToTarget-6000288.onnx
+[INFO] Copied results\env_overload_cuda\MoveToTarget\MoveToTarget-6000288.onnx to results\env_overload_cuda\MoveToTarget.onnx.

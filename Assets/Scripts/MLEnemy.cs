@@ -23,7 +23,7 @@ public class MLEnemy : Agent
 	private float lifeTime = 0;
 	private readonly float forceEndSeconds = 30;
 
-	private bool isTraining;
+	private bool isTraining = false;
 	private float movementSpeed = 5;
 	private float rotationSpeed = 180;
 
@@ -31,8 +31,6 @@ public class MLEnemy : Agent
 	{
 		Base = GetComponent<BaseEnemy>();
 		behaviorParameters = GetComponent<BehaviorParameters>();
-		//behaviorParameters.BrainParameters.VectorObservationSize = (numOfObservedTargets + 1) * 3;
-		isTraining = behaviorParameters.Model == null;
 
 		if (isTraining)
 		{

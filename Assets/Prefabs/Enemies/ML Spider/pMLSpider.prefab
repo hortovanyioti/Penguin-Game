@@ -81,6 +81,10 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5520259616205945226, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
+      propertyPath: m_Speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520259616205945226, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       propertyPath: m_Height
       value: 2.5
       objectReference: {fileID: 0}
@@ -126,7 +130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119011202217945997, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164995014845140251, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
+      propertyPath: _assetId
+      value: 2688536043
       objectReference: {fileID: 0}
     - target: {fileID: 8403771417939477776, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       propertyPath: m_Height
@@ -200,9 +208,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 6d3a4492df2a9d94cb5e5bd9d3e3478a, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: MoveToTarget
   TeamId: 0
   m_UseChildSensors: 1

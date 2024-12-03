@@ -130,7 +130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119011202217945997, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164995014845140251, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
+      propertyPath: _assetId
+      value: 3631611628
       objectReference: {fileID: 0}
     - target: {fileID: 8403771417939477776, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       propertyPath: m_Height
@@ -235,9 +239,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: ceacecdb9534a174185dca23de7f4937, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: MoveToTarget
   TeamId: 0
   m_UseChildSensors: 1
@@ -387,8 +391,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 5155964122920241108}
     m_Modifications:
     - target: {fileID: 629949016196560025, guid: 29fc1987bd04a8043a43147f09a6b251, type: 3}
+      propertyPath: bulletSize
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 629949016196560025, guid: 29fc1987bd04a8043a43147f09a6b251, type: 3}
       propertyPath: bulletForce
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 727830097204741056, guid: 29fc1987bd04a8043a43147f09a6b251, type: 3}
       propertyPath: m_Name
