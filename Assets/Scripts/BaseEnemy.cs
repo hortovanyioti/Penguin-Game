@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.HID;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemy : GameCharacter
 {
+
 	[SerializeField] protected List<GameObject> attackTargets;
 	protected int currentAttackTargetIndex;
 	protected NavMeshAgent navMeshAgent;
@@ -22,20 +23,24 @@ public class BaseEnemy : GameCharacter
 	[SerializeField] private float AttackDistance = 3f;
 	private float trackingUpdateTimer;
 	private Cooldown attackCooldown;
-	private Weapon weapon;
 	private BoxCollider attackCollider;
 
+	public bool EnableUpdate { get; set; } = true;
+
+	private void Awake()
+	{
+		weapon = GetComponentInChildren<Weapon>();
+
+	}
 	void Start()
 	{
 		base.Init();
 		navMeshAgent = GetComponent<NavMeshAgent>();
-		weapon = GetComponentInChildren<Weapon>();
 		attackCollider = GetComponent<BoxCollider>();
 		attackCooldown = new Cooldown();
 		attackCooldown.CoolDownTime = 1f;
 		attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
 
-		var a = 0;
 #if UNITY_EDITOR
 		if (attackCollider.enabled != false)
 		{
@@ -43,19 +48,26 @@ public class BaseEnemy : GameCharacter
 		}
 #endif
 		StartCoroutine(DelayAttackEnable());
-		//TODO: fill attackTargets array with all player objects
+
+		attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
 	}
 	private void Update()
 	{
+		if (!EnableUpdate)
+		{
+			return;
+		}
+
 		trackingUpdateTimer += Time.deltaTime;
 		TryUpdateAttackTarget();
 		TryRangedAttack();
 		UpdateCamera();
+
 	}
 
-	public override void Hurt(float damage)
+	public override void TakeDamage(float damage)
 	{
-		base.Hurt(damage);
+		base.TakeDamage(damage);
 	}
 
 	public override void Die()
@@ -122,8 +134,11 @@ public class BaseEnemy : GameCharacter
 	}
 	private void UpdateAttackTarget()
 	{
-		navMeshAgent.SetDestination(attackTargets[currentAttackTargetIndex].transform.position);
-		trackingUpdateTimer = 0;
+		if (navMeshAgent.isOnNavMesh)
+		{
+			navMeshAgent.SetDestination(attackTargets[currentAttackTargetIndex].transform.position);
+			trackingUpdateTimer = 0;
+		}
 	}
 
 	private void TryMeleeAttack(GameObject target)
@@ -139,10 +154,10 @@ public class BaseEnemy : GameCharacter
 	}
 	protected virtual void MeleeAttack(GameObject target)
 	{
-		target.gameObject.GetComponent<PlayerScript>().Hurt(10);
+		target.gameObject.GetComponent<PlayerScript>().TakeDamage(10);
 	}
 
-	private void TryRangedAttack()
+	public void TryRangedAttack()
 	{
 		if (attackCooldown.IsCoolingDown || weapon == null)
 		{

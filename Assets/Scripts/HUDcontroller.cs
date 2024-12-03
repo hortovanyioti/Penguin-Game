@@ -10,7 +10,7 @@ public class HUDcontroller : MonoBehaviour
 	private TextMeshProUGUI maxMagazine;
 	private TextMeshProUGUI remainingAmmo;
 
-	private void Start()
+	private void Awake()
 	{
 		healthBar = transform.Find("HealthBar").GetComponent<Slider>();
 		var Ammo = transform.Find("Ammo");

@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class AntiAliasing : Dropdown
 {

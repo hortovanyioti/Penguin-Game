@@ -10,6 +10,7 @@
 /[Dd]ev[Bb]uild/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/venv/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data

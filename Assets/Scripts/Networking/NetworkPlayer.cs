@@ -69,7 +69,7 @@ public class NetworkPlayer : NetworkBehaviour
 	}
 
 	[TargetRpc]
-	public void RpcActivateInput(NetworkIdentity identity,int playerIndex)
+	public void RpcActivateInput(NetworkIdentity identity, int playerIndex)
 	{
 		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(true);
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
@@ -86,7 +86,7 @@ public class NetworkPlayer : NetworkBehaviour
 	public void RpcChangeTimeScale(NetworkIdentity identity, float value)
 	{
 		Time.timeScale = value;
-		Debug.Log("TimeScale changed to " + value +". " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
+		Debug.Log("TimeScale changed to " + value + ". " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
 	[Server]

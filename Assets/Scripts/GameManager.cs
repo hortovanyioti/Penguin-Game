@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.MLAgents;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,9 +10,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance;
 
-	[SerializeField] private GameObject targetPool;
-	public GameObject TargetPool { get { return targetPool; } private set { targetPool = value; } }
-
+	[SerializeField] private List<GameObject> targetSpawners;
 
 	[SerializeField] private GameObject bulletPool;
 	public GameObject BulletPool { get { return bulletPool; } private set { bulletPool = value; } }
@@ -28,20 +28,17 @@ public class GameManager : MonoBehaviour
 	public Difficulty Difficulty { get { return difficulty; } private set { difficulty = value; } }
 
 
+	private bool isFiendlyFire = false;
+	public bool IsFriendlyFire { get { return isFiendlyFire; } private set { isFiendlyFire = value; } }
+
+
 	[SerializeField] private bool isGameOver = false;
 	public bool IsGameOver { get { return isGameOver; } private set { isGameOver = value; } }
 
+	public event Action GameOver;
 	public Volume Brightness;
-	[SerializeField] private GameObject targetPrefab;
 
-	[Header("Target spawning border")]
-	[SerializeField] private float xMax;
-	[SerializeField] private float xMin;
-	[SerializeField] private float zMax;
-	[SerializeField] private float zMin;
-	[SerializeField] private float yMax;
-	[SerializeField] private float yMin;
-
+	[SerializeField] private bool enableTrainerConnection = false;
 
 	//private float timeSinceTargetSpawn;
 	private float uptime = 0;
@@ -55,6 +52,7 @@ public class GameManager : MonoBehaviour
 		if (Instance == null)
 		{
 			Instance = this;
+			CommunicatorFactory.Enabled = enableTrainerConnection;  //prevent training
 			Difficulty = new Difficulty();
 			new FileDataHandler("gamesettings.cfg", "", false).LoadData<Difficulty>(Difficulty);
 			Difficulty.InitFromPreset();
@@ -96,18 +94,9 @@ public class GameManager : MonoBehaviour
 		{
 			return;
 		}
-		//timeSinceTargetSpawn += Time.deltaTime;
-
-		/*if (timeSinceTargetSpawn >= spawnTime)
-		{
-			SpawnTarget();
-			timeSinceTargetSpawn = 0;
-		}
-		*/
-		CheckSpawn();
 	}
 
-	public void OnGUI()
+	public void OnGUI() //TODO: Refactor - Move to separate class + replace with UI elements
 	{
 		if (SceneManager.GetActiveScene().name != "MainScene")  //Dont run in the menu scene
 			return;
@@ -137,8 +126,7 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			IsGameOver = true;
-			if (targetPool.transform.childCount != 0)
-				Destroy(targetPool.GetComponentInChildren<TargetScript>().gameObject);
+			GameOver?.Invoke();
 
 			return; //TODO
 			/*
@@ -149,7 +137,7 @@ public class GameManager : MonoBehaviour
 			float accuracy = playerScripts[0].stats.Accuracy;
 			int avgReaction = (int)(playerScripts[0].stats.AvgReactionTime * 1000);
 			int medianRt = (int)(playerScripts[0].stats.MedianReactionTime * 1000);
-			
+
 			GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 5, 400, 300), "Time's up!", myStyle);
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 200, 400, 300), "Score: " + score.ToString(), myStyle);
 			GUI.Label(new Rect(Screen.width / 1.2f - 200, 300, 400, 300), "Shots fired: " + fired.ToString(), myStyle);
@@ -160,31 +148,7 @@ public class GameManager : MonoBehaviour
 			*/
 		}
 	}
-	private void CheckSpawn()
-	{
-		if (isGameOver)
-			return;
 
-		var n = targetPool.transform.childCount;
-		for (int i = 0; i < n; i++)
-		{
-			if (targetPool.transform.GetChild(i).localScale.x != 0) //If a target is still alive, no spawn
-			{
-				return;
-			}
-		}
-		SpawnTarget();
-	}
-	public void SpawnTarget()
-	{
-		GameObject newTarget = Instantiate(targetPrefab);
-		newTarget.transform.localScale = new Vector3(newTarget.transform.localScale.x * Difficulty.TargetScale,
-													newTarget.transform.localScale.y * Difficulty.TargetScale,
-													newTarget.transform.localScale.z);  //Scaling z below 0.2f causes unstable behaviour		
-		newTarget.transform.parent = targetPool.transform;
-		newTarget.transform.position = new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax), UnityEngine.Random.Range(zMin, zMax));
-		newTarget.transform.LookAt(new Vector3(0f, newTarget.transform.position.y, 0f));
-	}
 
 	/*inactive
 	public void PauseGame() // Load the pause menu

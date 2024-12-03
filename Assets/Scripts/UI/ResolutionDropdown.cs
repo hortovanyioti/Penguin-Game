@@ -8,7 +8,7 @@ public class ResolutionDropdown : Dropdown
 	private List<Resolution> filteredResolutions;
 	private RefreshRate currentRefreshRate;
 
-	void Awake()	//!Important to call Init() in Awake() because OnEnable() is called after Awake()
+	void Awake()  //!Important to call Init() in Awake() because OnEnable() is called after Awake()
 	{
 		base.Init();
 

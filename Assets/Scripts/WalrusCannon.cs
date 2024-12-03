@@ -3,5 +3,5 @@ using UnityEngine.InputSystem;
 
 public class WalrusCannon : BallisticWeapon
 {
-	
+
 }

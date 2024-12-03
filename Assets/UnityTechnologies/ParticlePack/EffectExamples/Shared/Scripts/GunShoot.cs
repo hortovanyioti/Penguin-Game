@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GunShoot : MonoBehaviour {
+public class GunShoot : MonoBehaviour
+{
 
-	public float fireRate = 0.25f;										// Number in seconds which controls how often the player can fire
-	public float weaponRange = 20f;										// Distance in Unity units over which the player can fire
+	public float fireRate = 0.25f;                    // Number in seconds which controls how often the player can fire
+	public float weaponRange = 20f;                   // Distance in Unity units over which the player can fire
 
 	public Transform gunEnd;
 	public ParticleSystem muzzleFlash;
@@ -15,28 +16,28 @@ public class GunShoot : MonoBehaviour {
 	public GameObject sandHitEffect;
 	public GameObject stoneHitEffect;
 	public GameObject waterLeakEffect;
-    public GameObject waterLeakExtinguishEffect;
+	public GameObject waterLeakExtinguishEffect;
 	public GameObject[] fleshHitEffects;
 	public GameObject woodHitEffect;
 
-	private float nextFire;												// Float to store the time the player will be allowed to fire again, after firing
+	private float nextFire;                       // Float to store the time the player will be allowed to fire again, after firing
 	private Animator anim;
 	private GunAim gunAim;
 
-	void Start () 
+	void Start()
 	{
-		anim = GetComponent<Animator> ();
+		anim = GetComponent<Animator>();
 		gunAim = GetComponentInParent<GunAim>();
 	}
 
-	void Update () 
+	void Update()
 	{
-		if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !gunAim.GetIsOutOfBounds()) 
+		if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !gunAim.GetIsOutOfBounds())
 		{
 			nextFire = Time.time + fireRate;
 			muzzleFlash.Play();
 			cartridgeEjection.Play();
-			anim.SetTrigger ("Fire");
+			anim.SetTrigger("Fire");
 
 			Vector3 rayOrigin = gunEnd.position;
 			RaycastHit hit;
@@ -49,11 +50,11 @@ public class GunShoot : MonoBehaviour {
 
 	void HandleHit(RaycastHit hit)
 	{
-		if(hit.collider.sharedMaterial != null)
+		if (hit.collider.sharedMaterial != null)
 		{
 			string materialName = hit.collider.sharedMaterial.name;
 
-			switch(materialName)
+			switch (materialName)
 			{
 				case "Metal":
 					SpawnDecal(hit, metalHitEffect);
@@ -61,7 +62,7 @@ public class GunShoot : MonoBehaviour {
 				case "Sand":
 					SpawnDecal(hit, sandHitEffect);
 					break;
-				case  "Stone":
+				case "Stone":
 					SpawnDecal(hit, stoneHitEffect);
 					break;
 				case "WaterFilled":
@@ -77,11 +78,11 @@ public class GunShoot : MonoBehaviour {
 				case "Character":
 					SpawnDecal(hit, fleshHitEffects[Random.Range(0, fleshHitEffects.Length)]);
 					break;
-                case "WaterFilledExtinguish":
-                    SpawnDecal(hit, waterLeakExtinguishEffect);
-                    SpawnDecal(hit, metalHitEffect);
-                    break;
-            }
+				case "WaterFilledExtinguish":
+					SpawnDecal(hit, waterLeakExtinguishEffect);
+					SpawnDecal(hit, metalHitEffect);
+					break;
+			}
 		}
 	}
 

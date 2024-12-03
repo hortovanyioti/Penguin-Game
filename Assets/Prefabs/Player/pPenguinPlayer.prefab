@@ -1238,9 +1238,6 @@ PrefabInstance:
       addedObject: {fileID: 1902361209403659097}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5eecd6747dfc1994595849803c3a9890, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8644367275138874467}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5eecd6747dfc1994595849803c3a9890, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2021042108414111980}
   m_SourcePrefab: {fileID: 100100000, guid: 5eecd6747dfc1994595849803c3a9890, type: 3}
 --- !u!4 &13839889392090941 stripped
@@ -1339,7 +1336,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1444,15 +1441,15 @@ MonoBehaviour:
   isGrounded: 0
   jumpSound: {fileID: 0}
   headCenter: {fileID: 2060962355076025062}
-  headAim: {fileID: 6205664533745396832}
+  aimDirection: {fileID: 6205664533745396832}
   rightHand: {fileID: 7033258079632241866}
   leftHand: {fileID: 424327285121133374}
   leftHandConstraint: {fileID: 5353232695195741647}
+  hud: {fileID: 5510415642662188550}
   slideCooldown:
     coolDownTime: 2
   slideTimeCooldown:
     coolDownTime: 0.5
-  hud: {fileID: 5510415642662188550}
 --- !u!114 &4231622595662582735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1715,40 +1712,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803efbe62c34d7baece46c9ffebad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 1
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 340750562362894264}
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  onlySyncOnChange: 1
-  compressRotation: 1
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  coordinateSpace: 0
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChangeCorrectionMultiplier: 2
-  rotationSensitivity: 0.01
-  positionPrecision: 0.01
-  scalePrecision: 0.01
---- !u!114 &8644367275138874467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148776862644174082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 1

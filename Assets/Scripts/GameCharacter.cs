@@ -45,15 +45,20 @@ public abstract class GameCharacter : MonoBehaviour
 	protected new Rigidbody rigidbody;
 	protected new Camera camera;
 	protected Animator animator;
+	public Weapon weapon { get; protected set; }
 
 	protected void Init()
 	{
 		CurrentHealth = MaxHealth;
 		camera = GetComponentInChildren<Camera>();
 	}
-	public virtual void Hurt(float damage)
+	public virtual void TakeDamage(float damage)
 	{
 		CurrentHealth -= damage;
+		if (CurrentHealth <= 0)
+		{
+			Die();
+		}
 	}
 
 	public virtual void Die()

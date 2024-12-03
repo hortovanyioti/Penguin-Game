@@ -64,7 +64,7 @@ public class Statistics
 		string date = DateTime.Now.Year.ToString("0000") + "_" + DateTime.Now.Month.ToString("00") + "_" + DateTime.Now.Day.ToString("00") + "_" +
 			DateTime.Now.Hour.ToString("00") + "_" + DateTime.Now.Minute.ToString("00") + "_" + DateTime.Now.Second.ToString("00");
 
-		new FileDataHandler("stats_" + date + ".json", "", false).SaveData(this,true);
+		new FileDataHandler("stats_" + date + ".json", "", false).SaveData(this, true);
 	}
 	public object CaptureState()
 	{

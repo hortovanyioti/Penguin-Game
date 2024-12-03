@@ -21,7 +21,7 @@ public class TargetScript : MonoBehaviour
 	private void Update()
 	{
 		lifeTime += Time.deltaTime;
-		if (gameObject.transform.localScale.x == 0 && !targetHitSound.isPlaying)	//If the target has been hit and the sound has finished playing, deactivate the target
+		if (gameObject.transform.localScale.x == 0 && !targetHitSound.isPlaying)  //If the target has been hit and the sound has finished playing, deactivate the target
 		{
 			Destroy(gameObject);
 		}

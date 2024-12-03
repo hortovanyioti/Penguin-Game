@@ -12,7 +12,7 @@ using UnityEngine;
 public class CustomSteamLobby : MonoBehaviour
 {
 	public static CustomSteamLobby Instance;
-	
+
 	//Callbacks
 	protected Callback<LobbyCreated_t> LobbyCreated;
 	protected Callback<GameLobbyJoinRequested_t> JoinRequest;
@@ -69,7 +69,10 @@ public class CustomSteamLobby : MonoBehaviour
 	#region STEAM_FUNCTIONS
 	public void HostLobby()
 	{
-		SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CustomNetworkManager.Instance.maxConnections);
+		if (CustomNetworkManager.Instance.Players.Network.Count == 0) //Check if lobby already exists
+		{
+			SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CustomNetworkManager.Instance.maxConnections);
+		}
 	}
 
 	private void OnLobbyCreated(LobbyCreated_t callback)
@@ -118,7 +121,7 @@ public class CustomSteamLobby : MonoBehaviour
 	/// Player List Functions (Only in lobby)
 	/// </summary>
 	#region PLAYER_LIST_FUNCTIONS
-	
+
 	public void UpdatePlayerList()
 	{
 		if (!PlayerItemCreated)

@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8164995014845140251, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
+      propertyPath: _assetId
+      value: 1677428429
+      objectReference: {fileID: 0}
     - target: {fileID: 8403771417939477776, guid: 1438edcb961d0894eb6550057eae8240, type: 3}
       propertyPath: m_Height
       value: 5.5
