@@ -61,12 +61,32 @@ public class CustomNetworkManager : NetworkManager
 			if (isLocalPlayer)
 			{
 				Players.Network[i].ServerChangeTimeScale(Players.Network[i].netIdentity, 1);
-				Players.Network[i].ServerActivateInput(Players.Network[i].netIdentity, i);
+				Players.Network[i].ServerActivateInput(Players.Network[i].netIdentity, i, true);
 			}
 			else
 			{
 				Players.Network[i].RpcChangeTimeScale(Players.Network[i].netIdentity, 1);
-				Players.Network[i].RpcActivateInput(Players.Network[i].netIdentity, i);
+				Players.Network[i].RpcActivateInput(Players.Network[i].netIdentity, i, true);
+			}
+		}
+	}	public void ReturnToMenu(string SceneName = "MainMenuCoop")
+	{
+		ServerChangeScene(SceneName); //unload current scene instead of loading a new one (not implemented in mirror?)
+
+		for (int i = 0; i < Players.Network.Count; i++)
+		{
+
+			bool isLocalPlayer = (CSteamID)Players.Network[i].PlayerSteamID == SteamUser.GetSteamID();
+
+			if (isLocalPlayer)
+			{
+				Players.Network[i].ServerChangeTimeScale(Players.Network[i].netIdentity, 0);
+				Players.Network[i].ServerActivateInput(Players.Network[i].netIdentity, i, false);
+			}
+			else
+			{
+				Players.Network[i].RpcChangeTimeScale(Players.Network[i].netIdentity, 0);
+				Players.Network[i].RpcActivateInput(Players.Network[i].netIdentity, i, false);
 			}
 		}
 	}

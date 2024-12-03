@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 600
-  damage: 0
+  damage: 10
   currentMagazine: 0
   maxMagazine: 99999
   currentAmmo: 0

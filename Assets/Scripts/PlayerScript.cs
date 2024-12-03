@@ -173,6 +173,14 @@ public class PlayerScript : GameCharacter
 		}
 	}
 
+	public void OnEscape(InputAction.CallbackContext context)
+	{
+		if (context.started)
+		{
+			GameManager.Instance.PauseGame();
+		}
+	}
+
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.CompareTag("Ground"))
@@ -305,7 +313,10 @@ public class PlayerScript : GameCharacter
 			yield return null;
 		}
 	}
-
+	public override void Die()
+	{
+		DeactivateInput();
+	}
 	void UpdateHUD()
 	{
 		if (hud.isActiveAndEnabled)

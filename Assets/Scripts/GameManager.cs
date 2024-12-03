@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.MLAgents;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
 	public event Action GameOver;
 	public Volume Brightness;
+	public GameObject pauseMenu;
 
 	[SerializeField] private bool enableTrainerConnection = false;
 
@@ -73,26 +75,34 @@ public class GameManager : MonoBehaviour
 		myStyle.normal.textColor = Color.green;
 		myStyle.alignment = TextAnchor.UpperCenter;
 
+		SceneManager.activeSceneChanged += (Scene previousScene, Scene newScene) => UpdatePauseMenuState();
+
 		DontDestroyOnLoad(this.gameObject);
 	}
 	void Update()
 	{
-		if (SceneManager.GetActiveScene().name != "MainScene")  //Dont run in the menu scene
-			return;
-
-		if (Time.timeScale != 0)
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-		else
+		if (pauseMenu.activeSelf)
 		{
 			Cursor.lockState = CursorLockMode.None;
 		}
+		else
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+
+		if (SceneManager.GetActiveScene().name != "MainScene")  //Dont run in the menu scene
+			return;
+		
 		uptime += Time.deltaTime;
 
 		if (prepareTime > uptime)
 		{
 			return;
+		}
+
+		if (!IsPlayerAlive())
+		{
+			CustomNetworkManager.Instance.ReturnToMenu();
 		}
 	}
 
@@ -148,20 +158,41 @@ public class GameManager : MonoBehaviour
 			*/
 		}
 	}
-
-
-	/*inactive
 	public void PauseGame() // Load the pause menu
 	{
-		if (Time.timeScale == 1)
+		if (SceneManager.GetActiveScene().buildIndex == 0)
 		{
-			Time.timeScale = 0;
-			pauseMenu.SetActive(true);
+			pauseMenu.transform.GetChild(1).gameObject.SetActive(false);
 		}
 		else
 		{
-			pauseMenu.SetActive(false);
-			Time.timeScale = 1;
+			pauseMenu.SetActive(!pauseMenu.activeSelf);
 		}
-	}*/
+	}
+
+	public void UpdatePauseMenuState()
+	{
+		var state = SceneManager.GetActiveScene().buildIndex == 0;
+		SetPauseMenuState(state);
+	}
+
+	public void SetPauseMenuState(bool state)  //0 = Main menu, 1 = Game
+	{
+		pauseMenu.transform.GetChild(0).gameObject.SetActive(state);
+		pauseMenu.transform.GetChild(1).gameObject.SetActive(!state);
+		pauseMenu.SetActive(state);
+	}
+
+	public bool IsPlayerAlive()
+	{
+		var n = CustomNetworkManager.Instance.Players.Game.Count;
+		for (int i = 0; i < n; i++)
+		{
+			if (CustomNetworkManager.Instance.Players.Game[i].IsAlive)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }

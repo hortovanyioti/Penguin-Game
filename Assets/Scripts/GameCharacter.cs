@@ -42,6 +42,8 @@ public abstract class GameCharacter : MonoBehaviour
 	[SerializeField] private float moveSpeed;
 	public float MoveSpeed { get => moveSpeed; protected set => moveSpeed = value; }
 
+	public bool IsAlive { get => CurrentHealth > 0; }
+
 	protected new Rigidbody rigidbody;
 	protected new Camera camera;
 	protected Animator animator;
@@ -55,10 +57,15 @@ public abstract class GameCharacter : MonoBehaviour
 	public virtual void TakeDamage(float damage)
 	{
 		CurrentHealth -= damage;
-		if (CurrentHealth <= 0)
+		if (!IsAlive)
 		{
 			Die();
 		}
+	}
+
+	public virtual void Reset()
+	{
+		CurrentHealth = MaxHealth;
 	}
 
 	public virtual void Die()

@@ -7,7 +7,10 @@ public class FullScreen : Dropdown
 	{
 		base.Init();
 
-		Screen.fullScreenMode = m_Player.PlayerConfig.FullScreenMode;
+		if (Screen.fullScreenMode != m_Player.PlayerConfig.FullScreenMode)
+		{
+			Screen.fullScreenMode = m_Player.PlayerConfig.FullScreenMode;
+		}
 
 		//Do not change the order of the options, order determined by the FullScreenMode enum
 		m_Dropdown.options.Add(new TMP_Dropdown.OptionData("Exclusive Fullscreen"));

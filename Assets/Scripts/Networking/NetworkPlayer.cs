@@ -69,16 +69,18 @@ public class NetworkPlayer : NetworkBehaviour
 	}
 
 	[TargetRpc]
-	public void RpcActivateInput(NetworkIdentity identity, int playerIndex)
+	public void RpcActivateInput(NetworkIdentity identity, int playerIndex, bool state)
 	{
-		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(true);
+		CustomNetworkManager.Instance.Players.Game[playerIndex].Reset();
+		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(state);
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
 	[Server]
-	public void ServerActivateInput(NetworkIdentity identity, int playerIndex)
+	public void ServerActivateInput(NetworkIdentity identity, int playerIndex, bool state)
 	{
-		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(true);
+		CustomNetworkManager.Instance.Players.Game[playerIndex].Reset();
+		CustomNetworkManager.Instance.Players.Game[playerIndex].ActivateInput(state);
 		Debug.Log("Input activated for: " + PlayerName + ". ISSERVER: " + isServer + " | ISCLIENT: " + isClient);
 	}
 
