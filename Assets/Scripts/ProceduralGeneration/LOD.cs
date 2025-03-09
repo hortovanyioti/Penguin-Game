@@ -3,7 +3,7 @@
 /// </summary>
 public static class LOD
 {
-	public const int CHUNK_SIZE = 241;
+	public const int CHUNK_SIZE = ChunkGenerator.CHUNK_SIZE;
 	public const int LOD_LEVELS = 20;
 
 	/// <summary>
