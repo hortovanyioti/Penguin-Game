@@ -1,11 +1,21 @@
 using System;
+using Unity.Collections;
 using UnityEngine;
+using static UnityEngine.Mesh;
 
 [Serializable]
-public class MeshData
+public struct MeshData
 {
-	public Vector3[] Vertices { get; set; }
-	public Vector2[] Uvs { get; set; }
-	public Color[] Colors { get; set; }
-	public int[] Triangles { get; set; }
+	public NativeArray<Vector3> Vertices;
+	public NativeArray<Vector2> Uvs;
+	public NativeArray<Color> Colors;
+	public NativeArray<int> Triangles;
+
+	public void Dispose()
+	{
+		if (Vertices.IsCreated) Vertices.Dispose();
+		if (Uvs.IsCreated) Uvs.Dispose();
+		if (Colors.IsCreated) Colors.Dispose();
+		if (Triangles.IsCreated) Triangles.Dispose();
+	}
 }

@@ -20,7 +20,7 @@ public class BaseEnemy : GameCharacter
 	public const float middleDistanceUpdateInterval = 0.3f;
 	public const float farDistanceUpdateInterval = 1f;
 
-	[SerializeField] private float AttackDistance = 3f;
+	//[SerializeField] private float AttackDistance = 3f;
 	private float trackingUpdateTimer;
 	private Cooldown attackCooldown;
 	private BoxCollider attackCollider;

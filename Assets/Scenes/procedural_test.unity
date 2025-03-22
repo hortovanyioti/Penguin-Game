@@ -357,14 +357,12 @@ MonoBehaviour:
       m_ColorSpace: -1
       m_NumColorKeys: 7
       m_NumAlphaKeys: 3
+  _chunkGeneratorConfigUnsafe:
+    UseFalloff: 0
+    FalloffSlope: 0
+    FalloffOffset: 0
+    LevelOfDetail: 0
   _noiseConfig:
-    Layers:
-    - Frequency: 50
-      Amplitude: 10
-    - Frequency: 5
-      Amplitude: 0.8
-    - Frequency: 1.1
-      Amplitude: 0.2
     NoiseStrength: 3
     Seed: 236
     RandomizeOffset: 1

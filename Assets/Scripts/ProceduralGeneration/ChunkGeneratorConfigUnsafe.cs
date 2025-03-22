@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
+using GradientUnsafe;
+
 [Serializable]
-public struct ChunkGeneratorConfig {
+public struct ChunkGeneratorConfigUnsafe {
 
 	public const int MAX_OFFSET = 100000;
 
@@ -14,5 +16,5 @@ public struct ChunkGeneratorConfig {
 	public int LevelOfDetail;
 
 	[Header("")]
-	public Gradient HeightGradient;
+	public GradientStruct.ReadOnly HeightGradient;
 }

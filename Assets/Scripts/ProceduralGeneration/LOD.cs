@@ -1,9 +1,9 @@
 /// <summary>
 /// Do not change values!
 /// </summary>
-public static class LOD
+public struct LOD
 {
-	public const int CHUNK_SIZE = ChunkGenerator.CHUNK_SIZE;
+	public const int CHUNK_SIZE = EndlessTerrain.CHUNK_SIZE;
 	public const int LOD_LEVELS = 20;
 
 	/// <summary>

@@ -14,7 +14,7 @@ public class MLEnemy : Agent
 
 	[SerializeField] List<GameObject> targets;
 	[SerializeField] List<GameObject> objects;
-	private readonly int numOfObservedTargets = 4;
+	//private readonly int numOfObservedTargets = 4;
 
 	private float rewardTimer = 0;
 	private readonly float rewardTime = 0.1f;               // Every n seconds
