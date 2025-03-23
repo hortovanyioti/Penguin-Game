@@ -17,12 +17,12 @@ public struct ChunkGeneratorJob : IJob
 	public const int CHUNK_SIZE = 241;  //DO NOT CHANGE
 
 	[ReadOnly]
-	private ChunkGeneratorConfigUnsafe _config;
+	private ChunkGeneratorConfigJobsafe _config;
 
 	[ReadOnly]
-	private NoiseConfig _noiseConfig;
+	private NoiseConfigJobsafe _noiseConfig;
 
-	public ChunkGeneratorJob(MeshData meshData, ChunkGeneratorConfigUnsafe cfg, NoiseConfig ncfg, NativeArray<int2> offsets)
+	public ChunkGeneratorJob(MeshData meshData, ChunkGeneratorConfigJobsafe cfg, NoiseConfigJobsafe ncfg, NativeArray<int2> offsets)
 	{
 		_meshData = meshData;
 		_minTerrainHeight = float.MaxValue;
@@ -56,7 +56,7 @@ public struct ChunkGeneratorJob : IJob
 
 		if (_config.UseFalloff)
 		{
-			_falloffMap = FalloffGenerator.GenerateFalloffMap(_config.FalloffSlope, _config.FalloffOffset,gridSize, gridSize);
+			_falloffMap = FalloffGenerator.GenerateFalloffMap(_config.FalloffSlope, _config.FalloffOffset, gridSize, gridSize);
 		}
 
 		for (int z = 0; z < gridSize; z++)

@@ -1,4 +1,3 @@
-using GradientUnsafe;
 using System;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -10,8 +9,9 @@ public class EndlessTerrain : MonoBehaviour
 	public static EndlessTerrain Instance { get; private set; }
 
 	public ChunkGeneratorConfig _chunkGeneratorConfig;
-	public ChunkGeneratorConfigUnsafe _chunkGeneratorConfigUnsafe;
+	private ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
 	public NoiseConfig _noiseConfig;
+	private NoiseConfigJobsafe _noiseConfigJobsafe;
 	private NativeArray<int2> _baseOffsets;
 
 	public GameObject _terrainChunkPrefab;
@@ -43,15 +43,7 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void Start()
 	{
-		//TODO get noiselayers from editor
-		_noiseConfig.Layers = new NativeArray<Noise>(1, Allocator.Persistent);
-		var noise = new Noise()
-		{
-			Frequency = 50,
-			Amplitude = 30
-		};
-		_noiseConfig.Layers[0] = noise;
-
+		ConvertToJobsafe();
 		GenerateOffsets();
 	}
 
@@ -69,17 +61,17 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void OnValidate()
 	{
-		if(!UnityEditor.EditorApplication.isPlaying)
+		if (!UnityEditor.EditorApplication.isPlaying)
 		{
 			return;
 		}
 
-		_chunkGeneratorConfigUnsafe.HeightGradient = _chunkGeneratorConfig.HeightGradient.DirectAccessReadOnly();
+		ConvertToJobsafe();
 		GenerateOffsets();
 
 		foreach (var chunk in terrainChunks)
 		{
-			var meshData = chunk.Value.GenerateMeshData(_chunkGeneratorConfigUnsafe, _noiseConfig, _baseOffsets);
+			var meshData = chunk.Value.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
 			chunk.Value.ApplyMeshData(chunk.Value.Mesh, meshData);
 		}
 		Debug.Log("Validated: " + System.DateTime.Now);
@@ -92,22 +84,30 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void GenerateOffsets()
 	{
-		if(_baseOffsets.IsCreated)	_baseOffsets.Dispose();//TODO dispose noiseconfig layers and reassign
+		if (_baseOffsets.IsCreated) _baseOffsets.Dispose();//TODO dispose noiseconfig layers and reassign
 
-		_baseOffsets = new NativeArray<int2>(_noiseConfig.Layers.Length, Allocator.Persistent);
+		_baseOffsets = new NativeArray<int2>(_noiseConfigJobsafe.Layers.Length, Allocator.Persistent);
 
-		if (!_noiseConfig.RandomizeOffset)
+		if (!_noiseConfigJobsafe.RandomizeOffset)
 		{
 			return;
 		}
 
-		for (int i = 0; i < _noiseConfig.Layers.Length; i++)
+		for (int i = 0; i < _noiseConfigJobsafe.Layers.Length; i++)
 		{
 			_baseOffsets[i] = new int2(
 				UnityEngine.Random.Range(-ChunkGeneratorConfig.MAX_OFFSET, ChunkGeneratorConfig.MAX_OFFSET),
 				UnityEngine.Random.Range(-ChunkGeneratorConfig.MAX_OFFSET, ChunkGeneratorConfig.MAX_OFFSET)
 			);
 		}
+	}
+
+	private void ConvertToJobsafe()
+	{
+		if(_noiseConfigJobsafe.IsCreated) _noiseConfigJobsafe.Dispose();
+
+		_noiseConfigJobsafe = _noiseConfig.ToJobsafe();
+		_chunkGeneratorConfigJobsafe = _chunkGeneratorConfig.ToJobsafe();
 	}
 
 	private void UpdateVisibleChunks()  //Without loadBoarder, chunks will not unload properly.
@@ -125,7 +125,7 @@ public class EndlessTerrain : MonoBehaviour
 				else
 				{
 					var newChunk = new TerrainChunk(chunkCoord, this.gameObject, _terrainChunkPrefab);
-					var meshData = newChunk.GenerateMeshData(_chunkGeneratorConfigUnsafe, _noiseConfig, _baseOffsets);
+					var meshData = newChunk.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
 					newChunk.ApplyMeshData(newChunk.Mesh, meshData);
 					terrainChunks.Add(chunkCoord, newChunk);
 				}
@@ -144,6 +144,6 @@ public class EndlessTerrain : MonoBehaviour
 	public void Dispose()
 	{
 		if (_baseOffsets.IsCreated) _baseOffsets.Dispose();
-		if (_noiseConfig.Layers.IsCreated) _noiseConfig.Dispose();
+		if (_noiseConfigJobsafe.IsCreated) _noiseConfigJobsafe.Dispose();
 	}
 }

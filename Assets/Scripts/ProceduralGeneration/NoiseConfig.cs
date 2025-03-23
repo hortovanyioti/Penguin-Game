@@ -1,17 +1,15 @@
 using System;
-using Unity.Collections;
-using UnityEngine;
 
 [Serializable]
-public struct NoiseConfig
+public class NoiseConfig
 {
-	public NativeArray<Noise> Layers;
+	public Noise[] Layers;
 	public float NoiseStrength;
 	public int Seed;
 	public bool RandomizeOffset;
 
 	private const float MIN_HEIGHT = 0f;
-	public float MinHeight=> MIN_HEIGHT;
+	public float MinHeight => MIN_HEIGHT;
 
 	public float MaxHeight =>
 		Layers == null ? 1f : NoiseStrength * SumOfAmplitudes();
@@ -26,13 +24,5 @@ public struct NoiseConfig
 			sum += layer.Amplitude;
 		}
 		return sum;
-	}
-
-	public void Dispose()
-	{
-		if (Layers.IsCreated)
-		{
-			Layers.Dispose();
-		}
 	}
 }

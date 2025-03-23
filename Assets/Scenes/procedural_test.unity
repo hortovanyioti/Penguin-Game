@@ -357,15 +357,13 @@ MonoBehaviour:
       m_ColorSpace: -1
       m_NumColorKeys: 7
       m_NumAlphaKeys: 3
-  _chunkGeneratorConfigUnsafe:
-    UseFalloff: 0
-    FalloffSlope: 0
-    FalloffOffset: 0
-    LevelOfDetail: 0
   _noiseConfig:
+    Layers:
+    - Frequency: 50
+      Amplitude: 30
     NoiseStrength: 3
-    Seed: 236
-    RandomizeOffset: 1
+    Seed: 0
+    RandomizeOffset: 0
   _terrainChunkPrefab: {fileID: 3994087974104548847, guid: f8872e855b0e5b842b5cc2d42cf1dde8, type: 3}
   RenderDistance: 1
   <Viewer>k__BackingField: {fileID: 58891741}

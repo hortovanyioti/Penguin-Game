@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public struct ChunkGeneratorConfig {
+public class ChunkGeneratorConfig
+{
 
-	public const int MAX_OFFSET = 100000;
+	public static int MAX_OFFSET => ChunkGeneratorConfigJobsafe.MAX_OFFSET;
 
 	public bool UseFalloff;
 	public float FalloffSlope;

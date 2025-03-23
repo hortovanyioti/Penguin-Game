@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -24,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 #endif
 
 		spawnInterval = initialSpawnInterval;
-		spawnTimer = spawnInterval - 3;	//TODO Link to prep time
+		spawnTimer = spawnInterval - 3; //TODO Link to prep time
 	}
 
 	// Update is called once per frame

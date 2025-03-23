@@ -1,7 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class UIDifficultyChangeButton : UIButton
 {
 	new private void Start()

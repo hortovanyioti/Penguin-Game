@@ -1,7 +1,6 @@
 using System;
 using Unity.Collections;
 using UnityEngine;
-using static UnityEngine.Mesh;
 
 [Serializable]
 public struct MeshData

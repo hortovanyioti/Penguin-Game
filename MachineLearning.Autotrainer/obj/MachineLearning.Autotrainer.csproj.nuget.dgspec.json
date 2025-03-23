@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj": {}
+    "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj": {}
   },
   "projects": {
-    "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj": {
+    "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
+        "projectUniqueName": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
         "projectName": "MachineLearning.Autotrainer",
-        "projectPath": "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
+        "projectPath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
         "packagesPath": "C:\\Users\\horto\\.nuget\\packages\\",
-        "outputPath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\obj\\",
+        "outputPath": "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

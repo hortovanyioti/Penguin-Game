@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Animations;
-using UnityEngine.InputSystem.HID;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemy : GameCharacter

@@ -30,7 +30,7 @@ public class TerrainChunk
 		SetVisible(false);
 	}
 
-	public MeshData GenerateMeshData(ChunkGeneratorConfigUnsafe cgcfg, NoiseConfig ncfg, NativeArray<int2> baseOffsets)
+	public MeshData GenerateMeshData(ChunkGeneratorConfigJobsafe cgcfg, NoiseConfigJobsafe ncfg, NativeArray<int2> baseOffsets)
 	{
 		var scaledSize = CHUNK_SIZE / LOD.MeshScale[cgcfg.LevelOfDetail];
 		_meshData = new MeshData()

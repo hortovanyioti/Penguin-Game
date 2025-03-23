@@ -20,7 +20,7 @@ public class NoiseEditor : PropertyDrawer
 		var values = new float[] { freqProp.floatValue, ampProp.floatValue };
 
 		EditorGUI.MultiFloatField(position, labels, values);
-		
+
 		freqProp.floatValue = values[0];
 		ampProp.floatValue = values[1];
 
