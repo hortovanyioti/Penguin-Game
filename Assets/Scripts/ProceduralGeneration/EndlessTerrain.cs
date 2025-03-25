@@ -55,7 +55,18 @@ public class EndlessTerrain : MonoBehaviour
 		if (_cleanupTimer > _cleanupTime)
 		{
 			_cleanupTimer = 0;
-			UpdateAllChunks();
+			UpdateVisibilityAllChunks();
+		}
+	}
+
+	private void LateUpdate()
+	{
+		foreach (var chunk in terrainChunks)
+		{
+			if (chunk.Value.HasNewMeshData)
+			{
+				chunk.Value.ApplyMeshData();
+			}
 		}
 	}
 
@@ -71,8 +82,7 @@ public class EndlessTerrain : MonoBehaviour
 
 		foreach (var chunk in terrainChunks)
 		{
-			var meshData = chunk.Value.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
-			chunk.Value.ApplyMeshData(chunk.Value.Mesh, meshData);
+			chunk.Value.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
 		}
 		Debug.Log("Validated: " + System.DateTime.Now);
 	}
@@ -125,15 +135,14 @@ public class EndlessTerrain : MonoBehaviour
 				else
 				{
 					var newChunk = new TerrainChunk(chunkCoord, this.gameObject, _terrainChunkPrefab);
-					var meshData = newChunk.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
-					newChunk.ApplyMeshData(newChunk.Mesh, meshData);
+					newChunk.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
 					terrainChunks.Add(chunkCoord, newChunk);
 				}
 			}
 		}
 	}
 
-	private void UpdateAllChunks()   //Call this sometimes in case chunk unloading fails due to too fast viewer movement.
+	private void UpdateVisibilityAllChunks()   //Call this sometimes in case chunk unloading fails due to too fast viewer movement.
 	{
 		foreach (var chunk in terrainChunks)
 		{

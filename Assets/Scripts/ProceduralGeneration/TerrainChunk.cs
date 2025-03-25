@@ -5,24 +5,28 @@ using UnityEngine;
 
 public class TerrainChunk
 {
-	GameObject meshObj;
-	public Mesh Mesh;
-	private MeshData _meshData;
-	NativeArray<int2> _offsets;
-	int _renderDistance => EndlessTerrain.Instance.RenderDistance;
-	Vector2 _coords;
 	const int CHUNK_SIZE = EndlessTerrain.CHUNK_SIZE;
+	private static int _renderDistance => EndlessTerrain.Instance.RenderDistance;
+
+	public bool HasNewMeshData = false;
+
+	private GameObject meshObj;
+	private Mesh _mesh;
+	private MeshData _meshData;
+	private NativeArray<int2> _offsets;
+	private Vector2 _coords;
+	private JobHandle _handle;
 
 	public TerrainChunk(Vector2 coords, GameObject parent, GameObject prefab)
 	{
 		meshObj = UnityEngine.Object.Instantiate(prefab, parent.transform);
 		meshObj.name = "Terrain Chunk " + coords.ToString("0");
 		var meshFilter = meshObj.GetComponent<MeshFilter>();
-		Mesh = meshFilter.sharedMesh;
+		_mesh = meshFilter.sharedMesh;
 
-		if (Mesh == null)
+		if (_mesh == null)
 		{
-			meshFilter.sharedMesh = Mesh = new Mesh();
+			meshFilter.sharedMesh = _mesh = new Mesh();
 		}
 
 		meshObj.transform.position = new Vector3(coords.x * CHUNK_SIZE, 0, coords.y * CHUNK_SIZE);
@@ -30,7 +34,7 @@ public class TerrainChunk
 		SetVisible(false);
 	}
 
-	public MeshData GenerateMeshData(ChunkGeneratorConfigJobsafe cgcfg, NoiseConfigJobsafe ncfg, NativeArray<int2> baseOffsets)
+	public void GenerateMeshData(ChunkGeneratorConfigJobsafe cgcfg, NoiseConfigJobsafe ncfg, NativeArray<int2> baseOffsets)
 	{
 		var scaledSize = CHUNK_SIZE / LOD.MeshScale[cgcfg.LevelOfDetail];
 		_meshData = new MeshData()
@@ -42,20 +46,25 @@ public class TerrainChunk
 		};
 
 		CalculateOffsets(baseOffsets);
+
 		var chunkGeneratorJob = new ChunkGeneratorJob(_meshData, cgcfg, ncfg, _offsets);
-		var jobHandle = chunkGeneratorJob.Schedule();
-		jobHandle.Complete();
-		return chunkGeneratorJob.GenerateMeshData();
+		_handle = chunkGeneratorJob.Schedule();
+		HasNewMeshData = true;
 	}
 
-	public void ApplyMeshData(Mesh mesh, MeshData meshData)
+	public void ApplyMeshData()
 	{
-		mesh.vertices = meshData.Vertices.ToArray();
-		mesh.uv = meshData.Uvs.ToArray();
-		mesh.colors = meshData.Colors.ToArray();
-		mesh.triangles = meshData.Triangles.ToArray();
+		if (_handle == null || !_handle.IsCompleted) return;
 
-		mesh.RecalculateNormals();
+		_handle.Complete();
+
+		_mesh.vertices = _meshData.Vertices.ToArray();
+		_mesh.uv = _meshData.Uvs.ToArray();
+		_mesh.colors = _meshData.Colors.ToArray();
+		_mesh.triangles = _meshData.Triangles.ToArray();
+
+		_mesh.RecalculateNormals();
+		HasNewMeshData = false;
 	}
 
 	private void CalculateOffsets(NativeArray<int2> baseOffsets)
@@ -79,7 +88,10 @@ public class TerrainChunk
 
 	public void SetVisible(bool visible)
 	{
-		meshObj.SetActive(visible);
+		if (meshObj.gameObject.activeSelf != visible)
+		{
+			meshObj.SetActive(visible);
+		}
 	}
 
 	~TerrainChunk()
