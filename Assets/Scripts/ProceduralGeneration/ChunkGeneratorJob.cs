@@ -45,7 +45,7 @@ public struct ChunkGeneratorJob : IJob
 		return _meshData;
 	}
 
-	private NativeArray<float> GenerateHeightMap()//TODO bust not compatible with 2d array
+	private NativeArray<float> GenerateHeightMap()
 	{
 		var gridSize = CHUNK_SIZE + 1;
 		var _falloffMap = new NativeArray<float>(gridSize * gridSize, Allocator.Temp);

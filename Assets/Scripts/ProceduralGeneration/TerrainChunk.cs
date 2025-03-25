@@ -8,8 +8,9 @@ public class TerrainChunk
 	const int CHUNK_SIZE = EndlessTerrain.CHUNK_SIZE;
 	private static int _renderDistance => EndlessTerrain.Instance.RenderDistance;
 
-	public bool HasNewMeshData = false;
+	public bool MeshDataReady => _isMeshUpdateInProgress && _handle.IsCompleted;
 
+	private bool _isMeshUpdateInProgress = false;
 	private GameObject meshObj;
 	private Mesh _mesh;
 	private MeshData _meshData;
@@ -49,7 +50,7 @@ public class TerrainChunk
 
 		var chunkGeneratorJob = new ChunkGeneratorJob(_meshData, cgcfg, ncfg, _offsets);
 		_handle = chunkGeneratorJob.Schedule();
-		HasNewMeshData = true;
+		_isMeshUpdateInProgress = true;
 	}
 
 	public void ApplyMeshData()
@@ -64,7 +65,7 @@ public class TerrainChunk
 		_mesh.triangles = _meshData.Triangles.ToArray();
 
 		_mesh.RecalculateNormals();
-		HasNewMeshData = false;
+		_isMeshUpdateInProgress = false;
 	}
 
 	private void CalculateOffsets(NativeArray<int2> baseOffsets)

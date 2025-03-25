@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
@@ -61,11 +62,14 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		foreach (var chunk in terrainChunks)
+		//Only one chunk per frame
+		for (int i = 0; i < terrainChunks.Count; i++)
 		{
-			if (chunk.Value.HasNewMeshData)
+			var chunk = terrainChunks.ElementAt(i).Value;
+			if (chunk.MeshDataReady)
 			{
-				chunk.Value.ApplyMeshData();
+				chunk.ApplyMeshData();
+				return;
 			}
 		}
 	}
