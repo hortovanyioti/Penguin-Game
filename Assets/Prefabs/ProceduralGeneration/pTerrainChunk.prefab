@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3683953068974970119}
   - component: {fileID: 6560453819938977354}
   - component: {fileID: 163068577416540264}
+  - component: {fileID: 7665620447967696203}
   m_Layer: 0
   m_Name: pTerrainChunk
   m_TagString: Untagged
@@ -86,3 +87,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7665620447967696203
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3994087974104548847}
+  m_Material: {fileID: 13400000, guid: 26bbf2a7dc49ca547aa6e54e21755e8d, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

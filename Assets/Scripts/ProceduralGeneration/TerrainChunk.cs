@@ -13,6 +13,7 @@ public class TerrainChunk
 	private bool _isMeshUpdateInProgress = false;
 	private GameObject meshObj;
 	private Mesh _mesh;
+	private MeshCollider _meshCollider;
 	private MeshData _meshData;
 	private NativeArray<int2> _offsets;
 	private Vector2 _coords;
@@ -22,6 +23,7 @@ public class TerrainChunk
 	{
 		meshObj = UnityEngine.Object.Instantiate(prefab, parent.transform);
 		meshObj.name = "Terrain Chunk " + coords.ToString("0");
+		_meshCollider = meshObj.GetComponent<MeshCollider>();
 		var meshFilter = meshObj.GetComponent<MeshFilter>();
 		_mesh = meshFilter.sharedMesh;
 
@@ -65,6 +67,7 @@ public class TerrainChunk
 		_mesh.triangles = _meshData.Triangles.ToArray();
 
 		_mesh.RecalculateNormals();
+		_meshCollider.sharedMesh = _mesh;
 		_isMeshUpdateInProgress = false;
 	}
 
