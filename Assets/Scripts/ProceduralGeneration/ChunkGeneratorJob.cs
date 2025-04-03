@@ -14,7 +14,7 @@ public struct ChunkGeneratorJob : IJob
 	private float _minTerrainHeight;
 	private float _maxTerrainHeight;
 
-	public const int CHUNK_SIZE = 241;  //DO NOT CHANGE
+	public const int CHUNK_SIZE = 240;  //DO NOT CHANGE
 
 	[ReadOnly]
 	private ChunkGeneratorConfigJobsafe _config;

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -7,11 +9,13 @@ public class TerrainChunk
 {
 	const int CHUNK_SIZE = EndlessTerrain.CHUNK_SIZE;
 	private static int _renderDistance => EndlessTerrain.Instance.RenderDistance;
+	private static int _objectDensitiy = 150;
 
 	public bool MeshDataReady => _isMeshUpdateInProgress && _handle.IsCompleted;
 
 	private bool _isMeshUpdateInProgress = false;
-	private GameObject meshObj;
+	private bool _objectsGenerated = false;
+	private GameObject _meshObj;
 	private Mesh _mesh;
 	private MeshCollider _meshCollider;
 	private MeshData _meshData;
@@ -19,12 +23,20 @@ public class TerrainChunk
 	private Vector2 _coords;
 	private JobHandle _handle;
 
-	public TerrainChunk(Vector2 coords, GameObject parent, GameObject prefab)
+	private readonly ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
+	private readonly NoiseConfigJobsafe _noiseConfigJobsafe;
+	private readonly int2[] _baseOffsets;
+
+	public TerrainChunk(Vector2 coords, GameObject parent, GameObject prefab, ChunkGeneratorConfig cgcfg, NoiseConfig ncfg, int2[] baseOffsets)
 	{
-		meshObj = UnityEngine.Object.Instantiate(prefab, parent.transform);
-		meshObj.name = "Terrain Chunk " + coords.ToString("0");
-		_meshCollider = meshObj.GetComponent<MeshCollider>();
-		var meshFilter = meshObj.GetComponent<MeshFilter>();
+		_chunkGeneratorConfigJobsafe = cgcfg.ToJobsafe();
+		_noiseConfigJobsafe = ncfg.ToJobsafe();
+		_baseOffsets = baseOffsets;
+
+		_meshObj = UnityEngine.Object.Instantiate(prefab, parent.transform);
+		_meshObj.name = "Terrain Chunk " + coords.ToString("0");
+		_meshCollider = _meshObj.GetComponent<MeshCollider>();
+		var meshFilter = _meshObj.GetComponent<MeshFilter>();
 		_mesh = meshFilter.sharedMesh;
 
 		if (_mesh == null)
@@ -32,14 +44,16 @@ public class TerrainChunk
 			meshFilter.sharedMesh = _mesh = new Mesh();
 		}
 
-		meshObj.transform.position = new Vector3(coords.x * CHUNK_SIZE, 0, coords.y * CHUNK_SIZE);
+		var positionScale = CHUNK_SIZE;
+
+		_meshObj.transform.position = new Vector3(coords.x * positionScale, 0, coords.y * positionScale);
 		_coords = coords;
 		SetVisible(false);
 	}
 
-	public void GenerateMeshData(ChunkGeneratorConfigJobsafe cgcfg, NoiseConfigJobsafe ncfg, NativeArray<int2> baseOffsets)
+	public void GenerateMeshData()
 	{
-		var scaledSize = CHUNK_SIZE / LOD.MeshScale[cgcfg.LevelOfDetail];
+		var scaledSize = CHUNK_SIZE / LOD.MeshScale[_chunkGeneratorConfigJobsafe.LevelOfDetail];
 		_meshData = new MeshData()
 		{
 			Vertices = new NativeArray<Vector3>((scaledSize + 1) * (scaledSize + 1), Allocator.Persistent),
@@ -48,9 +62,9 @@ public class TerrainChunk
 			Triangles = new NativeArray<int>(scaledSize * scaledSize * 6, Allocator.Persistent)
 		};
 
-		CalculateOffsets(baseOffsets);
+		CalculateOffsets(_baseOffsets);
 
-		var chunkGeneratorJob = new ChunkGeneratorJob(_meshData, cgcfg, ncfg, _offsets);
+		var chunkGeneratorJob = new ChunkGeneratorJob(_meshData, _chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _offsets);
 		_handle = chunkGeneratorJob.Schedule();
 		_isMeshUpdateInProgress = true;
 	}
@@ -68,10 +82,11 @@ public class TerrainChunk
 
 		_mesh.RecalculateNormals();
 		_meshCollider.sharedMesh = _mesh;
+
 		_isMeshUpdateInProgress = false;
 	}
 
-	private void CalculateOffsets(NativeArray<int2> baseOffsets)
+	private void CalculateOffsets(int2[] baseOffsets)
 	{
 		_offsets = new NativeArray<int2>(baseOffsets.Length, Allocator.Persistent);
 
@@ -84,6 +99,53 @@ public class TerrainChunk
 		}
 	}
 
+	public void GenerateObjects(int seed)
+	{
+		var maxScale = new float2x3(
+			0.8f, 1.2f,
+			0.8f, 1.2f,
+			0.8f, 1.2f);
+
+		var rng = new Unity.Mathematics.Random();
+		rng.InitState((uint)seed);
+
+		for (int i = 0; i < _objectDensitiy; i++)
+		{
+			var x = rng.NextFloat(CHUNK_SIZE);
+			var y = rng.NextFloat(CHUNK_SIZE);
+			var rayOrigin = new Vector3(x, _noiseConfigJobsafe.MaxHeight + 1, y) + _meshObj.transform.position;
+
+			if (!Physics.Raycast(rayOrigin, Vector3.down, out var hit, Mathf.Infinity) || !hit.transform.CompareTag("Ground"))
+			{
+				UnityEngine.Debug.DrawRay(rayOrigin, Vector3.down * 1000, Color.red, 10);
+				continue;
+			}
+
+			var biome = HeightBiomeMap.GetBiome(hit.point.y);
+
+			var biomePrefabCount = BiomePrefabDictionary.Instance.BiomePrefabs[biome].Count;
+			if (biomePrefabCount == 0)
+			{
+				UnityEngine.Debug.LogWarning($"No prefabs for biome {biome}");
+				continue;
+			}
+
+			var prefabIndex = rng.NextInt(biomePrefabCount);
+			var prefab = BiomePrefabDictionary.Instance.BiomePrefabs[biome][prefabIndex];
+			var go = UnityEngine.Object.Instantiate(prefab);
+			var transform = go.transform;
+
+			transform.SetParent(_meshObj.transform);
+			transform.localScale = new Vector3(
+				rng.NextFloat(maxScale.c0.x, maxScale.c0.y),
+				rng.NextFloat(maxScale.c1.x, maxScale.c1.y),
+				rng.NextFloat(maxScale.c2.x, maxScale.c2.y)
+				);
+
+			transform.SetLocalPositionAndRotation(hit.point - _meshCollider.transform.position, Quaternion.Euler(0, rng.NextFloat(360f), 0));
+		}
+	}
+
 	public void UpdateTerrainChunk(Vector2 viewerPos)
 	{
 		bool visible = Vector2.Distance(_coords, viewerPos) < _renderDistance;
@@ -92,9 +154,16 @@ public class TerrainChunk
 
 	public void SetVisible(bool visible)
 	{
-		if (meshObj.gameObject.activeSelf != visible)
+		if (_meshObj.gameObject.activeSelf == visible)
 		{
-			meshObj.SetActive(visible);
+			return;
+		}
+
+		_meshObj.SetActive(visible);
+		if (!_objectsGenerated && visible)
+		{
+			GenerateObjects(_noiseConfigJobsafe.Seed);
+			_objectsGenerated = true;
 		}
 	}
 
@@ -102,5 +171,6 @@ public class TerrainChunk
 	{
 		if (_offsets.IsCreated) _offsets.Dispose();
 		_meshData.Dispose();
+		_noiseConfigJobsafe.Dispose();
 	}
 }

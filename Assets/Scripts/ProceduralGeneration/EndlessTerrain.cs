@@ -10,10 +10,9 @@ public class EndlessTerrain : MonoBehaviour
 	public static EndlessTerrain Instance { get; private set; }
 
 	public ChunkGeneratorConfig _chunkGeneratorConfig;
-	private ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
 	public NoiseConfig _noiseConfig;
-	private NoiseConfigJobsafe _noiseConfigJobsafe;
-	private NativeArray<int2> _baseOffsets;
+
+	private int2[] _baseOffsets;
 
 	public GameObject _terrainChunkPrefab;
 
@@ -23,10 +22,11 @@ public class EndlessTerrain : MonoBehaviour
 	public Vector2 ViewerCoords => new Vector2((int)Viewer.position.x / CHUNK_SIZE, (int)Viewer.position.z / CHUNK_SIZE);
 	public Vector2 ViewerPos => new Vector2(Viewer.position.x, Viewer.position.z);
 
-	public const int CHUNK_SIZE = 241;   //TODO sync with ChunkGenerator.CHUNK_SIZE
+	public const int CHUNK_SIZE = 240;   //TODO sync with ChunkGenerator.CHUNK_SIZE
 
 	[Range(1, 3)]
-	public int loadBoarder = 2;
+	public int loadBoarder = 1;
+
 	Dictionary<Vector2, TerrainChunk> terrainChunks = new Dictionary<Vector2, TerrainChunk>();
 
 	float _cleanupTimer = 0f;
@@ -44,7 +44,6 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void Start()
 	{
-		ConvertToJobsafe();
 		GenerateOffsets();
 	}
 
@@ -81,47 +80,32 @@ public class EndlessTerrain : MonoBehaviour
 			return;
 		}
 
-		ConvertToJobsafe();
 		GenerateOffsets();
 
 		foreach (var chunk in terrainChunks)
 		{
-			chunk.Value.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
+			chunk.Value.GenerateMeshData();
 		}
 		Debug.Log("Validated: " + System.DateTime.Now);
 	}
 
-	private void OnDestroy()
-	{
-		Dispose();
-	}
-
 	private void GenerateOffsets()
 	{
-		if (_baseOffsets.IsCreated) _baseOffsets.Dispose();//TODO dispose noiseconfig layers and reassign
 
-		_baseOffsets = new NativeArray<int2>(_noiseConfigJobsafe.Layers.Length, Allocator.Persistent);
+		_baseOffsets = new int2[_noiseConfig.Layers.Length];
 
-		if (!_noiseConfigJobsafe.RandomizeOffset)
+		if (!_noiseConfig.RandomizeOffset)
 		{
 			return;
 		}
 
-		for (int i = 0; i < _noiseConfigJobsafe.Layers.Length; i++)
+		for (int i = 0; i < _noiseConfig.Layers.Length; i++)
 		{
 			_baseOffsets[i] = new int2(
 				UnityEngine.Random.Range(-ChunkGeneratorConfig.MAX_OFFSET, ChunkGeneratorConfig.MAX_OFFSET),
 				UnityEngine.Random.Range(-ChunkGeneratorConfig.MAX_OFFSET, ChunkGeneratorConfig.MAX_OFFSET)
 			);
 		}
-	}
-
-	private void ConvertToJobsafe()
-	{
-		if(_noiseConfigJobsafe.IsCreated) _noiseConfigJobsafe.Dispose();
-
-		_noiseConfigJobsafe = _noiseConfig.ToJobsafe();
-		_chunkGeneratorConfigJobsafe = _chunkGeneratorConfig.ToJobsafe();
 	}
 
 	private void UpdateVisibleChunks()  //Without loadBoarder, chunks will not unload properly.
@@ -138,8 +122,8 @@ public class EndlessTerrain : MonoBehaviour
 				}
 				else
 				{
-					var newChunk = new TerrainChunk(chunkCoord, this.gameObject, _terrainChunkPrefab);
-					newChunk.GenerateMeshData(_chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _baseOffsets);
+					var newChunk = new TerrainChunk(chunkCoord, this.gameObject, _terrainChunkPrefab, _chunkGeneratorConfig, _noiseConfig, _baseOffsets);
+					newChunk.GenerateMeshData();
 					terrainChunks.Add(chunkCoord, newChunk);
 				}
 			}
@@ -152,11 +136,5 @@ public class EndlessTerrain : MonoBehaviour
 		{
 			chunk.Value.UpdateTerrainChunk(ViewerPos / CHUNK_SIZE);
 		}
-	}
-
-	public void Dispose()
-	{
-		if (_baseOffsets.IsCreated) _baseOffsets.Dispose();
-		if (_noiseConfigJobsafe.IsCreated) _noiseConfigJobsafe.Dispose();
 	}
 }
