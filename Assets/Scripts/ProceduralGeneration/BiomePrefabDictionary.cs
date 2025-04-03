@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum BiomeTypes
@@ -17,7 +16,7 @@ public class BiomePrefabDictionary : MonoBehaviour
 {
 	public static BiomePrefabDictionary Instance { get; private set; }
 
-	public Dictionary<BiomeTypes, List<GameObject>> BiomePrefabs = new Dictionary<BiomeTypes, List<GameObject>> ();
+	public Dictionary<BiomeTypes, List<GameObject>> BiomePrefabs = new Dictionary<BiomeTypes, List<GameObject>>();
 
 	public List<GameObject> OceanPrefabs = new();
 	public List<GameObject> DesertPrefabs = new();
@@ -35,7 +34,7 @@ public class BiomePrefabDictionary : MonoBehaviour
 		BiomePrefabs.Add(BiomeTypes.Taiga, TaigaPrefabs);
 		BiomePrefabs.Add(BiomeTypes.Mountain, MountainPrefabs);
 	}
-	
+
 	private void Awake()
 	{
 		if (Instance == null)

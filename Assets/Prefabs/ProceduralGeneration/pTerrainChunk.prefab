@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6560453819938977354}
   - component: {fileID: 163068577416540264}
   - component: {fileID: 7665620447967696203}
+  - component: {fileID: 1155451645479457640}
   m_Layer: 0
   m_Name: pTerrainChunk
   m_TagString: Ground
@@ -109,3 +110,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1155451645479457640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3994087974104548847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ae5439f3d60b44cb5e4696fe0e3af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

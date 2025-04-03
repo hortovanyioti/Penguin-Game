@@ -1,21 +1,26 @@
-using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class TerrainChunk
+public enum ChunkState
+{
+	Constructed,
+	Initialized,
+	GeneratingMesh,
+	MeshGenerated,
+	MeshApplied,
+	GeneratedObjects
+}
+
+public class TerrainChunk : MonoBehaviour
 {
 	const int CHUNK_SIZE = EndlessTerrain.CHUNK_SIZE;
 	private static int _renderDistance => EndlessTerrain.Instance.RenderDistance;
 	private static int _objectDensitiy = 150;
 
-	public bool MeshDataReady => _isMeshUpdateInProgress && _handle.IsCompleted;
+	public ChunkState State { get; private set; } = ChunkState.Constructed;
 
-	private bool _isMeshUpdateInProgress = false;
-	private bool _objectsGenerated = false;
-	private GameObject _meshObj;
 	private Mesh _mesh;
 	private MeshCollider _meshCollider;
 	private MeshData _meshData;
@@ -23,20 +28,19 @@ public class TerrainChunk
 	private Vector2 _coords;
 	private JobHandle _handle;
 
-	private readonly ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
-	private readonly NoiseConfigJobsafe _noiseConfigJobsafe;
-	private readonly int2[] _baseOffsets;
+	private ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
+	private NoiseConfigJobsafe _noiseConfigJobsafe;
+	private int2[] _baseOffsets;
 
-	public TerrainChunk(Vector2 coords, GameObject parent, GameObject prefab, ChunkGeneratorConfig cgcfg, NoiseConfig ncfg, int2[] baseOffsets)
+	public void Init(Vector2 coords, GameObject parent, GameObject prefab, ChunkGeneratorConfig cgcfg, NoiseConfig ncfg, int2[] baseOffsets)
 	{
 		_chunkGeneratorConfigJobsafe = cgcfg.ToJobsafe();
 		_noiseConfigJobsafe = ncfg.ToJobsafe();
 		_baseOffsets = baseOffsets;
 
-		_meshObj = UnityEngine.Object.Instantiate(prefab, parent.transform);
-		_meshObj.name = "Terrain Chunk " + coords.ToString("0");
-		_meshCollider = _meshObj.GetComponent<MeshCollider>();
-		var meshFilter = _meshObj.GetComponent<MeshFilter>();
+		this.name = "Terrain Chunk " + coords.ToString("0");
+		_meshCollider = this.GetComponent<MeshCollider>();
+		var meshFilter = this.GetComponent<MeshFilter>();
 		_mesh = meshFilter.sharedMesh;
 
 		if (_mesh == null)
@@ -46,13 +50,36 @@ public class TerrainChunk
 
 		var positionScale = CHUNK_SIZE;
 
-		_meshObj.transform.position = new Vector3(coords.x * positionScale, 0, coords.y * positionScale);
+		this.transform.position = new Vector3(coords.x * positionScale, 0, coords.y * positionScale);
 		_coords = coords;
 		SetVisible(false);
+
+		State = ChunkState.Initialized;
+	}
+
+	private void Update()
+	{
+		switch (State)
+		{
+			case ChunkState.GeneratingMesh:
+				if (_handle != null && _handle.IsCompleted)
+				{
+					_handle.Complete();
+					State = ChunkState.MeshGenerated;
+				}
+				break;
+			case ChunkState.MeshApplied:
+				GenerateObjects(_noiseConfigJobsafe.Seed);
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void GenerateMeshData()
 	{
+		State = ChunkState.GeneratingMesh;
+
 		var scaledSize = CHUNK_SIZE / LOD.MeshScale[_chunkGeneratorConfigJobsafe.LevelOfDetail];
 		_meshData = new MeshData()
 		{
@@ -66,15 +93,10 @@ public class TerrainChunk
 
 		var chunkGeneratorJob = new ChunkGeneratorJob(_meshData, _chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _offsets);
 		_handle = chunkGeneratorJob.Schedule();
-		_isMeshUpdateInProgress = true;
 	}
 
 	public void ApplyMeshData()
 	{
-		if (_handle == null || !_handle.IsCompleted) return;
-
-		_handle.Complete();
-
 		_mesh.vertices = _meshData.Vertices.ToArray();
 		_mesh.uv = _meshData.Uvs.ToArray();
 		_mesh.colors = _meshData.Colors.ToArray();
@@ -83,7 +105,7 @@ public class TerrainChunk
 		_mesh.RecalculateNormals();
 		_meshCollider.sharedMesh = _mesh;
 
-		_isMeshUpdateInProgress = false;
+		State = ChunkState.MeshApplied;
 	}
 
 	private void CalculateOffsets(int2[] baseOffsets)
@@ -113,7 +135,7 @@ public class TerrainChunk
 		{
 			var x = rng.NextFloat(CHUNK_SIZE);
 			var y = rng.NextFloat(CHUNK_SIZE);
-			var rayOrigin = new Vector3(x, _noiseConfigJobsafe.MaxHeight + 1, y) + _meshObj.transform.position;
+			var rayOrigin = new Vector3(x, _noiseConfigJobsafe.MaxHeight + 1, y) + this.transform.position;
 
 			if (!Physics.Raycast(rayOrigin, Vector3.down, out var hit, Mathf.Infinity) || !hit.transform.CompareTag("Ground"))
 			{
@@ -135,7 +157,7 @@ public class TerrainChunk
 			var go = UnityEngine.Object.Instantiate(prefab);
 			var transform = go.transform;
 
-			transform.SetParent(_meshObj.transform);
+			transform.SetParent(this.transform);
 			transform.localScale = new Vector3(
 				rng.NextFloat(maxScale.c0.x, maxScale.c0.y),
 				rng.NextFloat(maxScale.c1.x, maxScale.c1.y),
@@ -144,6 +166,8 @@ public class TerrainChunk
 
 			transform.SetLocalPositionAndRotation(hit.point - _meshCollider.transform.position, Quaternion.Euler(0, rng.NextFloat(360f), 0));
 		}
+
+		State = ChunkState.GeneratedObjects;
 	}
 
 	public void UpdateTerrainChunk(Vector2 viewerPos)
@@ -154,17 +178,12 @@ public class TerrainChunk
 
 	public void SetVisible(bool visible)
 	{
-		if (_meshObj.gameObject.activeSelf == visible)
+		if (this.gameObject.activeSelf == visible)
 		{
 			return;
 		}
 
-		_meshObj.SetActive(visible);
-		if (!_objectsGenerated && visible)
-		{
-			GenerateObjects(_noiseConfigJobsafe.Seed);
-			_objectsGenerated = true;
-		}
+		this.gameObject.SetActive(visible);
 	}
 
 	~TerrainChunk()

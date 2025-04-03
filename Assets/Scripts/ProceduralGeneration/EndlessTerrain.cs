@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ public class EndlessTerrain : MonoBehaviour
 
 	private int2[] _baseOffsets;
 
-	public GameObject _terrainChunkPrefab;
+	[SerializeField] GameObject _terrainChunkPrefab;
 
 	[Range(1, 10)]
 	public int RenderDistance = 2;
@@ -65,7 +64,7 @@ public class EndlessTerrain : MonoBehaviour
 		for (int i = 0; i < terrainChunks.Count; i++)
 		{
 			var chunk = terrainChunks.ElementAt(i).Value;
-			if (chunk.MeshDataReady)
+			if (chunk.State == ChunkState.MeshGenerated)
 			{
 				chunk.ApplyMeshData();
 				return;
@@ -122,7 +121,8 @@ public class EndlessTerrain : MonoBehaviour
 				}
 				else
 				{
-					var newChunk = new TerrainChunk(chunkCoord, this.gameObject, _terrainChunkPrefab, _chunkGeneratorConfig, _noiseConfig, _baseOffsets);
+					var newChunk = Instantiate(_terrainChunkPrefab, this.transform).GetComponent<TerrainChunk>();
+					newChunk.Init(chunkCoord, this.gameObject, _terrainChunkPrefab, _chunkGeneratorConfig, _noiseConfig, _baseOffsets);
 					newChunk.GenerateMeshData();
 					terrainChunks.Add(chunkCoord, newChunk);
 				}
