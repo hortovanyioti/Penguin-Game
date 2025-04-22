@@ -279,7 +279,7 @@ MonoBehaviour:
     UseFalloff: 0
     FalloffSlope: 1
     FalloffOffset: 1
-    LevelOfDetail: 1
+    LevelOfDetail: 0
     HeightGradient:
       serializedVersion: 2
       key0: {r: 0, g: 0, b: 0.57254905, a: 1}

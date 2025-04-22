@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using SystemMemoryUsage;
 using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.Profiling;
 public class EndlessTerrain : MonoBehaviour
 {
 	public static EndlessTerrain Instance { get; private set; }
 
 	public ChunkGeneratorConfig _chunkGeneratorConfig;
 	public NoiseConfig _noiseConfig;
+	[SerializeField] private Vector2 _appMemoryBounds = new Vector2(2048f, 4096f);
+	[SerializeField] private float _minFreeSystemMemory = 1024f;
 
 	private int2[] _baseOffsets;
 
@@ -29,7 +33,7 @@ public class EndlessTerrain : MonoBehaviour
 	Dictionary<Vector2, TerrainChunk> terrainChunks = new Dictionary<Vector2, TerrainChunk>();
 
 	float _cleanupTimer = 0f;
-	float _cleanupTime = 10f;
+	float _cleanupTime = 5f;
 
 	private void Awake()
 	{
@@ -55,6 +59,7 @@ public class EndlessTerrain : MonoBehaviour
 		{
 			_cleanupTimer = 0;
 			UpdateVisibilityAllChunks();
+			MemoryCheck();
 		}
 	}
 
@@ -85,7 +90,7 @@ public class EndlessTerrain : MonoBehaviour
 		{
 			chunk.Value.GenerateMeshData();
 		}
-		Debug.Log("Validated: " + System.DateTime.Now);
+		UnityEngine.Debug.Log("Validated: " + System.DateTime.Now);
 	}
 
 	private void GenerateOffsets()
@@ -117,7 +122,7 @@ public class EndlessTerrain : MonoBehaviour
 
 				if (terrainChunks.ContainsKey(chunkCoord))
 				{
-					terrainChunks[chunkCoord].UpdateTerrainChunk(ViewerPos / CHUNK_SIZE);
+					terrainChunks[chunkCoord].UpdateVisibility(ViewerPos / CHUNK_SIZE);
 				}
 				else
 				{
@@ -134,7 +139,37 @@ public class EndlessTerrain : MonoBehaviour
 	{
 		foreach (var chunk in terrainChunks)
 		{
-			chunk.Value.UpdateTerrainChunk(ViewerPos / CHUNK_SIZE);
+			chunk.Value.UpdateVisibility(ViewerPos / CHUNK_SIZE);
+		}
+	}
+
+	private void MemoryCheck()
+	{
+		var totalUsedMemoryMB = (Profiler.GetTotalAllocatedMemoryLong() / (1024f * 1024f));
+		var totalReservedMemoryMB = (Profiler.GetTotalReservedMemoryLong() / (1024f * 1024f));
+		var totalUnusedReservedMemoryMB = (Profiler.GetTotalUnusedReservedMemoryLong() / (1024f * 1024f));
+		UnityEngine.Debug.Log($"Total Allocated Memory: {totalUsedMemoryMB} MB | Total Reserved Memory {totalReservedMemoryMB} | Total Unused Reserved Memory {totalUnusedReservedMemoryMB}");
+
+		MemoryInfo.GetMemoryStatus(out var systemTotalMemory, out var systemAvailableMemory);
+		UnityEngine.Debug.Log($"Total Memory: {(int)systemTotalMemory} MB");
+		UnityEngine.Debug.Log($"Available Memory: {(int)systemAvailableMemory} MB");
+
+		if (totalUsedMemoryMB > _appMemoryBounds.y ||
+			(systemAvailableMemory < _minFreeSystemMemory && totalUsedMemoryMB > _appMemoryBounds.x))
+		{
+			var unusedChunkCoords = new List<Vector2>();
+			foreach (var chunk in terrainChunks)
+			{
+				if (Vector2.Distance(chunk.Key, ViewerCoords) > 10f)//TODO change this to dynamic variable
+				{
+					unusedChunkCoords.Add(chunk.Key);
+				}
+			}
+			foreach (var coord in unusedChunkCoords)
+			{
+				terrainChunks.Remove(coord);
+				Destroy(terrainChunks[coord].gameObject);
+			}
 		}
 	}
 }

@@ -35,7 +35,6 @@ public class HeightBiomeMap : MonoBehaviour
 	public static BiomeTypes GetBiome(float value)
 	{
 		value /= EndlessTerrain.Instance._noiseConfig.MaxHeight;
-		Debug.Log($"Value: {value}");
 		value = Mathf.Clamp01(value);
 
 		int intValue = Convert.ToInt32(value * 100);

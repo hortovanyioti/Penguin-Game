@@ -25,8 +25,8 @@ public class TerrainChunk : MonoBehaviour
 	private MeshCollider _meshCollider;
 	private MeshData _meshData;
 	private NativeArray<int2> _offsets;
-	private Vector2 _coords;
 	private JobHandle _handle;
+	public Vector2 Coords;
 
 	private ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
 	private NoiseConfigJobsafe _noiseConfigJobsafe;
@@ -51,7 +51,7 @@ public class TerrainChunk : MonoBehaviour
 		var positionScale = CHUNK_SIZE;
 
 		this.transform.position = new Vector3(coords.x * positionScale, 0, coords.y * positionScale);
-		_coords = coords;
+		Coords = coords;
 		SetVisible(false);
 
 		State = ChunkState.Initialized;
@@ -115,8 +115,8 @@ public class TerrainChunk : MonoBehaviour
 		for (int i = 0; i < baseOffsets.Length; i++)
 		{
 			_offsets[i] = new int2(
-				baseOffsets[i].x + (int)_coords.x * CHUNK_SIZE,
-				baseOffsets[i].y + (int)_coords.y * CHUNK_SIZE
+				baseOffsets[i].x + (int)Coords.x * CHUNK_SIZE,
+				baseOffsets[i].y + (int)Coords.y * CHUNK_SIZE
 			);
 		}
 	}
@@ -134,8 +134,8 @@ public class TerrainChunk : MonoBehaviour
 		for (int i = 0; i < _objectDensitiy; i++)
 		{
 			var x = rng.NextFloat(CHUNK_SIZE);
-			var y = rng.NextFloat(CHUNK_SIZE);
-			var rayOrigin = new Vector3(x, _noiseConfigJobsafe.MaxHeight + 1, y) + this.transform.position;
+			var z = rng.NextFloat(CHUNK_SIZE);
+			var rayOrigin = new Vector3(x, _noiseConfigJobsafe.MaxHeight + 1, z) + this.transform.position;
 
 			if (!Physics.Raycast(rayOrigin, Vector3.down, out var hit, Mathf.Infinity) || !hit.transform.CompareTag("Ground"))
 			{
@@ -170,9 +170,9 @@ public class TerrainChunk : MonoBehaviour
 		State = ChunkState.GeneratedObjects;
 	}
 
-	public void UpdateTerrainChunk(Vector2 viewerPos)
+	public void UpdateVisibility(Vector2 viewerPos)
 	{
-		bool visible = Vector2.Distance(_coords, viewerPos) < _renderDistance;
+		bool visible = Vector2.Distance(Coords, viewerPos) < _renderDistance;
 		SetVisible(visible);
 	}
 
