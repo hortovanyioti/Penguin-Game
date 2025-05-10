@@ -1,6 +1,7 @@
 using Unity.AI.Navigation;
 using UnityEngine;
 
+[RequireComponent(typeof(NavMeshSurface))]
 public class CustomNavMesh : MonoBehaviour
 {
 	NavMeshSurface navMeshSurface;
@@ -11,7 +12,7 @@ public class CustomNavMesh : MonoBehaviour
 		navMeshSurface = GetComponent<NavMeshSurface>();
 		if (autoBake)
 		{
-			navMeshSurface.BuildNavMesh();
+			Bake();
 		}
 	}
 

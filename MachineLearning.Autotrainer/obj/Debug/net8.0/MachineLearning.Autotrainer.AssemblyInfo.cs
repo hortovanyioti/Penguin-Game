@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MachineLearning.Autotrainer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe8e4c2852e82c8981f25350fe4018c5fe36bedf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b96663e55ba2b73be2a90cf8d96a6f8249b0c3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MachineLearning.Autotrainer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MachineLearning.Autotrainer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

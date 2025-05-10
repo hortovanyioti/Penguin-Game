@@ -37,7 +37,18 @@ public class BaseEnemy : GameCharacter
 		attackCollider = GetComponent<BoxCollider>();
 		attackCooldown = new Cooldown();
 		attackCooldown.CoolDownTime = 1f;
-		attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
+
+		if (CustomNetworkManager.Instance != null)
+		{
+			attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
+		}
+		else
+		{
+			Debug.LogWarning("CustomNetworkManager not found!");
+
+			attackTargets = new List<GameObject>();
+			attackTargets.Add(FindAnyObjectByType<PlayerScript>(FindObjectsInactive.Include).gameObject);
+		}
 
 #if UNITY_EDITOR
 		if (attackCollider.enabled != false)
@@ -47,7 +58,7 @@ public class BaseEnemy : GameCharacter
 #endif
 		StartCoroutine(DelayAttackEnable());
 
-		attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
+		//attackTargets = CustomNetworkManager.Instance.Players.GameObjects;
 	}
 	private void Update()
 	{

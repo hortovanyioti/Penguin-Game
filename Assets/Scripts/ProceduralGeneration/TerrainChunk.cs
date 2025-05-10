@@ -10,7 +10,16 @@ public enum ChunkState
 	GeneratingMesh,
 	MeshGenerated,
 	MeshApplied,
-	GeneratedObjects
+	GeneratedObjects,
+	GeneratedNavMesh,
+	GeneratedNavMeshLinks,
+}
+public struct Links
+{
+	public NavMeshLinkChain Right;
+	public NavMeshLinkChain Forward;
+	public NavMeshLinkChain Left;
+	public NavMeshLinkChain Backward;
 }
 
 public class TerrainChunk : MonoBehaviour
@@ -26,19 +35,22 @@ public class TerrainChunk : MonoBehaviour
 	private MeshData _meshData;
 	private NativeArray<int2> _offsets;
 	private JobHandle _handle;
-	public Vector2 Coords;
+	public int2 Coords;
+	public Links NavMeshLinks;
 
 	private ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
 	private NoiseConfigJobsafe _noiseConfigJobsafe;
 	private int2[] _baseOffsets;
+	private CustomNavMesh _navMesh;
 
-	public void Init(Vector2 coords, GameObject parent, GameObject prefab, ChunkGeneratorConfig cgcfg, NoiseConfig ncfg, int2[] baseOffsets)
+	public void Init(int2 coords, GameObject parent, GameObject prefab, ChunkGeneratorConfig cgcfg, NoiseConfig ncfg, int2[] baseOffsets)
 	{
 		_chunkGeneratorConfigJobsafe = cgcfg.ToJobsafe();
 		_noiseConfigJobsafe = ncfg.ToJobsafe();
 		_baseOffsets = baseOffsets;
 
-		this.name = "Terrain Chunk " + coords.ToString("0");
+		this.name = $"Terrain Chunk ({coords.x},{coords.y})";
+		_navMesh = this.GetComponent<CustomNavMesh>();
 		_meshCollider = this.GetComponent<MeshCollider>();
 		var meshFilter = this.GetComponent<MeshFilter>();
 		_mesh = meshFilter.sharedMesh;
@@ -71,9 +83,17 @@ public class TerrainChunk : MonoBehaviour
 			case ChunkState.MeshApplied:
 				GenerateObjects(_noiseConfigJobsafe.Seed);
 				break;
+			case ChunkState.GeneratedObjects:
+				BakeNavMesh();
+				break;
 			default:
 				break;
 		}
+	}
+
+	public void ForceState(ChunkState state)
+	{
+		State = state;
 	}
 
 	public void GenerateMeshData()
@@ -170,9 +190,16 @@ public class TerrainChunk : MonoBehaviour
 		State = ChunkState.GeneratedObjects;
 	}
 
+	private void BakeNavMesh()
+	{
+		_navMesh.Bake();
+		State = ChunkState.GeneratedNavMesh;
+	}
+
 	public void UpdateVisibility(Vector2 viewerPos)
 	{
-		bool visible = Vector2.Distance(Coords, viewerPos) < _renderDistance;
+		var coordsF = new Vector2(Coords.x, Coords.y);
+		bool visible = Vector2.Distance(coordsF, viewerPos) < _renderDistance;
 		SetVisible(visible);
 	}
 

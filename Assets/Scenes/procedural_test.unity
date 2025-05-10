@@ -318,10 +318,13 @@ MonoBehaviour:
       Amplitude: 5
     - Frequency: 1
       Amplitude: 1
-    NoiseStrength: 2
+    NoiseStrength: 1
     Seed: 1234
     RandomizeOffset: 0
+  _appMemoryBounds: {x: 2048, y: 4096}
+  _minFreeSystemMemory: 1024
   _terrainChunkPrefab: {fileID: 3994087974104548847, guid: f8872e855b0e5b842b5cc2d42cf1dde8, type: 3}
+  _navMeshLinkPrefab: {fileID: 7500740449660783018, guid: b7b5944a125998f4d94d407c29cae18f, type: 3}
   RenderDistance: 2
   <Viewer>k__BackingField: {fileID: 461327128}
   loadBoarder: 1
@@ -355,6 +358,7 @@ MonoBehaviour:
   OceanPrefabs:
   - {fileID: 1086353713108280, guid: 10dcade9ef34ab642846c4b889ac76e7, type: 3}
   - {fileID: 1643754901835350, guid: 8d8b11b2e2435cc4787335555d35714f, type: 3}
+  - {fileID: 4932796770271062615, guid: 9405da997cf4b134eba2e9654b822323, type: 3}
   DesertPrefabs:
   - {fileID: 1879388732584624, guid: ba2b67dbc790eb74f8a401c592dd619f, type: 3}
   ForestPrefabs:
@@ -426,6 +430,10 @@ PrefabInstance:
     - target: {fileID: 4231622595662582735, guid: 52b23d93e7983ba429b97dca2abf2681, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362683023127793401, guid: 52b23d93e7983ba429b97dca2abf2681, type: 3}
+      propertyPath: maxHealth
+      value: 1e+13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

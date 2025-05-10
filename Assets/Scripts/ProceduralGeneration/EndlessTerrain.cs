@@ -18,11 +18,12 @@ public class EndlessTerrain : MonoBehaviour
 	private int2[] _baseOffsets;
 
 	[SerializeField] GameObject _terrainChunkPrefab;
+	[SerializeField] GameObject _navMeshLinkPrefab;
 
 	[Range(1, 10)]
 	public int RenderDistance = 2;
 	[field: SerializeField] public Transform Viewer { get; private set; }
-	public Vector2 ViewerCoords => new Vector2((int)Viewer.position.x / CHUNK_SIZE, (int)Viewer.position.z / CHUNK_SIZE);
+	public int2 ViewerCoords => new int2((int)Viewer.position.x / CHUNK_SIZE, (int)Viewer.position.z / CHUNK_SIZE);
 	public Vector2 ViewerPos => new Vector2(Viewer.position.x, Viewer.position.z);
 
 	public const int CHUNK_SIZE = 240;   //TODO sync with ChunkGenerator.CHUNK_SIZE
@@ -30,7 +31,8 @@ public class EndlessTerrain : MonoBehaviour
 	[Range(1, 3)]
 	public int loadBoarder = 1;
 
-	Dictionary<Vector2, TerrainChunk> terrainChunks = new Dictionary<Vector2, TerrainChunk>();
+	Dictionary<int2, TerrainChunk> terrainChunks = new Dictionary<int2, TerrainChunk>();
+	Dictionary<int2x2, NavMeshLinkChain> navMeshLinks = new Dictionary<int2x2, NavMeshLinkChain>();
 
 	float _cleanupTimer = 0f;
 	float _cleanupTime = 5f;
@@ -65,16 +67,8 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		//Only one chunk per frame
-		for (int i = 0; i < terrainChunks.Count; i++)
-		{
-			var chunk = terrainChunks.ElementAt(i).Value;
-			if (chunk.State == ChunkState.MeshGenerated)
-			{
-				chunk.ApplyMeshData();
-				return;
-			}
-		}
+		ApplyNextMeshData();
+		GenerateNavMeshLinks();
 	}
 
 	private void OnValidate()
@@ -95,7 +89,6 @@ public class EndlessTerrain : MonoBehaviour
 
 	private void GenerateOffsets()
 	{
-
 		_baseOffsets = new int2[_noiseConfig.Layers.Length];
 
 		if (!_noiseConfig.RandomizeOffset)
@@ -112,13 +105,87 @@ public class EndlessTerrain : MonoBehaviour
 		}
 	}
 
+	private void GenerateNavMeshLinks()
+	{
+		foreach (var chunk in terrainChunks)
+		{
+			if (chunk.Value.State == ChunkState.GeneratedNavMesh)
+			{
+				var chunkKeys = new int2[4] {
+					new int2(chunk.Key.x + 1, chunk.Key.y),
+					new int2(chunk.Key.x - 1, chunk.Key.y),
+					new int2(chunk.Key.x, chunk.Key.y + 1),
+					new int2(chunk.Key.x, chunk.Key.y - 1)
+				};
+
+				//Smaller key always first
+				var linkKeys = new int2x2[4] {
+					new int2x2(chunk.Key, chunkKeys[0]),
+					new int2x2(chunkKeys[1], chunk.Key),
+					new int2x2(chunk.Key, chunkKeys[2]),
+					new int2x2(chunkKeys[3], chunk.Key)
+				};
+
+				for (int i = 0; i < chunkKeys.Length; i++)
+				{
+					//If the next chunk exists and navmesh is generated, and the link does not exist
+					if (terrainChunks.TryGetValue(chunkKeys[i], out var nextChunk) &&
+						nextChunk.State >= ChunkState.GeneratedNavMesh &&
+						!navMeshLinks.TryGetValue(linkKeys[i], out var link))
+					{
+						//Create a new link
+						var newLink = Instantiate(_navMeshLinkPrefab, this.transform).GetComponent<NavMeshLinkChain>();
+						newLink.SetCoords(linkKeys[i]);
+						newLink.Bake();
+						navMeshLinks.Add(linkKeys[i], newLink);
+
+						switch (i)
+						{
+							case 0:
+								chunk.Value.NavMeshLinks.Right = newLink;
+								nextChunk.NavMeshLinks.Left = newLink;
+								break;
+							case 1:
+								chunk.Value.NavMeshLinks.Left = newLink;
+								nextChunk.NavMeshLinks.Right = newLink;
+								break;
+							case 2:
+								chunk.Value.NavMeshLinks.Forward = newLink;
+								nextChunk.NavMeshLinks.Backward = newLink;
+								break;
+							case 3:
+								chunk.Value.NavMeshLinks.Backward = newLink;
+								nextChunk.NavMeshLinks.Forward = newLink;
+								break;
+						}
+					}
+				}
+
+				chunk.Value.ForceState(ChunkState.GeneratedNavMeshLinks);
+			}
+		}
+	}
+	private void ApplyNextMeshData()
+	{
+		//Only one chunk per frame
+		for (int i = 0; i < terrainChunks.Count; i++)
+		{
+			var chunk = terrainChunks.ElementAt(i).Value;
+			if (chunk.State == ChunkState.MeshGenerated)
+			{
+				chunk.ApplyMeshData();
+				return;
+			}
+		}
+	}
+
 	private void UpdateVisibleChunks()  //Without loadBoarder, chunks will not unload properly.
 	{
 		for (int x = -RenderDistance - loadBoarder; x < RenderDistance + loadBoarder; x++)
 		{
 			for (int y = -RenderDistance - loadBoarder; y < RenderDistance + loadBoarder; y++)
 			{
-				var chunkCoord = new Vector2(ViewerCoords.x + x, ViewerCoords.y + y);
+				var chunkCoord = new int2(ViewerCoords.x + x, ViewerCoords.y + y);
 
 				if (terrainChunks.ContainsKey(chunkCoord))
 				{
@@ -148,19 +215,21 @@ public class EndlessTerrain : MonoBehaviour
 		var totalUsedMemoryMB = (Profiler.GetTotalAllocatedMemoryLong() / (1024f * 1024f));
 		var totalReservedMemoryMB = (Profiler.GetTotalReservedMemoryLong() / (1024f * 1024f));
 		var totalUnusedReservedMemoryMB = (Profiler.GetTotalUnusedReservedMemoryLong() / (1024f * 1024f));
-		UnityEngine.Debug.Log($"Total Allocated Memory: {totalUsedMemoryMB} MB | Total Reserved Memory {totalReservedMemoryMB} | Total Unused Reserved Memory {totalUnusedReservedMemoryMB}");
+		//UnityEngine.Debug.Log($"Total Allocated Memory: {totalUsedMemoryMB} MB | Total Reserved Memory {totalReservedMemoryMB} | Total Unused Reserved Memory {totalUnusedReservedMemoryMB}");
 
 		MemoryInfo.GetMemoryStatus(out var systemTotalMemory, out var systemAvailableMemory);
-		UnityEngine.Debug.Log($"Total Memory: {(int)systemTotalMemory} MB");
-		UnityEngine.Debug.Log($"Available Memory: {(int)systemAvailableMemory} MB");
+		//UnityEngine.Debug.Log($"Total Memory: {(int)systemTotalMemory} MB");
+		//UnityEngine.Debug.Log($"Available Memory: {(int)systemAvailableMemory} MB");
 
 		if (totalUsedMemoryMB > _appMemoryBounds.y ||
 			(systemAvailableMemory < _minFreeSystemMemory && totalUsedMemoryMB > _appMemoryBounds.x))
 		{
-			var unusedChunkCoords = new List<Vector2>();
+			var unusedChunkCoords = new List<int2>();
 			foreach (var chunk in terrainChunks)
 			{
-				if (Vector2.Distance(chunk.Key, ViewerCoords) > 10f)//TODO change this to dynamic variable
+				var diff = chunk.Key - ViewerCoords;
+				var squreDistance = diff.x * diff.x + diff.y * diff.y;
+				if (squreDistance > 100f)//TODO change this to dynamic variable
 				{
 					unusedChunkCoords.Add(chunk.Key);
 				}
