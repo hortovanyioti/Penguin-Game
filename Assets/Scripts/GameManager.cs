@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Unity.MLAgents;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;

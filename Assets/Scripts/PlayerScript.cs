@@ -1,13 +1,8 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerScript : GameCharacter
 {

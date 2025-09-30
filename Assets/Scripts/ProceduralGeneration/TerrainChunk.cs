@@ -1,0 +1,222 @@
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
+using UnityEngine;
+
+public enum ChunkState
+{
+	Constructed,
+	Initialized,
+	GeneratingMesh,
+	MeshGenerated,
+	MeshApplied,
+	GeneratedObjects,
+	GeneratedNavMesh,
+	GeneratedNavMeshLinks,
+}
+public struct Links
+{
+	public NavMeshLinkChain Right;
+	public NavMeshLinkChain Forward;
+	public NavMeshLinkChain Left;
+	public NavMeshLinkChain Backward;
+}
+
+public class TerrainChunk : MonoBehaviour
+{
+	const int CHUNK_SIZE = EndlessTerrain.CHUNK_SIZE;
+	private static int _renderDistance => EndlessTerrain.Instance.RenderDistance;
+	private static int _objectDensitiy = 150;
+
+	public ChunkState State { get; private set; } = ChunkState.Constructed;
+
+	private Mesh _mesh;
+	private MeshCollider _meshCollider;
+	private MeshData _meshData;
+	private NativeArray<int2> _offsets;
+	private JobHandle _handle;
+	public int2 Coords;
+	public Links NavMeshLinks;
+
+	private ChunkGeneratorConfigJobsafe _chunkGeneratorConfigJobsafe;
+	private NoiseConfigJobsafe _noiseConfigJobsafe;
+	private int2[] _baseOffsets;
+	private CustomNavMesh _navMesh;
+
+	public void Init(int2 coords, GameObject parent, GameObject prefab, ChunkGeneratorConfig cgcfg, NoiseConfig ncfg, int2[] baseOffsets)
+	{
+		_chunkGeneratorConfigJobsafe = cgcfg.ToJobsafe();
+		_noiseConfigJobsafe = ncfg.ToJobsafe();
+		_baseOffsets = baseOffsets;
+
+		this.name = $"Terrain Chunk ({coords.x},{coords.y})";
+		_navMesh = this.GetComponent<CustomNavMesh>();
+		_meshCollider = this.GetComponent<MeshCollider>();
+		var meshFilter = this.GetComponent<MeshFilter>();
+		_mesh = meshFilter.sharedMesh;
+
+		if (_mesh == null)
+		{
+			meshFilter.sharedMesh = _mesh = new Mesh();
+		}
+
+		var positionScale = CHUNK_SIZE;
+
+		this.transform.position = new Vector3(coords.x * positionScale, 0, coords.y * positionScale);
+		Coords = coords;
+		SetVisible(false);
+
+		State = ChunkState.Initialized;
+	}
+
+	private void Update()
+	{
+		switch (State)
+		{
+			case ChunkState.GeneratingMesh:
+				if (_handle != null && _handle.IsCompleted)
+				{
+					_handle.Complete();
+					State = ChunkState.MeshGenerated;
+				}
+				break;
+			case ChunkState.MeshApplied:
+				GenerateObjects(_noiseConfigJobsafe.Seed);
+				break;
+			case ChunkState.GeneratedObjects:
+				BakeNavMesh();
+				break;
+			default:
+				break;
+		}
+	}
+
+	public void ForceState(ChunkState state)
+	{
+		State = state;
+	}
+
+	public void GenerateMeshData()
+	{
+		State = ChunkState.GeneratingMesh;
+
+		var scaledSize = CHUNK_SIZE / LOD.MeshScale[_chunkGeneratorConfigJobsafe.LevelOfDetail];
+		_meshData = new MeshData()
+		{
+			Vertices = new NativeArray<Vector3>((scaledSize + 1) * (scaledSize + 1), Allocator.Persistent),
+			Uvs = new NativeArray<Vector2>((scaledSize + 1) * (scaledSize + 1), Allocator.Persistent),
+			Colors = new NativeArray<Color>((scaledSize + 1) * (scaledSize + 1), Allocator.Persistent),
+			Triangles = new NativeArray<int>(scaledSize * scaledSize * 6, Allocator.Persistent)
+		};
+
+		CalculateOffsets(_baseOffsets);
+
+		var chunkGeneratorJob = new ChunkGeneratorJob(_meshData, _chunkGeneratorConfigJobsafe, _noiseConfigJobsafe, _offsets);
+		_handle = chunkGeneratorJob.Schedule();
+	}
+
+	public void ApplyMeshData()
+	{
+		_mesh.vertices = _meshData.Vertices.ToArray();
+		_mesh.uv = _meshData.Uvs.ToArray();
+		_mesh.colors = _meshData.Colors.ToArray();
+		_mesh.triangles = _meshData.Triangles.ToArray();
+
+		_mesh.RecalculateNormals();
+		_meshCollider.sharedMesh = _mesh;
+
+		State = ChunkState.MeshApplied;
+	}
+
+	private void CalculateOffsets(int2[] baseOffsets)
+	{
+		_offsets = new NativeArray<int2>(baseOffsets.Length, Allocator.Persistent);
+
+		for (int i = 0; i < baseOffsets.Length; i++)
+		{
+			_offsets[i] = new int2(
+				baseOffsets[i].x + (int)Coords.x * CHUNK_SIZE,
+				baseOffsets[i].y + (int)Coords.y * CHUNK_SIZE
+			);
+		}
+	}
+
+	public void GenerateObjects(int seed)
+	{
+		var maxScale = new float2x3(
+			0.8f, 1.2f,
+			0.8f, 1.2f,
+			0.8f, 1.2f);
+
+		var rng = new Unity.Mathematics.Random();
+		rng.InitState((uint)seed);
+
+		for (int i = 0; i < _objectDensitiy; i++)
+		{
+			var x = rng.NextFloat(CHUNK_SIZE);
+			var z = rng.NextFloat(CHUNK_SIZE);
+			var rayOrigin = new Vector3(x, _noiseConfigJobsafe.MaxHeight + 1, z) + this.transform.position;
+
+			if (!Physics.Raycast(rayOrigin, Vector3.down, out var hit, Mathf.Infinity) || !hit.transform.CompareTag("Ground"))
+			{
+				UnityEngine.Debug.DrawRay(rayOrigin, Vector3.down * 1000, Color.red, 10);
+				continue;
+			}
+
+			var biome = HeightBiomeMap.GetBiome(hit.point.y);
+
+			var biomePrefabCount = BiomePrefabDictionary.Instance.BiomePrefabs[biome].Count;
+			if (biomePrefabCount == 0)
+			{
+				UnityEngine.Debug.LogWarning($"No prefabs for biome {biome}");
+				continue;
+			}
+
+			var prefabIndex = rng.NextInt(biomePrefabCount);
+			var prefab = BiomePrefabDictionary.Instance.BiomePrefabs[biome][prefabIndex];
+			var go = UnityEngine.Object.Instantiate(prefab);
+			var transform = go.transform;
+
+			transform.SetParent(this.transform);
+			transform.localScale = new Vector3(
+				rng.NextFloat(maxScale.c0.x, maxScale.c0.y),
+				rng.NextFloat(maxScale.c1.x, maxScale.c1.y),
+				rng.NextFloat(maxScale.c2.x, maxScale.c2.y)
+				);
+
+			transform.SetLocalPositionAndRotation(hit.point - _meshCollider.transform.position, Quaternion.Euler(0, rng.NextFloat(360f), 0));
+		}
+
+		State = ChunkState.GeneratedObjects;
+	}
+
+	private void BakeNavMesh()
+	{
+		_navMesh.Bake();
+		State = ChunkState.GeneratedNavMesh;
+	}
+
+	public void UpdateVisibility(Vector2 viewerPos)
+	{
+		var coordsF = new Vector2(Coords.x, Coords.y);
+		bool visible = Vector2.Distance(coordsF, viewerPos) < _renderDistance;
+		SetVisible(visible);
+	}
+
+	public void SetVisible(bool visible)
+	{
+		if (this.gameObject.activeSelf == visible)
+		{
+			return;
+		}
+
+		this.gameObject.SetActive(visible);
+	}
+
+	~TerrainChunk()
+	{
+		if (_offsets.IsCreated) _offsets.Dispose();
+		_meshData.Dispose();
+		_noiseConfigJobsafe.Dispose();
+	}
+}
