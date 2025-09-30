@@ -1,12 +1,18 @@
 {
   "version": 2,
-<<<<<<< Updated upstream
-  "dgSpecHash": "WUoRjMkHF4w=",
-=======
   "dgSpecHash": "IzX9osAC4yg=",
->>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
+      "targetGraphs": []
+    }
+  ]
 }
