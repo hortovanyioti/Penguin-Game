@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "WUoRjMkHF4w=",
+=======
+  "dgSpecHash": "IzX9osAC4yg=",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
   "expectedPackageFiles": [],

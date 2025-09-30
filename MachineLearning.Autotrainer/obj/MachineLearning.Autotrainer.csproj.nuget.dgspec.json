@@ -48,7 +48,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
+<<<<<<< Updated upstream
         "SdkAnalysisLevel": "9.0.100"
+=======
+        "SdkAnalysisLevel": "9.0.300"
+>>>>>>> Stashed changes
       },
       "frameworks": {
         "net8.0": {
@@ -69,7 +73,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< Updated upstream
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+>>>>>>> Stashed changes
         }
       }
     }

@@ -13,3 +13,10 @@ C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\refint\M
 C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.pdb
 C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.genruntimeconfig.cache
 C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\ref\MachineLearning.Autotrainer.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\ComputerInfo.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\System.CodeDom.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\System.Management.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Management.dll
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineLearning.Autotrainer.csproj.AssemblyReference.cache
+C:\Work\Reflex Aim Trainer\MachineLearning.Autotrainer\obj\Debug\net8.0\MachineL.0EE4B312.Up2Date

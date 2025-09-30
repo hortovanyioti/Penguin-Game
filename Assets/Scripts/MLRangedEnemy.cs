@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
@@ -15,7 +13,7 @@ public class MLRangedEnemy : Agent
 
 	[SerializeField] GameObject targetContainer;
 	[SerializeField] GameObject obstacleContainer;
-	[SerializeField] readonly int numOfObservedTargets = 4;
+	//[SerializeField] readonly int numOfObservedTargets = 4;
 
 	[SerializeField] float rewardTimer = 0;
 	[SerializeField] readonly float rewardTime = 0.1f;               // Every n seconds
