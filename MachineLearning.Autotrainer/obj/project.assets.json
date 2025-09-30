@@ -10,25 +10,28 @@
   "packageFolders": {
     "C:\\Users\\horto\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
+      "projectUniqueName": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
       "projectName": "MachineLearning.Autotrainer",
-      "projectPath": "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
+      "projectPath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\MachineLearning.Autotrainer.csproj",
       "packagesPath": "C:\\Users\\horto\\.nuget\\packages\\",
-      "outputPath": "C:\\work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\obj\\",
+      "outputPath": "C:\\Work\\Reflex Aim Trainer\\MachineLearning.Autotrainer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\horto\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -52,9 +55,13 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
-      "SdkAnalysisLevel": "9.0.200"
+<<<<<<< Updated upstream
+      "SdkAnalysisLevel": "9.0.100"
+=======
+      "SdkAnalysisLevel": "9.0.300"
+>>>>>>> Stashed changes
     },
     "frameworks": {
       "net8.0": {
@@ -75,7 +82,11 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+<<<<<<< Updated upstream
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+>>>>>>> Stashed changes
       }
     }
   }
